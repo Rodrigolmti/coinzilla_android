@@ -1,24 +1,16 @@
-# CoinZilla
-Simple app wich consumes an Rest api
-- This application use 
-    `Kotlin`
-    `Realm`
-    `Retrofit`
-    `RX-Java` 
+# CoinZilla Android application
 
-# How to use
-```sh
- - Open in Android Studio and build
-```
+This is an Android native application, you can check with is profitable mining some coin, best coins to mine with gpu cards and asics and check the currency of the best cryptocoins actually.
 
-# Functions
+* Currenty version 1.7.1
 
-    Function available:
+## Built With
 
-    whatToMine Gpu coins
-    whatToMine Asic coins
-    coinWarz profitability coins
-    coin cryptocurrency
+* [Kotlin](https://kotlinlang.org/)
+* [Realm](https://realm.io/)
+* [Retrofit](http://square.github.io/retrofit/)
+* [RX-Java](https://github.com/ReactiveX/RxJava)
 
-Why we don't selfs do what we need? Why you use this shit api? 
-Make you self your api :D
+## Authors
+
+* **Rodrigo Lopes** - *Initial work* - [Rodrigolmti](https://github.com/Rodrigolmti)
