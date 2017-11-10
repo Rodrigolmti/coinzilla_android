@@ -1,0 +1,166 @@
+<resources>
+
+    <string name="app_name">CoinZilla</string>
+
+    <string name="admob_api_key">PnUY3slkWbZRx9UVstrhHssqGvroZ4sZDuZqDIVMT81IfP7ReVr7Cci63Uar9qqM</string>
+    <string name="admob_main_activity">ca-app-pub-4643315836358341/6481542633</string>
+    <string name="admob_info_activity">ca-app-pub-4643315836358341/6640312973</string>
+    <string name="admob_profitability_activity">ca-app-pub-4643315836358341/8996025332</string>
+    <string name="admob_detail_activity">ca-app-pub-4643315836358341/7134388561</string>
+    <string name="admob_favorite_activity">ca-app-pub-4643315836358341/8163155933</string>
+    <string name="admob_test_device_one_plus">F1A73ED617C33CF5EFF0CBDAD5358FE9</string>
+    <string name="admob_test_device_genymotion">DE9334F8A22C8A3315DB3D729241D0C4</string>
+    <string name="admob_test_device_s7">099DBE660543CEB86BC7E500086A4D53</string>
+
+    <string name="wallet_btc">14MVMfLpYDxoStZCKVVpZyHNT9Tu2EuEZ6</string>
+    <string name="wallet_eth">0x32303Dbffb259d7efF7a76f4d129b6FD05c79EAd</string>
+    <string name="wallet_ltc">LLkfoN9zMjDDju85E7TtittRFzr1e1JpbF</string>
+
+    <string name="menu_favorite">Favorite</string>
+
+    <string name="base_url_main">http://67.205.185.235:3000/api/v1/</string>
+    <string name="base_url_what_to_mine">https://whattomine.com/</string>
+    <string name="base_url_market_Cap">https://api.coinmarketcap.com/v1/</string>
+    <string name="base_url_crypto_compare">https://www.cryptocompare.com/api/data/</string>
+    <string name="base_url_crypto_compare_2">https://min-api.cryptocompare.com/data/</string>
+    <string name="base_url_poloniex_trading">https://poloniex.com/tradingApi</string>
+
+    <string name="general_error">Oh man, something went wrong.\nPlease try again.</string>
+    <string name="general_error_connection">I was unable to complete your request.\nPlease check your connection and try again.</string>
+    <string name="general_error_empty">Ohh looks like you don\'t have any favorite coins. Add some coins and come back. See ya.</string>
+
+    <string name="activity_main_title">MENU</string>
+    <string name="activity_main_gpu_title">GPU Mining</string>
+    <string name="activity_main_gpu_message">List of the best coins for mining with gpus. Information based with ethereum.</string>
+    <string name="activity_main_asic_title">Asic Mining</string>
+    <string name="activity_main_asic_message">List of the best coins for Asic mining. Information based with ethereum.</string>
+    <string name="activity_main_warz_title">Altcoin Vs Bitcoin</string>
+    <string name="activity_main_warz_message">Comparation cryptocurrencies and bitcoin to determine which currency is more profitable.</string>
+    <string name="activity_main_cryptocurrency_title">CryptoCurrency</string>
+    <string name="activity_main_cryptocurrency_message">List with all available coins. Here you can see more detailed information about each one.</string>
+    <string name="activity_main_profitability_title">Mining Profitability</string>
+    <string name="activity_main_profitability_message">Calculate the profit from mining. Estimated amount of cryptocoins.</string>
+
+    <string name="activity_list_update">Update at: %1$s</string>
+    <string name="activity_list_detail">Details</string>
+    <string name="activity_list_gpu_title">Gpu Mining</string>
+    <string name="activity_list_asic_title">Asic Mining</string>
+    <string name="activity_list_currency_title">Quote</string>
+    <string name="activity_list_mining_title">Mining Profitability</string>
+    <string name="activity_list_tag">Tag</string>
+    <string name="activity_list_algorithm">Algorithm</string>
+    <string name="activity_list_difficulty">Difficulty</string>
+    <string name="activity_list_resward">Est Reward</string>
+    <string name="activity_list_market">Market cap</string>
+    <string name="activity_list_net_hash">NetHash</string>
+    <string name="activity_list_btc_price">Btc Price</string>
+    <string name="activity_list_usd_price">Usd Price</string>
+    <string name="activity_list_percent_1">Percent change 1h</string>
+    <string name="activity_list_percent_24">Percent change 24H</string>
+    <string name="activity_list_search_here">Search here</string>
+
+    <string name="activity_info_title">Information</string>
+    <string name="activity_info_description">
+
+        Cards GPU and ASIC:\n\nYou can see how profitable the selected currency is compared to ethereum. Note that calculations are based on average values, so your bottom line may vary.\n\nCard CryptoCurrency:\n\nThe altcoins are being compared to the Bitcoin mining to determine if a cryptocurrency is more profitable for mining than Bitcoin. The profitability information for the displayed altcoins is based on a statistical calculation using the entered hash rate values ​​and not counting difficulties and fluctuations in the exchange rate, rates obtained. Your individual profitability may vary.\n\nCard CryptoCurrency:\n\nThis section contains data about the cryptoCurrency market capitalization, here you will found the 100 coins most trade and mined in the last times. All data are retrieve in www.coinmarketcap.com, and will be refresh each 15 minutes. Exchange information available at https://www.cryptocompare.com.\n\nCard Mining Profitability:\n\nHere you can calculate how ptofitable is to mining some coin, the formula is a average, and the values could not be exact.
+
+    </string>
+    <string name="activity_info_author">Author</string>
+    <string name="activity_info_rodrigolmti">Rodrigolmti.</string>
+    <string name="activity_info_email">rodrigolmti@gmail.com</string>
+    <string name="activity_info_version">Version</string>
+    <string name="activity_info_subject">CoinZilla contact</string>
+    <string name="activity_info_send_email">Send this email with:</string>
+    <string name="activity_info_toast_wallet">Wallet address copy!</string>
+    <string name="activity_info_clipboard">wallet address - CoinZilla 2017</string>
+    <string name="activity_info_contact_us">Contact Us</string>
+    <string name="activity_info_contact_message">Report a bug, suggestion or opinions about the coinzilla.</string>
+    <string name="activity_info_send_email_title">Send Email</string>
+    <string name="activity_info_donate_title">Donate to Developer</string>
+    <string name="activity_info_donate_message">Do you like coinZilla and does it help you? Help me too.</string>
+    <string name="activity_info_wallets">Available wallets</string>
+    <string name="activity_info_copy">Copy</string>
+    <string name="activity_info_btc">BTC</string>
+    <string name="activity_info_eth">ETH</string>
+    <string name="activity_info_ltc">LTC</string>
+    <string-array name="activity_info_wallets">
+        <item>BTC</item>
+        <item>ETH</item>
+        <item>LTC</item>
+    </string-array>
+
+    <string name="activity_profitability_select_calc">Select which calc you want.</string>
+    <string name="activity_profitability_estimated">Estimated amount:</string>
+    <string name="activity_profitability_hash">Enter your HashRate</string>
+    <string name="activity_profitability_block_reward">Enter your Block Reward</string>
+    <string name="activity_profitability_difficulty">Enter the Block Difficulty</string>
+    <string name="activity_profitability_fee">Enter the Pool Fees</string>
+    <string name="activity_profitability_calculate">Calculate</string>
+    <string name="activity_profitability_title">Profitability calculator</string>
+    <string name="activity_profitability_message">Field required</string>
+    <string name="activity_profitability_power">Enter the Power costs</string>
+    <string name="activity_profitability_hardware">Enter the hardware costs</string>
+    <string name="activity_profitability_reward">Reward</string>
+    <string name="activity_profitability_costs">Mining Costs</string>
+    <string name="activity_profitability_ethereum">Ethereum</string>
+    <string name="activity_profitability_cryptonode">Cryptonote</string>
+    <string name="activity_profitability_bitcoin">Bitcoin</string>
+    <string name="activity_profitability_zcash">Zcash</string>
+    <string name="activity_profitability_day">Day</string>
+    <string name="activity_profitability_month">Month</string>
+    <string name="activity_profitability_year">Year</string>
+
+    <string name="activity_profitability_hs">H/s</string>
+    <string name="activity_profitability_khs">KH/s</string>
+    <string name="activity_profitability_mhs">MH/s</string>
+    <string name="activity_profitability_ghs">GH/s</string>
+
+    <string-array name="activity_profitability_categories">
+        <item>Reward</item>
+        <item>Mining Costs</item>
+    </string-array>
+    <string-array name="activity_profitability_hash_type">
+        <item>H/s</item>
+        <item>KH/s</item>
+        <item>MH/s</item>
+        <item>GH/s</item>
+    </string-array>
+    <string-array name="activity_profitability_type">
+        <item>Ethereum</item>
+        <item>Cryptonote</item>
+        <item>Bitcoin</item>
+        <item>Zcash</item>
+    </string-array>
+
+    <string name="activity_detail_name">Name</string>
+    <string name="activity_detail_symbol">Symbol</string>
+    <string name="activity_detail_price_usd">Price Usd</string>
+    <string name="activity_detail_price_btc">Price Btc</string>
+    <string name="activity_detail_price_brl">Price Brl</string>
+    <string name="activity_detail_volume_usd">Volume Usd</string>
+    <string name="activity_detail_volume_brl">Volume Brl</string>
+    <string name="activity_detail_market_cap_usd">Market Cap Usd</string>
+    <string name="activity_detail_market_cap_brl">Market Cap Brl</string>
+    <string name="activity_detail_available_supply">Available Supply</string>
+    <string name="activity_detail_total_supply">Total Supply</string>
+    <string name="activity_detail_percent_change_1h">Percent Change 1H</string>
+    <string name="activity_detail_percent_change_24h">Percent Change 24H</string>
+    <string name="activity_detail_percent_change_7d">Percent Change 7D</string>
+    <string name="activity_detail_percent">%1$s a</string>
+    <string name="activity_detail_brl">BRL</string>
+    <string name="activity_detail_usd">USD</string>
+    <string name="activity_detail_exchanges">Exchanges</string>
+    <string name="activity_detail_error">Hey looks like this coin don\'t have any data available, try another currency or later!</string>
+    <string name="activity_detail_daily_historic">Daily historic</string>
+
+    <string name="activity_favorite_title">Favorite</string>
+    <string name="menu_refresh">Refresh</string>
+    <string name="menu_add">Add</string>
+    <string name="activity_exchange_api_key">Input your API Key here</string>
+    <string name="activity_exchange_api_secret">Input your API secret here</string>
+    <string name="activity_exchange_api_name">Exchange name (Optional)</string>
+    <string name="activity_exchange_api_create">Create</string>
+    <string name="activity_exchange_api_warning">You need to create a new Api key on this exchange service and provide the date above. Create Read-Only Key, disable Buy/Sell and withdraw permission. (CoinZilla is not responsible for the loss from user\'s mistake). When you send thats means you agree for us to retrieve your exchange/wallet data.</string>
+    <string name="activity_exchange_api_title">Exchange Api Keys</string>
+
+</resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#5DC8FF</color>
+    <color name="colorPrimaryDark">#1E8BC3</color>
+    <color name="pictonBlue">#4BBEF7</color>
+    <color name="colorAccent">#333333</color>
+    <color name="white">#FFFFFF</color>
+    <color name="aliceBlue">#F1FAFF</color>
+    <color name="separator">#DBDBDB</color>
+    <color name="whiteLilac">#333333</color>
+    <color name="abestos">#7f8c8d</color>
+    <color name="black">#000000</color>
+    <color name="alizarin">#e74c3c</color>
+    <color name="nephritis">#27ae60</color>
+    <color name="wisteria">#8e44ad</color>
+    <color name="seashell">#F1F1F1</color>
+    <color name="wildSand">#F5F4F5</color>
+</resources>

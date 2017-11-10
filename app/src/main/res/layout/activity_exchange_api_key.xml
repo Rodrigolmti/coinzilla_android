@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:padding="16dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageViewExchangeBg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/poloniex_bg" />
+
+        <EditText
+            android:id="@+id/editTextApiKey"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/imageViewExchangeBg"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/edit_text_custom_background"
+            android:gravity="center"
+            android:hint="@string/activity_exchange_api_key" />
+
+        <EditText
+            android:id="@+id/editTextApiSecret"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/editTextApiKey"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/edit_text_custom_background"
+            android:gravity="center"
+            android:hint="@string/activity_exchange_api_secret" />
+
+        <EditText
+            android:id="@+id/editTextExchangeName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/editTextApiSecret"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/edit_text_custom_background"
+            android:gravity="center"
+            android:hint="@string/activity_exchange_api_name" />
+
+        <Button
+            android:id="@+id/buttonContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextExchangeName"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/custom_button_background_blue"
+            android:text="@string/activity_exchange_api_create"
+            android:textColor="@color/aliceBlue"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewAlert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_below="@+id/buttonContact"
+            android:layout_marginTop="20dp"
+            android:text="@string/activity_exchange_api_warning" />
+
+    </RelativeLayout>
+
+</ScrollView>
