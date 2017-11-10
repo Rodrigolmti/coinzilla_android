@@ -4,7 +4,6 @@ import com.google.gson.annotations.SerializedName
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.ExchangeCoin
 
 class BaseExchangeDTO (
-
         @SerializedName("Response")
         val succes: String,
         @SerializedName("Message")

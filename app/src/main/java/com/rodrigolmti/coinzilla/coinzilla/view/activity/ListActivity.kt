@@ -69,28 +69,31 @@ class ListActivity : AppCompatActivity(), BaseView {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 
+    //TODO: Fix search in all cryptocurrency
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_list_home, menu)
+        if (action != Action.CRYPTOCURRENCY) {
+            menuInflater.inflate(R.menu.menu_list_home, menu)
+            val myActionMenuItem = menu!!.findItem(R.id.action_search)
+            val searchView = myActionMenuItem.actionView as SearchView
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    return false
+                }
 
-        val myActionMenuItem = menu!!.findItem(R.id.action_search)
-        val searchView = myActionMenuItem.actionView as SearchView
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(query: String): Boolean {
-                if (adapterWhatToMine != null)
-                    adapterWhatToMine.filter(query)
-                else
-                    adapterCryptoCurrency.filter(query)
-                return true
-            }
-        })
+                override fun onQueryTextChange(query: String): Boolean {
+                    if (adapterWhatToMine != null)
+                        adapterWhatToMine.filter(query)
+                    else
+                        adapterCryptoCurrency.filter(query)
+                    return true
+                }
+            })
+        }
 
         return true
     }
 
+    //TODO: Fix search in all cryptocurrency
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             else -> finish()
