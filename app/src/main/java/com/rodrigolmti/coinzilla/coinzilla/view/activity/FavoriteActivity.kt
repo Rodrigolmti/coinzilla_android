@@ -12,25 +12,21 @@ import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.CryptoCurrency
 import com.rodrigolmti.coinzilla.coinzilla.model.presenter.Presenter
 import com.rodrigolmti.coinzilla.coinzilla.view.adapter.CryptoCurrencyAdapter
+import com.rodrigolmti.coinzilla.library.controller.activity.BaseActivity
 import com.rodrigolmti.coinzilla.library.controller.mvp.BasePresenter
 import com.rodrigolmti.coinzilla.library.controller.mvp.BaseView
 import com.rodrigolmti.coinzilla.library.util.Action
 import kotlinx.android.synthetic.main.activity_favorite.*
 
-class FavoriteActivity : AppCompatActivity(), BaseView {
+class FavoriteActivity : BaseActivity(), BaseView {
 
     private val presenter: BasePresenter = Presenter(this, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorite)
-
-        initAds()
-
-        val actionBar: ActionBar = supportActionBar as ActionBar
         actionBar.title = getString(R.string.activity_favorite_title)
-        actionBar.setDisplayHomeAsUpEnabled(true)
-        actionBar.setHomeButtonEnabled(true)
+        initAds(adView)
     }
 
     override fun onResume() {
@@ -54,11 +50,6 @@ class FavoriteActivity : AppCompatActivity(), BaseView {
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        finish()
-        return super.onOptionsItemSelected(item)
-    }
-
     override fun showProgressBar(visibility: Int) {
     }
 
@@ -72,14 +63,5 @@ class FavoriteActivity : AppCompatActivity(), BaseView {
     }
 
     override fun error(message: String) {
-    }
-
-    private fun initAds() {
-        val adRequest = AdRequest.Builder()
-                .addTestDevice(getString(R.string.admob_test_device_genymotion))
-                .addTestDevice(getString(R.string.admob_test_device_one_plus))
-                .addTestDevice(getString(R.string.admob_test_device_s7))
-                .build()
-        adView.loadAd(adRequest)
     }
 }

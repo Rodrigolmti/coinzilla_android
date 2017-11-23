@@ -6,28 +6,23 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
 import com.rodrigolmti.coinzilla.R
+import com.rodrigolmti.coinzilla.library.controller.activity.BaseActivity
 import kotlinx.android.synthetic.main.activity_exchange_list.*
 
-class ExchangeListActivity: AppCompatActivity(), View.OnClickListener {
+class ExchangeListActivity : BaseActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exchange_list)
 
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.title = "Select your exchange"
-        supportActionBar!!.setHomeButtonEnabled(true)
+        enableBackButton()
 
         viewPoloniex.setOnClickListener(this)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        finish()
-        return super.onOptionsItemSelected(item)
-    }
-
     override fun onClick(view: View?) {
-        when(view) {
+        when (view) {
             viewPoloniex -> startActivity(Intent(this, ExchangeApiKeyActivity::class.java))
         }
     }

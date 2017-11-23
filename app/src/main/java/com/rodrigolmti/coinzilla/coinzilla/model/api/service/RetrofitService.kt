@@ -32,12 +32,12 @@ class RetrofitService {
 
             println("## LOG INTERCEPTOR REQUEST ##")
             val request = chain.request()
-            println("Request: " + request.url())
+            println("|------>> Request: " + request.url())
 
             println("## LOG INTERCEPTOR RESPONSE ##")
             val response = chain.proceed(request)
             val body = response.body()!!.string()
-            println("Response: " + body)
+            println("<<------| Response: " + body)
 
             return response.newBuilder().body(ResponseBody.create(response.body()!!.contentType(), body)).build()
         }

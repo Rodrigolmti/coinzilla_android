@@ -20,13 +20,14 @@ import com.rodrigolmti.coinzilla.coinzilla.model.entity.Exchange
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.Historic
 import com.rodrigolmti.coinzilla.coinzilla.model.presenter.Presenter
 import com.rodrigolmti.coinzilla.coinzilla.view.adapter.ExchangeAdapter
+import com.rodrigolmti.coinzilla.library.controller.activity.BaseActivity
 import com.rodrigolmti.coinzilla.library.controller.mvp.BasePresenter
 import com.rodrigolmti.coinzilla.library.controller.mvp.BaseView
 import com.rodrigolmti.coinzilla.library.util.Action
 import com.rodrigolmti.coinzilla.library.util.Utils
 import kotlinx.android.synthetic.main.activity_detail.*
 
-class DetailActivity : AppCompatActivity(), View.OnClickListener, BaseView {
+class DetailActivity : BaseActivity(), View.OnClickListener, BaseView {
 
     private val presenter: BasePresenter = Presenter(this, this)
     private var exchangesUsd: List<Exchange> = ArrayList()
@@ -38,8 +39,6 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener, BaseView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-
-        initAds()
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setHomeButtonEnabled(true)
@@ -281,14 +280,5 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener, BaseView {
         textViewErrorHistoric.visibility = View.GONE
         candleChart.visibility = View.VISIBLE
         progressBarHistoric.visibility = View.GONE
-    }
-
-    private fun initAds() {
-        val adRequest = AdRequest.Builder()
-                .addTestDevice(getString(R.string.admob_test_device_genymotion))
-                .addTestDevice(getString(R.string.admob_test_device_one_plus))
-                .addTestDevice(getString(R.string.admob_test_device_s7))
-                .build()
-        adView.loadAd(adRequest)
     }
 }

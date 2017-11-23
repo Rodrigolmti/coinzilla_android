@@ -33,7 +33,6 @@ class Business(private val presenter: BasePresenter) : BaseBusiness {
     override fun getToken() {
         try {
             presenter.showProgressBar(View.VISIBLE)
-
             if (czPreferences!!.identification == "noData")
                 czPreferences.identification = UUID.randomUUID().toString()
 

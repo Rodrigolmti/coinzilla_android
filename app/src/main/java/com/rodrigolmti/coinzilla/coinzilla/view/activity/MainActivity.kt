@@ -1,24 +1,48 @@
 package com.rodrigolmti.coinzilla.coinzilla.view.activity
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.google.android.gms.ads.AdRequest
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.model.dao.Preferences
 import com.rodrigolmti.coinzilla.coinzilla.model.presenter.Presenter
+import com.rodrigolmti.coinzilla.coinzilla.view.extensions.gone
+import com.rodrigolmti.coinzilla.coinzilla.view.extensions.visible
 import com.rodrigolmti.coinzilla.library.app.CZApplication
+import com.rodrigolmti.coinzilla.library.controller.activity.BaseActivity
 import com.rodrigolmti.coinzilla.library.controller.mvp.BasePresenter
 import com.rodrigolmti.coinzilla.library.controller.mvp.BaseView
 import com.rodrigolmti.coinzilla.library.util.Action
 import com.rodrigolmti.coinzilla.library.util.Utils
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.layout_error.*
-import java.util.*
+import kotlinx.android.synthetic.main.activity_main.adView
+import kotlinx.android.synthetic.main.activity_main.circle1
+import kotlinx.android.synthetic.main.activity_main.circle2
+import kotlinx.android.synthetic.main.activity_main.circle3
+import kotlinx.android.synthetic.main.activity_main.circle4
+import kotlinx.android.synthetic.main.activity_main.clickViewBack
+import kotlinx.android.synthetic.main.activity_main.containeInfo
+import kotlinx.android.synthetic.main.activity_main.containerAsic
+import kotlinx.android.synthetic.main.activity_main.containerBalance
+import kotlinx.android.synthetic.main.activity_main.containerCryptocurrency
+import kotlinx.android.synthetic.main.activity_main.containerGpu
+import kotlinx.android.synthetic.main.activity_main.containerProfitability
+import kotlinx.android.synthetic.main.activity_main.containerWarz
+import kotlinx.android.synthetic.main.activity_main.content
+import kotlinx.android.synthetic.main.activity_main.contentError
+import kotlinx.android.synthetic.main.activity_main.progressBar
+import kotlinx.android.synthetic.main.activity_main.textViewUpdateTimeAsic
+import kotlinx.android.synthetic.main.activity_main.textViewUpdateTimeCryptoCurrency
+import kotlinx.android.synthetic.main.activity_main.textViewUpdateTimeGpu
+import kotlinx.android.synthetic.main.activity_main.textViewUpdateTimeWarz
+import kotlinx.android.synthetic.main.layout_error.imageViewErro
+import kotlinx.android.synthetic.main.layout_error.textViewErro
+import java.util.Calendar
+import java.util.Date
 
-class MainActivity : Activity(), View.OnClickListener, BaseView {
+class MainActivity : BaseActivity(), View.OnClickListener, BaseView {
 
     private val presenter: BasePresenter = Presenter(this, this)
     private val czPreferences: Preferences? = CZApplication.preferences
@@ -28,8 +52,6 @@ class MainActivity : Activity(), View.OnClickListener, BaseView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initAds()
-
         val dateString: String = czPreferences!!.tokenDate
         token = czPreferences.token
 
@@ -45,6 +67,7 @@ class MainActivity : Activity(), View.OnClickListener, BaseView {
         containerWarz.setOnClickListener(this)
         containerGpu.setOnClickListener(this)
         containeInfo.setOnClickListener(this)
+        initAds(adView)
     }
 
     override fun onResume() {
@@ -52,26 +75,26 @@ class MainActivity : Activity(), View.OnClickListener, BaseView {
 
         if (CZApplication.preferences!!.updateDateGpu != "noData") {
             textViewUpdateTimeGpu.text = getString(R.string.activity_list_update, utils.formatCustomDate(utils.stringToDate(CZApplication.preferences!!.updateDateGpu)!!))
-            circle1.visibility = View.VISIBLE
+            circle1.visible()
         }
 
         if (CZApplication.preferences!!.updateDateAsic != "noData") {
             textViewUpdateTimeAsic.text = getString(R.string.activity_list_update, utils.formatCustomDate(utils.stringToDate(CZApplication.preferences!!.updateDateAsic)!!))
-            circle2.visibility = View.VISIBLE
+            circle2.visible()
         }
 
         if (CZApplication.preferences!!.updateDateWarz != "noData") {
             textViewUpdateTimeWarz.text = getString(R.string.activity_list_update, utils.formatCustomDate(utils.stringToDate(CZApplication.preferences!!.updateDateWarz)!!))
-            circle3.visibility = View.VISIBLE
+            circle3.visible()
         }
 
         if (CZApplication.preferences!!.updateDateCryptoCurrency != "noData") {
             textViewUpdateTimeCryptoCurrency.text = getString(R.string.activity_list_update, utils.formatCustomDate(utils.stringToDate(CZApplication.preferences!!.updateDateCryptoCurrency)!!))
-            circle4.visibility = View.VISIBLE
+            circle4.visible()
         }
 
         if (checkTime()) {
-            content.visibility = View.GONE
+            content.gone()
             presenter.getToken()
         }
     }
@@ -81,7 +104,7 @@ class MainActivity : Activity(), View.OnClickListener, BaseView {
     }
 
     override fun success(action: Action) {
-        content.visibility = View.VISIBLE
+        content.visible()
     }
 
     override fun success(result: List<Any>) {
@@ -92,8 +115,8 @@ class MainActivity : Activity(), View.OnClickListener, BaseView {
 
     override fun error(message: String) {
         if (token == "noData") {
-            contentError.visibility = View.VISIBLE
-            content.visibility = View.GONE
+            contentError.visible()
+            content.gone()
         }
 
         if (!Utils().isDeviceOnline(this)) {
@@ -128,14 +151,5 @@ class MainActivity : Activity(), View.OnClickListener, BaseView {
             return Date().after(dateAfter)
         }
         return false
-    }
-
-    private fun initAds() {
-        val adRequest = AdRequest.Builder()
-                .addTestDevice(getString(R.string.admob_test_device_genymotion))
-                .addTestDevice(getString(R.string.admob_test_device_one_plus))
-                .addTestDevice(getString(R.string.admob_test_device_s7))
-                .build()
-        adView.loadAd(adRequest)
     }
 }

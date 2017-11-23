@@ -8,7 +8,7 @@
     <string name="admob_profitability_activity">ca-app-pub-4643315836358341/8996025332</string>
     <string name="admob_detail_activity">ca-app-pub-4643315836358341/7134388561</string>
     <string name="admob_favorite_activity">ca-app-pub-4643315836358341/8163155933</string>
-    <string name="admob_test_device_one_plus">F1A73ED617C33CF5EFF0CBDAD5358FE9</string>
+    <string name="admob_test_device_one_plus">007D66750E2711AA69999B0F83A34D27</string>
     <string name="admob_test_device_genymotion">DE9334F8A22C8A3315DB3D729241D0C4</string>
     <string name="admob_test_device_s7">099DBE660543CEB86BC7E500086A4D53</string>
 
@@ -162,5 +162,8 @@
     <string name="activity_exchange_api_create">Create</string>
     <string name="activity_exchange_api_warning">You need to create a new Api key on this exchange service and provide the date above. Create Read-Only Key, disable Buy/Sell and withdraw permission. (CoinZilla is not responsible for the loss from user\'s mistake). When you send thats means you agree for us to retrieve your exchange/wallet data.</string>
     <string name="activity_exchange_api_title">Exchange Api Keys</string>
+    <string name="title_activity_coin_detail">CoinDetailActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 
 </resources>

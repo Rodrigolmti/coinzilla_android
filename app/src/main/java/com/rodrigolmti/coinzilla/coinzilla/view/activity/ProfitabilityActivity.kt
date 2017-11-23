@@ -7,13 +7,16 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Adapter
 import android.widget.AdapterView
+import android.widget.BaseAdapter
 import com.crashlytics.android.Crashlytics
 import com.google.android.gms.ads.AdRequest
 import com.rodrigolmti.coinzilla.R
+import com.rodrigolmti.coinzilla.coinzilla.view.extensions.visible
+import com.rodrigolmti.coinzilla.library.controller.activity.BaseActivity
 import kotlinx.android.synthetic.main.activity_profitability.*
 import java.text.DecimalFormat
 
-class ProfitabilityActivity : AppCompatActivity(), View.OnClickListener {
+class ProfitabilityActivity : BaseActivity(), View.OnClickListener {
 
     var difficultyMultiplier = 1F
     var hashMultiplier = 1F
@@ -22,13 +25,9 @@ class ProfitabilityActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profitability)
 
-        initAds()
-        buttonCalc.setOnClickListener(this)
-
-        val actionBar: ActionBar = supportActionBar as ActionBar
-        actionBar.title = getString(R.string.activity_profitability_title)
-        actionBar.setDisplayHomeAsUpEnabled(true)
-        actionBar.setHomeButtonEnabled(true)
+        title = getString(R.string.activity_profitability_title)
+        enableBackButton()
+        initAds(adView)
 
         spinnerCalcHash.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, pos: Int, id: Long) {
@@ -63,11 +62,8 @@ class ProfitabilityActivity : AppCompatActivity(), View.OnClickListener {
                 difficultyMultiplier = 1F
             }
         }
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        finish()
-        return super.onOptionsItemSelected(item)
+        buttonCalc.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -94,7 +90,7 @@ class ProfitabilityActivity : AppCompatActivity(), View.OnClickListener {
                 val hash = editTextHash.text.toString().toFloat()
                 val reward = editTextReward.text.toString().toFloat()
                 val difficulty = editTextDifficulty.text.toString().toFloat()
-                layerResult.visibility = View.VISIBLE
+                layerResult.visible()
 
                 val decimalFormat = DecimalFormat("0.00000000")
                 val blockMined = ((hash * hashMultiplier) * reward) / (difficulty * difficultyMultiplier) * fee
@@ -103,7 +99,7 @@ class ProfitabilityActivity : AppCompatActivity(), View.OnClickListener {
                 val month = blockMined * 2.628e+6
                 val year = blockMined * 31535965.4396976
 
-                textViewResultDay.text =  decimalFormat.format(day).toString()
+                textViewResultDay.text = decimalFormat.format(day).toString()
                 textViewResultMonth.text = decimalFormat.format(month).toString()
                 textViewResultYear.text = decimalFormat.format(year).toString()
             }
@@ -111,15 +107,5 @@ class ProfitabilityActivity : AppCompatActivity(), View.OnClickListener {
             Crashlytics.logException(error)
             error.stackTrace
         }
-
-    }
-
-    private fun initAds() {
-        val adRequest = AdRequest.Builder()
-                .addTestDevice(getString(R.string.admob_test_device_genymotion))
-                .addTestDevice(getString(R.string.admob_test_device_one_plus))
-                .addTestDevice(getString(R.string.admob_test_device_s7))
-                .build()
-        adView.loadAd(adRequest)
     }
 }

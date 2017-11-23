@@ -1,26 +1,32 @@
 package com.rodrigolmti.coinzilla.coinzilla.view.activity
 
-import android.app.Activity
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Adapter
 import android.widget.AdapterView
-import com.google.android.gms.ads.AdRequest
+import android.widget.Toast
 import com.rodrigolmti.coinzilla.BuildConfig
 import com.rodrigolmti.coinzilla.R
-import kotlinx.android.synthetic.main.activity_info.*
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
-import android.widget.Toast
-import android.content.Intent
+import com.rodrigolmti.coinzilla.library.controller.activity.BaseActivity
+import kotlinx.android.synthetic.main.activity_info.adView
+import kotlinx.android.synthetic.main.activity_info.buttonContact
+import kotlinx.android.synthetic.main.activity_info.buttonCopy
+import kotlinx.android.synthetic.main.activity_info.clickViewBack
+import kotlinx.android.synthetic.main.activity_info.imageViewBack
+import kotlinx.android.synthetic.main.activity_info.spinnerWallets
+import kotlinx.android.synthetic.main.activity_info.textViewVersion
+import kotlinx.android.synthetic.main.activity_info.textViewWallet
 
-class InfoActivity: Activity(), View.OnClickListener {
+class InfoActivity : BaseActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_info)
-        initAds()
+        initAds(adView)
 
         textViewVersion.text = BuildConfig.VERSION_NAME
         imageViewBack.setOnClickListener(this)
@@ -59,18 +65,7 @@ class InfoActivity: Activity(), View.OnClickListener {
                 mailer.putExtra(Intent.EXTRA_TEXT, "")
                 startActivity(Intent.createChooser(mailer, getString(R.string.activity_info_send_email)))
             }
-            else -> {
-                finish()
-            }
+            else -> finish()
         }
-    }
-
-    private fun initAds() {
-        val adRequest = AdRequest.Builder()
-                .addTestDevice(getString(R.string.admob_test_device_genymotion))
-                .addTestDevice(getString(R.string.admob_test_device_one_plus))
-                .addTestDevice(getString(R.string.admob_test_device_s7))
-                .build()
-        adView.loadAd(adRequest)
     }
 }

@@ -19,7 +19,6 @@ class CZApplication : MultiDexApplication() {
         super.onCreate()
 
         Fabric.with(this, Crashlytics())
-
         MobileAds.initialize(this, getString(R.string.admob_api_key))
 
         Realm.init(this)
