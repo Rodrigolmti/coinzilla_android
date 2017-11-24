@@ -34,8 +34,6 @@ import kotlinx.android.synthetic.main.fragment_coin_detail_uds.view.textViewSymb
 import kotlinx.android.synthetic.main.fragment_coin_detail_uds.view.textViewTotalSupply
 import kotlinx.android.synthetic.main.fragment_coin_detail_uds.view.textViewVolumeUsd
 import kotlinx.android.synthetic.main.fragment_coin_detail_uds.view.textviewMarketCapUsd
-import java.text.NumberFormat
-import java.util.Locale
 
 /**
  * Created by rodrigolmti on 18/11/17.

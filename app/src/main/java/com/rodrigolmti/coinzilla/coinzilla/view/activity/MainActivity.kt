@@ -3,9 +3,7 @@ package com.rodrigolmti.coinzilla.coinzilla.view.activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
 import android.view.View
-import com.google.android.gms.ads.AdRequest
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.model.dao.Preferences
 import com.rodrigolmti.coinzilla.coinzilla.model.presenter.Presenter
@@ -105,12 +103,6 @@ class MainActivity : BaseActivity(), View.OnClickListener, BaseView {
 
     override fun success(action: Action) {
         content.visible()
-    }
-
-    override fun success(result: List<Any>) {
-    }
-
-    override fun error(action: Action) {
     }
 
     override fun error(message: String) {

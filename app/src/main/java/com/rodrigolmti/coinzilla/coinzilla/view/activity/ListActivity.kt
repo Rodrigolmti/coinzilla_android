@@ -7,7 +7,6 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.CryptoCurrency
@@ -140,12 +139,6 @@ class ListActivity : BaseActivity(), BaseView {
         }
     }
 
-    override fun success(result: List<Any>) {
-    }
-
-    override fun error(action: Action) {
-    }
-
     override fun error(message: String) {
         contentError.visible()
         recyclerView.gone()
@@ -158,6 +151,6 @@ class ListActivity : BaseActivity(), BaseView {
     }
 
     override fun showProgressBar(visibility: Int) {
-        progressBar.visible()
+        progressBar.visibility = visibility
     }
 }

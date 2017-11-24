@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_coin_detail.adView
 import kotlinx.android.synthetic.main.activity_coin_detail.tabLayout
 import kotlinx.android.synthetic.main.activity_coin_detail.viewPager
 
-class CoinDetailActivity : BaseActivity(), BaseView {
+class CoinDetailActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,20 +35,5 @@ class CoinDetailActivity : BaseActivity(), BaseView {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_coin_detail, menu)
         return true
-    }
-
-    override fun showProgressBar(visibility: Int) {
-    }
-
-    override fun success(action: Action) {
-    }
-
-    override fun success(result: List<Any>) {
-    }
-
-    override fun error(action: Action) {
-    }
-
-    override fun error(message: String) {
     }
 }

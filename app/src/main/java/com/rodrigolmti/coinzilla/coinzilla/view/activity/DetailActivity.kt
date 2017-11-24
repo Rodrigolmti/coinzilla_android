@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
@@ -13,7 +12,6 @@ import com.github.mikephil.charting.components.XAxis.XAxisPosition
 import com.github.mikephil.charting.data.CandleData
 import com.github.mikephil.charting.data.CandleDataSet
 import com.github.mikephil.charting.data.CandleEntry
-import com.google.android.gms.ads.AdRequest
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.CryptoCurrency
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.Exchange
@@ -117,7 +115,7 @@ class DetailActivity : BaseActivity(), View.OnClickListener, BaseView {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun showProgressBar(visibility: Int) {
+    /*override fun showProgressBar(visibility: Int) {
         progressBarHistoric.visibility = visibility
         progressBarExchange.visibility = visibility
     }
@@ -165,7 +163,7 @@ class DetailActivity : BaseActivity(), View.OnClickListener, BaseView {
     }
 
     override fun error(message: String) {
-    }
+    }*/
 
     override fun onClick(view: View?) {
         if (Utils().isDeviceOnline(this)) {

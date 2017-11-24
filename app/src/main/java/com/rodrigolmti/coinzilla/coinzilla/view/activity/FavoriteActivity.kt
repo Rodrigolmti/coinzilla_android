@@ -2,12 +2,8 @@ package com.rodrigolmti.coinzilla.coinzilla.view.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.ActionBar
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
-import android.view.MenuItem
 import android.view.View
-import com.google.android.gms.ads.AdRequest
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.CryptoCurrency
 import com.rodrigolmti.coinzilla.coinzilla.model.presenter.Presenter
@@ -15,7 +11,6 @@ import com.rodrigolmti.coinzilla.coinzilla.view.adapter.CryptoCurrencyAdapter
 import com.rodrigolmti.coinzilla.library.controller.activity.BaseActivity
 import com.rodrigolmti.coinzilla.library.controller.mvp.BasePresenter
 import com.rodrigolmti.coinzilla.library.controller.mvp.BaseView
-import com.rodrigolmti.coinzilla.library.util.Action
 import kotlinx.android.synthetic.main.activity_favorite.*
 
 class FavoriteActivity : BaseActivity(), BaseView {
@@ -48,20 +43,5 @@ class FavoriteActivity : BaseActivity(), BaseView {
             layoutEmpty.visibility = View.VISIBLE
             recyclerView.visibility = View.GONE
         }
-    }
-
-    override fun showProgressBar(visibility: Int) {
-    }
-
-    override fun success(result: List<Any>) {
-    }
-
-    override fun success(action: Action) {
-    }
-
-    override fun error(action: Action) {
-    }
-
-    override fun error(message: String) {
     }
 }

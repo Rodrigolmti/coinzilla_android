@@ -4,15 +4,18 @@ import android.content.Context
 import android.view.View
 import com.crashlytics.android.Crashlytics
 import com.google.gson.Gson
+import com.google.gson.JsonObject
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.model.api.CoinMarketCapApi
 import com.rodrigolmti.coinzilla.coinzilla.model.api.CryptoCompareAPI
-import com.rodrigolmti.coinzilla.coinzilla.model.api.PoloniexAPI
 import com.rodrigolmti.coinzilla.coinzilla.model.api.WhatToMineAPI
 import com.rodrigolmti.coinzilla.coinzilla.model.api.service.RetrofitService
 import com.rodrigolmti.coinzilla.coinzilla.model.dao.Database
 import com.rodrigolmti.coinzilla.coinzilla.model.dao.Preferences
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.*
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.CryptoCurrency
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineAsic
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineGpu
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineWarz
 import com.rodrigolmti.coinzilla.library.app.CZApplication
 import com.rodrigolmti.coinzilla.library.controller.mvp.BaseBusiness
 import com.rodrigolmti.coinzilla.library.controller.mvp.BasePresenter
@@ -21,7 +24,6 @@ import com.rodrigolmti.coinzilla.library.util.Utils
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import java.util.*
-import com.google.gson.JsonObject
 
 class Business(private val presenter: BasePresenter) : BaseBusiness {
 
