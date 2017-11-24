@@ -19,6 +19,7 @@ class CoinDetailActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_coin_detail)
 
+        enableBackButton()
         removeElevation()
         initAds(adView)
 

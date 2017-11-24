@@ -30,7 +30,7 @@ abstract class BaseActivity : AppCompatActivity() {
         adView.loadAd(AdRequest.Builder()
                 .addTestDevice(getString(R.string.admob_test_device_genymotion))
                 .addTestDevice(getString(R.string.admob_test_device_one_plus))
-                .addTestDevice(getString(R.string.admob_test_device_s7))
+                .addTestDevice(getString(R.string.admob_test_device_lenovo))
                 .build())
     }
 }

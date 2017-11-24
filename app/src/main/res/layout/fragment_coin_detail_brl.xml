@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <LinearLayout
@@ -25,10 +26,10 @@
                 android:id="@+id/textViewPriceBRL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="23333"
                 android:textColor="@color/white"
-                android:textSize="26sp"
-                android:textStyle="bold" />
+                android:textSize="22sp"
+                android:textStyle="bold"
+                tools:text="23333" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -55,10 +56,10 @@
                 android:id="@+id/textViewPriceBtc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="1"
                 android:textColor="@color/white"
                 android:textSize="26sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="1" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -84,18 +85,18 @@
             android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/layerHistoric"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:orientation="vertical"
-                android:padding="8dp">
+                android:minHeight="250dp"
+                android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/textViewHistoric"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:text="@string/activity_detail_daily_historic"
                     android:textColor="@color/whiteLilac"
                     android:textSize="18sp"
@@ -105,10 +106,22 @@
                     android:id="@+id/candleChart"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/textViewHistoric"
                     android:layout_marginTop="10dp"
-                    android:minHeight="250dp" />
+                    android:minHeight="250dp"
+                    android:visibility="gone" />
 
-            </LinearLayout>
+                <ProgressBar
+                    android:id="@+id/progressBarExchange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dp"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/colorPrimary" />
+
+            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -122,8 +135,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:orientation="vertical"
-                android:padding="8dp">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -354,8 +366,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:orientation="vertical"
-                android:padding="8dp">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"

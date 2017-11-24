@@ -16,24 +16,25 @@ import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.CryptoCurrency
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.Historic
 import com.rodrigolmti.coinzilla.coinzilla.model.presenter.Presenter
+import com.rodrigolmti.coinzilla.coinzilla.view.extensions.formatCurrencyUSD
 import com.rodrigolmti.coinzilla.coinzilla.view.extensions.gone
 import com.rodrigolmti.coinzilla.coinzilla.view.extensions.visible
 import com.rodrigolmti.coinzilla.library.controller.mvp.BasePresenter
 import com.rodrigolmti.coinzilla.library.controller.mvp.BaseView
 import com.rodrigolmti.coinzilla.library.util.Action
-import kotlinx.android.synthetic.main.fragment_coin_detail_uds.candleChart
-import kotlinx.android.synthetic.main.fragment_coin_detail_uds.progressBarExchange
-import kotlinx.android.synthetic.main.fragment_coin_detail_uds.view.textViewAvailableSupply
-import kotlinx.android.synthetic.main.fragment_coin_detail_uds.view.textViewName
-import kotlinx.android.synthetic.main.fragment_coin_detail_uds.view.textViewPercentChange1h
-import kotlinx.android.synthetic.main.fragment_coin_detail_uds.view.textViewPercentChange24H
-import kotlinx.android.synthetic.main.fragment_coin_detail_uds.view.textViewPercentChange7D
-import kotlinx.android.synthetic.main.fragment_coin_detail_uds.view.textViewPriceBtc
-import kotlinx.android.synthetic.main.fragment_coin_detail_uds.view.textViewPriceUsd
-import kotlinx.android.synthetic.main.fragment_coin_detail_uds.view.textViewSymbol
-import kotlinx.android.synthetic.main.fragment_coin_detail_uds.view.textViewTotalSupply
-import kotlinx.android.synthetic.main.fragment_coin_detail_uds.view.textViewVolumeUsd
-import kotlinx.android.synthetic.main.fragment_coin_detail_uds.view.textviewMarketCapUsd
+import kotlinx.android.synthetic.main.fragment_coin_detail_usd.candleChart
+import kotlinx.android.synthetic.main.fragment_coin_detail_usd.progressBarExchange
+import kotlinx.android.synthetic.main.fragment_coin_detail_usd.view.textViewAvailableSupply
+import kotlinx.android.synthetic.main.fragment_coin_detail_usd.view.textViewName
+import kotlinx.android.synthetic.main.fragment_coin_detail_usd.view.textViewPercentChange1h
+import kotlinx.android.synthetic.main.fragment_coin_detail_usd.view.textViewPercentChange24H
+import kotlinx.android.synthetic.main.fragment_coin_detail_usd.view.textViewPercentChange7D
+import kotlinx.android.synthetic.main.fragment_coin_detail_usd.view.textViewPriceBtc
+import kotlinx.android.synthetic.main.fragment_coin_detail_usd.view.textViewPriceUsd
+import kotlinx.android.synthetic.main.fragment_coin_detail_usd.view.textViewSymbol
+import kotlinx.android.synthetic.main.fragment_coin_detail_usd.view.textViewTotalSupply
+import kotlinx.android.synthetic.main.fragment_coin_detail_usd.view.textViewVolumeUsd
+import kotlinx.android.synthetic.main.fragment_coin_detail_usd.view.textviewMarketCapUsd
 
 /**
  * Created by rodrigolmti on 18/11/17.
@@ -42,23 +43,21 @@ import kotlinx.android.synthetic.main.fragment_coin_detail_uds.view.textviewMark
 class CoinDetailUSDFragment : Fragment(), BaseView {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater!!.inflate(R.layout.fragment_coin_detail_uds, container, false)
+        val view = inflater!!.inflate(R.layout.fragment_coin_detail_usd, container, false)
 
         val presenter: BasePresenter = Presenter(this, context)
 
         if (arguments != null) {
             val cryptoCurrency = arguments.getParcelable<CryptoCurrency>("action.coin.detail")
-
             presenter.historicWeb(cryptoCurrency.symbol!!, getString(R.string.activity_detail_usd))
-
-            view.textViewName.text = cryptoCurrency.name
-            view.textViewSymbol.text = cryptoCurrency.symbol
-            view.textViewPriceUsd.text = cryptoCurrency.priceUsd
-            view.textViewPriceBtc.text = cryptoCurrency.priceBtc
-            view.textViewVolumeUsd.text = cryptoCurrency.volumeUsd
-            view.textviewMarketCapUsd.text = cryptoCurrency.marketCapUsd
+            view.textViewPriceUsd.text = cryptoCurrency.priceUsd!!.formatCurrencyUSD()
             view.textViewAvailableSupply.text = cryptoCurrency.availableSupply
+            view.textviewMarketCapUsd.text = cryptoCurrency.marketCapUsd
             view.textViewTotalSupply.text = cryptoCurrency.totalSupply
+            view.textViewVolumeUsd.text = cryptoCurrency.volumeUsd
+            view.textViewPriceBtc.text = cryptoCurrency.priceBtc
+            view.textViewSymbol.text = cryptoCurrency.symbol
+            view.textViewName.text = cryptoCurrency.name
             if (cryptoCurrency.percentChange1H!!.contains("-"))
                 view.textViewPercentChange1h.setTextColor(ContextCompat.getColor(context, R.color.alizarin))
             view.textViewPercentChange1h.text = "${cryptoCurrency.percentChange1H}%"
@@ -73,12 +72,6 @@ class CoinDetailUSDFragment : Fragment(), BaseView {
         return view
     }
 
-    override fun showProgressBar(visibility: Int) {
-    }
-
-    override fun success(action: Action) {
-    }
-
     override fun success(result: List<Any>) {
         val item: Any = result.first()
         when (item) {
@@ -86,12 +79,6 @@ class CoinDetailUSDFragment : Fragment(), BaseView {
                 initChart(result.filterIsInstance<Historic>())
             }
         }
-    }
-
-    override fun error(action: Action) {
-    }
-
-    override fun error(message: String) {
     }
 
     private fun initChart(result: List<Historic>) {
