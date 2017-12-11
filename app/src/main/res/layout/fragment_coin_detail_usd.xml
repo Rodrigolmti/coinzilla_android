@@ -112,7 +112,7 @@
                     android:visibility="gone" />
 
                 <ProgressBar
-                    android:id="@+id/progressBarExchange"
+                    android:id="@+id/progressBarHistoric"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
@@ -227,7 +227,7 @@
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/textviewMarketCapUsd"
+                        android:id="@+id/textViewMarketCapUsd"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -369,6 +369,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/activity_detail_exchanges"
@@ -380,16 +381,26 @@
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView"
                     android:layout_marginBottom="10dp"
                     android:layout_marginTop="10dp"
                     android:nestedScrollingEnabled="false"
                     android:visibility="gone" />
 
+                <ProgressBar
+                    android:id="@+id/progressBarExchange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="20dp"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/colorPrimary" />
+
                 <TextView
                     android:id="@+id/textViewErrorExchange"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_centerInParent="true"
                     android:layout_margin="10dp"
                     android:gravity="center"
                     android:text="@string/activity_detail_error"

@@ -37,10 +37,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".coinzilla.view.activity.DetailActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeActionBar" />
-        <activity
             android:name=".coinzilla.view.activity.FavoriteActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeActionBar" />
@@ -67,6 +63,7 @@
         <activity
             android:name=".coinzilla.view.activity.CoinDetailActivity"
             android:label="@string/title_activity_coin_detail"
+            android:screenOrientation="portrait"
             android:theme="@style/AppThemeActionBar" />
 
         <meta-data

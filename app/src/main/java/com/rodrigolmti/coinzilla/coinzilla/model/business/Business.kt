@@ -23,7 +23,10 @@ import com.rodrigolmti.coinzilla.library.util.Action
 import com.rodrigolmti.coinzilla.library.util.Utils
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
-import java.util.*
+import java.util.ArrayList
+import java.util.Calendar
+import java.util.Date
+import java.util.UUID
 
 class Business(private val presenter: BasePresenter) : BaseBusiness {
 
@@ -190,12 +193,12 @@ class Business(private val presenter: BasePresenter) : BaseBusiness {
     override fun exchangesWeb(fsym: String, tsym: String) {
         try {
             presenter.showProgressBar(View.VISIBLE)
-            RetrofitService().retrofitInstance(context.getString(R.string.base_url_crypto_compare)).create(CryptoCompareAPI::class.java).getExchanges(fsym, tsym)
+            RetrofitService().retrofitInstance(context.getString(R.string.base_url_crypto_compare_2)).create(CryptoCompareAPI::class.java).getExchanges(fsym, tsym)
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ data ->
                         if (data.succes == "Success") {
-                            presenter.success(data.exchangeCoin.exchanges)
+                            presenter.success(data.exchangeCoin)
                         } else {
                             presenter.error(Action.EXCHANGE)
                         }

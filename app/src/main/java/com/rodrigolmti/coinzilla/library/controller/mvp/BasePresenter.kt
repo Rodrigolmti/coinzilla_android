@@ -1,7 +1,10 @@
 package com.rodrigolmti.coinzilla.library.controller.mvp
 
 import android.content.Context
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.*
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.CryptoCurrency
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineAsic
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineGpu
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineWarz
 import com.rodrigolmti.coinzilla.library.util.Action
 
 interface BasePresenter {

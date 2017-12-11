@@ -2,7 +2,10 @@ package com.rodrigolmti.coinzilla.coinzilla.model.presenter
 
 import android.content.Context
 import com.rodrigolmti.coinzilla.coinzilla.model.business.Business
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.*
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.CryptoCurrency
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineAsic
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineGpu
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineWarz
 import com.rodrigolmti.coinzilla.library.controller.mvp.BaseBusiness
 import com.rodrigolmti.coinzilla.library.controller.mvp.BasePresenter
 import com.rodrigolmti.coinzilla.library.controller.mvp.BaseView

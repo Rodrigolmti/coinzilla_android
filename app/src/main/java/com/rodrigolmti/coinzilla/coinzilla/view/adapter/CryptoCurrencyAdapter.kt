@@ -7,10 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.CryptoCurrency
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineAsic
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineGpu
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineWarz
-import kotlinx.android.synthetic.main.row_crypto_currency.view.*
+import kotlinx.android.synthetic.main.row_crypto_currency.view.textViewName
+import kotlinx.android.synthetic.main.row_crypto_currency.view.textViewSymbol
 
 open class CryptoCurrencyAdapter(val context: Context, val list: ArrayList<CryptoCurrency>, val listener: onItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

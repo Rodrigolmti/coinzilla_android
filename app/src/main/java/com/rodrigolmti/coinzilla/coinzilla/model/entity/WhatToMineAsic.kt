@@ -3,7 +3,7 @@ package com.rodrigolmti.coinzilla.coinzilla.model.entity
 import com.google.gson.annotations.SerializedName
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
-import java.util.*
+import java.util.Date
 
 open class WhatToMineAsic constructor (
         @PrimaryKey

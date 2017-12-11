@@ -2,7 +2,6 @@ package com.rodrigolmti.coinzilla.coinzilla.view.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,12 @@ import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineAsic
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineGpu
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineWarz
-import kotlinx.android.synthetic.main.row_what_to_mine_list.view.*
+import kotlinx.android.synthetic.main.row_what_to_mine_list.view.textViewAlgorithm
+import kotlinx.android.synthetic.main.row_what_to_mine_list.view.textViewDifficulty
+import kotlinx.android.synthetic.main.row_what_to_mine_list.view.textViewMarket
+import kotlinx.android.synthetic.main.row_what_to_mine_list.view.textViewNetHash
+import kotlinx.android.synthetic.main.row_what_to_mine_list.view.textViewResward
+import kotlinx.android.synthetic.main.row_what_to_mine_list.view.textViewTag
 
 open class WhatToMineAdapter(val context: Context, var list: ArrayList<Any>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

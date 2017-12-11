@@ -16,14 +16,10 @@
     <string name="wallet_eth">0x32303Dbffb259d7efF7a76f4d129b6FD05c79EAd</string>
     <string name="wallet_ltc">LLkfoN9zMjDDju85E7TtittRFzr1e1JpbF</string>
 
-    <string name="menu_favorite">Favorite</string>
-
     <string name="base_url_main">http://67.205.185.235:3000/api/v1/</string>
     <string name="base_url_what_to_mine">https://whattomine.com/</string>
     <string name="base_url_market_Cap">https://api.coinmarketcap.com/v1/</string>
-    <string name="base_url_crypto_compare">https://www.cryptocompare.com/api/data/</string>
     <string name="base_url_crypto_compare_2">https://min-api.cryptocompare.com/data/</string>
-    <string name="base_url_poloniex_trading">https://poloniex.com/tradingApi</string>
 
     <string name="general_error">Oh man, something went wrong.\nPlease try again.</string>
     <string name="general_error_connection">I was unable to complete your request.\nPlease check your connection and try again.</string>
@@ -42,22 +38,13 @@
     <string name="activity_main_profitability_message">Calculate the profit from mining. Estimated amount of cryptocoins.</string>
 
     <string name="activity_list_update">Update at: %1$s</string>
-    <string name="activity_list_detail">Details</string>
     <string name="activity_list_gpu_title">Gpu Mining</string>
     <string name="activity_list_asic_title">Asic Mining</string>
-    <string name="activity_list_currency_title">Quote</string>
-    <string name="activity_list_mining_title">Mining Profitability</string>
-    <string name="activity_list_tag">Tag</string>
     <string name="activity_list_algorithm">Algorithm</string>
     <string name="activity_list_difficulty">Difficulty</string>
     <string name="activity_list_resward">Est Reward</string>
     <string name="activity_list_market">Market cap</string>
     <string name="activity_list_net_hash">NetHash</string>
-    <string name="activity_list_btc_price">Btc Price</string>
-    <string name="activity_list_usd_price">Usd Price</string>
-    <string name="activity_list_percent_1">Percent change 1h</string>
-    <string name="activity_list_percent_24">Percent change 24H</string>
-    <string name="activity_list_search_here">Search here</string>
 
     <string name="activity_info_title">Information</string>
     <string name="activity_info_description">
@@ -98,10 +85,6 @@
     <string name="activity_profitability_calculate">Calculate</string>
     <string name="activity_profitability_title">Profitability calculator</string>
     <string name="activity_profitability_message">Field required</string>
-    <string name="activity_profitability_power">Enter the Power costs</string>
-    <string name="activity_profitability_hardware">Enter the hardware costs</string>
-    <string name="activity_profitability_reward">Reward</string>
-    <string name="activity_profitability_costs">Mining Costs</string>
     <string name="activity_profitability_ethereum">Ethereum</string>
     <string name="activity_profitability_cryptonode">Cryptonote</string>
     <string name="activity_profitability_bitcoin">Bitcoin</string>
@@ -115,10 +98,6 @@
     <string name="activity_profitability_mhs">MH/s</string>
     <string name="activity_profitability_ghs">GH/s</string>
 
-    <string-array name="activity_profitability_categories">
-        <item>Reward</item>
-        <item>Mining Costs</item>
-    </string-array>
     <string-array name="activity_profitability_hash_type">
         <item>H/s</item>
         <item>KH/s</item>
@@ -134,9 +113,6 @@
 
     <string name="activity_detail_name">Name</string>
     <string name="activity_detail_symbol">Symbol</string>
-    <string name="activity_detail_price_usd">Price Usd</string>
-    <string name="activity_detail_price_btc">Price Btc</string>
-    <string name="activity_detail_price_brl">Price Brl</string>
     <string name="activity_detail_volume_usd">Volume Usd</string>
     <string name="activity_detail_volume_brl">Volume Brl</string>
     <string name="activity_detail_market_cap_usd">Market Cap Usd</string>
@@ -146,7 +122,6 @@
     <string name="activity_detail_percent_change_1h">Percent Change 1H</string>
     <string name="activity_detail_percent_change_24h">Percent Change 24H</string>
     <string name="activity_detail_percent_change_7d">Percent Change 7D</string>
-    <string name="activity_detail_percent">%1$s a</string>
     <string name="activity_detail_brl">BRL</string>
     <string name="activity_detail_usd">USD</string>
     <string name="activity_detail_exchanges">Exchanges</string>
@@ -163,7 +138,5 @@
     <string name="activity_exchange_api_warning">You need to create a new Api key on this exchange service and provide the date above. Create Read-Only Key, disable Buy/Sell and withdraw permission. (CoinZilla is not responsible for the loss from user\'s mistake). When you send thats means you agree for us to retrieve your exchange/wallet data.</string>
     <string name="activity_exchange_api_title">Exchange Api Keys</string>
     <string name="title_activity_coin_detail">CoinDetailActivity</string>
-    <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
 
 </resources>

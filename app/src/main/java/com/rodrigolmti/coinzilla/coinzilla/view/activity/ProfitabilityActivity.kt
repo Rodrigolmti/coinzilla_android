@@ -1,19 +1,25 @@
 package com.rodrigolmti.coinzilla.coinzilla.view.activity
 
 import android.os.Bundle
-import android.support.v7.app.ActionBar
-import android.support.v7.app.AppCompatActivity
-import android.view.MenuItem
 import android.view.View
 import android.widget.Adapter
 import android.widget.AdapterView
-import android.widget.BaseAdapter
 import com.crashlytics.android.Crashlytics
-import com.google.android.gms.ads.AdRequest
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.view.extensions.visible
 import com.rodrigolmti.coinzilla.library.controller.activity.BaseActivity
-import kotlinx.android.synthetic.main.activity_profitability.*
+import kotlinx.android.synthetic.main.activity_profitability.adView
+import kotlinx.android.synthetic.main.activity_profitability.buttonCalc
+import kotlinx.android.synthetic.main.activity_profitability.editTextDifficulty
+import kotlinx.android.synthetic.main.activity_profitability.editTextFee
+import kotlinx.android.synthetic.main.activity_profitability.editTextHash
+import kotlinx.android.synthetic.main.activity_profitability.editTextReward
+import kotlinx.android.synthetic.main.activity_profitability.layerResult
+import kotlinx.android.synthetic.main.activity_profitability.spinnerCalcHash
+import kotlinx.android.synthetic.main.activity_profitability.spinnerCalcType
+import kotlinx.android.synthetic.main.activity_profitability.textViewResultDay
+import kotlinx.android.synthetic.main.activity_profitability.textViewResultMonth
+import kotlinx.android.synthetic.main.activity_profitability.textViewResultYear
 import java.text.DecimalFormat
 
 class ProfitabilityActivity : BaseActivity(), View.OnClickListener {

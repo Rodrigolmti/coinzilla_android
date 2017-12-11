@@ -1,8 +1,8 @@
 package com.rodrigolmti.coinzilla;
 
-import org.junit.Test;
+import static org.junit.Assert.*;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.*;
 
 /**
  * Example local unit test, which will execute on the development machine (host).

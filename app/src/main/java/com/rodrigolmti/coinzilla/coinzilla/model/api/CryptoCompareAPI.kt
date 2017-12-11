@@ -8,7 +8,7 @@ import rx.Observable
 
 interface CryptoCompareAPI {
 
-    @GET("coinsnapshot/")
+    @GET("top/exchanges")
     fun getExchanges(@Query("fsym") fsym: String, @Query("tsym") tsym: String): Observable<BaseExchangeDTO>
 
     @GET("histoday")

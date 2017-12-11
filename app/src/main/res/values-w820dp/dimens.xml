@@ -1,4 +1,3 @@
 <resources>
-    <dimen name="activity_horizontal_margin">64dp</dimen>
     <dimen name="activity_list_crypto_currency_card">30dp</dimen>
 </resources>

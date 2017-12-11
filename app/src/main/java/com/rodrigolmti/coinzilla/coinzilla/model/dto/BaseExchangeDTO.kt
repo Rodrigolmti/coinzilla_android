@@ -1,7 +1,7 @@
 package com.rodrigolmti.coinzilla.coinzilla.model.dto
 
 import com.google.gson.annotations.SerializedName
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.ExchangeCoin
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.Exchange
 
 class BaseExchangeDTO (
         @SerializedName("Response")
@@ -9,5 +9,5 @@ class BaseExchangeDTO (
         @SerializedName("Message")
         val message: String,
         @SerializedName("Data")
-        val exchangeCoin: ExchangeCoin
+        val exchangeCoin: List<Exchange>
 )

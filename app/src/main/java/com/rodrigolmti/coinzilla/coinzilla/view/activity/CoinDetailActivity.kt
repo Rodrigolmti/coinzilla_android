@@ -7,8 +7,6 @@ import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.CryptoCurrency
 import com.rodrigolmti.coinzilla.coinzilla.view.adapter.CoinDetailPagerAdapter
 import com.rodrigolmti.coinzilla.library.controller.activity.BaseActivity
-import com.rodrigolmti.coinzilla.library.controller.mvp.BaseView
-import com.rodrigolmti.coinzilla.library.util.Action
 import kotlinx.android.synthetic.main.activity_coin_detail.adView
 import kotlinx.android.synthetic.main.activity_coin_detail.tabLayout
 import kotlinx.android.synthetic.main.activity_coin_detail.viewPager
