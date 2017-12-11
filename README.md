@@ -11,6 +11,17 @@ This is an Android native application, you can check with is profitable mining s
 * [Retrofit](http://square.github.io/retrofit/)
 * [RX-Java](https://github.com/ReactiveX/RxJava)
 
+## Todo features
+* Implement coin detail menu icons functionality
+* Validate coin exchange requests
+* Fix cryptocurrency search
+* Implement feed news option
+* Implement socket to track one coin
+* Integrate exchanges api to fetch balance
+* Refactor code
+* Adjust favorite layout
+* Removes mvp (Last feature)
+
 ## Authors
 
 * **Rodrigo Lopes** - *Initial work* - [Rodrigolmti](https://github.com/Rodrigolmti)
