@@ -106,8 +106,8 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun getToken() {
-        if (!checkTime()) return
-        if ((token != "noData" || czPreferences!!.tokenDate != "noData")) return
+        if (checkTime()) return
+        if (token != "noData") return
         if (Utils().isDeviceOnline(this)) {
 
             progressBar.visible()
@@ -115,11 +115,13 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
             CoinZillaService(this).getToken(object : BaseCallBack() {
                 override fun onSuccess() {
+                    progressBar.gone()
                     content.visible()
                 }
 
                 override fun onError() {
                     contentError.visible()
+                    progressBar.gone()
                     content.gone()
                 }
             })
