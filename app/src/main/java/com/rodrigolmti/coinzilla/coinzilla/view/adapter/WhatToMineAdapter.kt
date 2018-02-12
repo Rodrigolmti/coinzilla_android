@@ -9,12 +9,12 @@ import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineAsic
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineGpu
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineWarz
-import kotlinx.android.synthetic.main.row_what_to_mine_list.view.textViewAlgorithm
-import kotlinx.android.synthetic.main.row_what_to_mine_list.view.textViewDifficulty
-import kotlinx.android.synthetic.main.row_what_to_mine_list.view.textViewMarket
-import kotlinx.android.synthetic.main.row_what_to_mine_list.view.textViewNetHash
-import kotlinx.android.synthetic.main.row_what_to_mine_list.view.textViewResward
-import kotlinx.android.synthetic.main.row_what_to_mine_list.view.textViewTag
+import kotlinx.android.synthetic.main.row_what_to_mine.view.textViewAlgorithm
+import kotlinx.android.synthetic.main.row_what_to_mine.view.textViewDifficulty
+import kotlinx.android.synthetic.main.row_what_to_mine.view.textViewMarket
+import kotlinx.android.synthetic.main.row_what_to_mine.view.textViewNetHash
+import kotlinx.android.synthetic.main.row_what_to_mine.view.textViewResward
+import kotlinx.android.synthetic.main.row_what_to_mine.view.textViewTag
 
 open class WhatToMineAdapter(val context: Context, var list: ArrayList<Any>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -25,7 +25,7 @@ open class WhatToMineAdapter(val context: Context, var list: ArrayList<Any>) : R
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder? {
-        return Item(LayoutInflater.from(context).inflate(R.layout.row_what_to_mine_list, parent, false))
+        return Item(LayoutInflater.from(context).inflate(R.layout.row_what_to_mine, parent, false))
     }
 
     override fun getItemCount(): Int {

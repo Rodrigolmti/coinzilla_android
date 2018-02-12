@@ -8,7 +8,7 @@
     <string name="admob_profitability_activity">ca-app-pub-4643315836358341/8996025332</string>
     <string name="admob_detail_activity">ca-app-pub-4643315836358341/7134388561</string>
     <string name="admob_favorite_activity">ca-app-pub-4643315836358341/8163155933</string>
-    <string name="admob_test_device_one_plus">007D66750E2711AA69999B0F83A34D27</string>
+    <string name="admob_test_device_one_plus">30D9B07CD7D39EFDAA52E287FDDB5065</string>
     <string name="admob_test_device_genymotion">DE9334F8A22C8A3315DB3D729241D0C4</string>
     <string name="admob_test_device_lenovo">B1CEF83C2288034C20C2547F48555EAE</string>
 
@@ -127,6 +127,7 @@
     <string name="activity_detail_exchanges">Exchanges</string>
     <string name="activity_detail_error">Eh, parece que esta moeda não tem dados disponíveis, tente outra moeda ou mais tarde!</string>
     <string name="activity_detail_daily_historic">Histórico diário</string>
+    <string name="activity_detail_price_param">%1$s \%</string>
 
     <string name="activity_favorite_title">Favoritos</string>
     <string name="menu_refresh">Refresh</string>

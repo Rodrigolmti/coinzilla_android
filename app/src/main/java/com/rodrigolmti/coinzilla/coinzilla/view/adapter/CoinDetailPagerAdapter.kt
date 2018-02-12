@@ -8,8 +8,8 @@ import com.rodrigolmti.coinzilla.coinzilla.view.fragment.CoinDetailBRLFragment
 import com.rodrigolmti.coinzilla.coinzilla.view.fragment.CoinDetailUSDFragment
 
 /**
- * Created by rodrigolmti on 18/11/17.
- */
+* Created by rodrigolmti on 18/11/17.
+*/
 
 class CoinDetailPagerAdapter constructor(fragmentManager: FragmentManager, cryptoCurrency: CryptoCurrency) : FragmentStatePagerAdapter(fragmentManager) {
 

@@ -1,29 +1,23 @@
 package com.rodrigolmti.coinzilla.coinzilla.view.fragment
 
-import android.graphics.Color
-import android.graphics.Paint
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.CandleData
-import com.github.mikephil.charting.data.CandleDataSet
-import com.github.mikephil.charting.data.CandleEntry
 import com.rodrigolmti.coinzilla.R
+import com.rodrigolmti.coinzilla.coinzilla.model.api.service.CoinZillaService
+import com.rodrigolmti.coinzilla.coinzilla.model.callback.ExchangesCallBack
+import com.rodrigolmti.coinzilla.coinzilla.model.callback.HistoricCallBack
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.CryptoCurrency
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.Exchange
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.Historic
-import com.rodrigolmti.coinzilla.coinzilla.model.presenter.Presenter
 import com.rodrigolmti.coinzilla.coinzilla.view.adapter.ExchangeAdapter
 import com.rodrigolmti.coinzilla.coinzilla.view.extensions.formatCurrencyBRL
 import com.rodrigolmti.coinzilla.coinzilla.view.extensions.gone
 import com.rodrigolmti.coinzilla.coinzilla.view.extensions.visible
-import com.rodrigolmti.coinzilla.library.controller.mvp.BasePresenter
-import com.rodrigolmti.coinzilla.library.controller.mvp.BaseView
+import com.rodrigolmti.coinzilla.library.controller.fragment.BaseFragment
 import kotlinx.android.synthetic.main.fragment_coin_detail_brl.candleChart
 import kotlinx.android.synthetic.main.fragment_coin_detail_brl.view.progressBarExchange
 import kotlinx.android.synthetic.main.fragment_coin_detail_brl.view.progressBarHistoric
@@ -42,22 +36,25 @@ import kotlinx.android.synthetic.main.fragment_coin_detail_brl.view.textViewTota
 import kotlinx.android.synthetic.main.fragment_coin_detail_brl.view.textViewVolumeBrl
 
 /**
- * Created by rodrigolmti on 18/11/17.
- */
+* Created by rodrigolmti on 18/11/17.
+*/
 
-class CoinDetailBRLFragment : Fragment(), BaseView {
+class CoinDetailBRLFragment : BaseFragment() {
 
     private lateinit var viewFragment: View
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewFragment = inflater!!.inflate(R.layout.fragment_coin_detail_brl, container, false)
 
-        val presenter: BasePresenter = Presenter(this, context)
-
         if (arguments != null) {
+
             val cryptoCurrency = arguments.getParcelable<CryptoCurrency>("action.coin.detail")
-            presenter.historicWeb(cryptoCurrency.symbol!!, getString(R.string.activity_detail_brl))
-            presenter.exchangesWeb(cryptoCurrency.symbol!!, getString(R.string.activity_detail_brl))
+
+            val coinZillaService = CoinZillaService(activity)
+
+            coinZillaService.getHistoric(callBackHistoric, cryptoCurrency.symbol!!, getString(R.string.activity_detail_brl))
+            coinZillaService.getExchanges(callBackExchanges, cryptoCurrency.symbol!!, getString(R.string.activity_detail_brl))
+
             viewFragment.textViewPriceBRL.text = cryptoCurrency.priceBrl!!.formatCurrencyBRL()
             viewFragment.textViewAvailableSupply.text = cryptoCurrency.availableSupply
             viewFragment.textViewMarketCapBrl.text = cryptoCurrency.marketCapBrl
@@ -81,85 +78,47 @@ class CoinDetailBRLFragment : Fragment(), BaseView {
         return viewFragment
     }
 
-    override fun success(result: List<Any>) {
-        val item: Any = result.first()
-        when (item) {
-            is Historic -> {
-                initChart(result.filterIsInstance<Historic>())
-            }
-            is Exchange -> {
-                loadExchange(result.filterIsInstance<Exchange>())
+    private val callBackHistoric: HistoricCallBack = object: HistoricCallBack() {
+        override fun onSuccess(list: List<Historic>) {
+            viewFragment.progressBarExchange.gone()
+            if (list.isNotEmpty()) {
+                configureChart(list)
+                showChart()
             }
         }
-    }
 
-    private fun loadExchange(result: List<Exchange>) {
-        viewFragment.progressBarExchange.gone()
-        if (result.isNotEmpty()) {
-            viewFragment.recyclerView.layoutManager = LinearLayoutManager(activity)
-            viewFragment.recyclerView.hasFixedSize()
-            viewFragment.recyclerView.adapter = ExchangeAdapter(activity, result)
-            viewFragment.recyclerView.visibility = View.VISIBLE
-        } else {
+        override fun onError() {
+            super.onError()
+        }
+    }
+    private val callBackExchanges: ExchangesCallBack = object: ExchangesCallBack() {
+        override fun onSucces(list: List<Exchange>) {
+            viewFragment.progressBarExchange.gone()
+            if (list.isNotEmpty()) {
+                viewFragment.recyclerView.layoutManager = LinearLayoutManager(activity)
+                viewFragment.recyclerView.hasFixedSize()
+                viewFragment.recyclerView.adapter = ExchangeAdapter(activity, list)
+                viewFragment.recyclerView.visibility = View.VISIBLE
+            } else {
+                viewFragment.textViewErrorExchange.visible()
+                viewFragment.recyclerView.gone()
+            }
+        }
+
+        override fun onError() {
             viewFragment.textViewErrorExchange.visible()
             viewFragment.recyclerView.gone()
         }
     }
 
-    private fun initChart(result: List<Historic>) {
-        candleChart.resetTracking()
-        candleChart.setBackgroundColor(Color.WHITE)
-        candleChart.description.isEnabled = false
-        candleChart.setMaxVisibleValueCount(60)
-        candleChart.setPinchZoom(false)
-        candleChart.setTouchEnabled(false)
-        candleChart.setDrawGridBackground(false)
-
-        val xAxis = candleChart.xAxis
-        xAxis.position = XAxis.XAxisPosition.BOTTOM
-        xAxis.setDrawAxisLine(false)
-        xAxis.setDrawLabels(false)
-        xAxis.setDrawGridLines(false)
-
-        val leftAxis = candleChart.axisLeft
-        leftAxis.setLabelCount(7, false)
-        leftAxis.setDrawGridLines(false)
-        leftAxis.setDrawAxisLine(false)
-
-        val rightAxis = candleChart.axisRight
-        rightAxis.isEnabled = false
-
-        candleChart.legend.isEnabled = false
-
-        val entries: ArrayList<CandleEntry> = ArrayList()
-        var count = 0f
-        for (obj in result) {
-            count++
-            entries.add(CandleEntry(count, obj.high, obj.low, obj.open, obj.close))
-        }
-        val dataSet = CandleDataSet(entries, "Historic")
-        dataSet.color = Color.rgb(80, 80, 80)
-        dataSet.shadowColor = Color.DKGRAY
-        dataSet.setDrawValues(false)
-        dataSet.shadowWidth = 0.7f
-        dataSet.decreasingColor = Color.rgb(192, 57, 43)
-        dataSet.decreasingPaintStyle = Paint.Style.FILL
-        dataSet.increasingColor = Color.rgb(39, 174, 96)
-        dataSet.increasingPaintStyle = Paint.Style.FILL
-        dataSet.setDrawIcons(false)
-        dataSet.neutralColor = Color.BLUE
-        dataSet.valueTextColor = Color.RED
-        val candleData = CandleData(dataSet)
-        candleChart.animate()
-        candleChart.data = candleData
-        candleChart.invalidate()
-
+    private fun showChart() {
         viewFragment.progressBarHistoric.gone()
         candleChart.visible()
     }
 
     companion object {
-        fun newInstance(cryptoCurrency: CryptoCurrency): Fragment {
+
+        fun newInstance(cryptoCurrency: CryptoCurrency): BaseFragment {
             val fragment = CoinDetailBRLFragment()
             val args = Bundle()
             args.putParcelable("action.coin.detail", cryptoCurrency)

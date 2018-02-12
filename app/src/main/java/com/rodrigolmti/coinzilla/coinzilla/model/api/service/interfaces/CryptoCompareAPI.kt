@@ -1,4 +1,4 @@
-package com.rodrigolmti.coinzilla.coinzilla.model.api
+package com.rodrigolmti.coinzilla.coinzilla.model.api.service.interfaces
 
 import com.rodrigolmti.coinzilla.coinzilla.model.dto.BaseExchangeDTO
 import com.rodrigolmti.coinzilla.coinzilla.model.dto.BaseHistoricDTO

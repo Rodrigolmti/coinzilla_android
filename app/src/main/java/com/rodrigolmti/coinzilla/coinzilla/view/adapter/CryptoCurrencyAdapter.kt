@@ -10,7 +10,7 @@ import com.rodrigolmti.coinzilla.coinzilla.model.entity.CryptoCurrency
 import kotlinx.android.synthetic.main.row_crypto_currency.view.textViewName
 import kotlinx.android.synthetic.main.row_crypto_currency.view.textViewSymbol
 
-open class CryptoCurrencyAdapter(val context: Context, val list: ArrayList<CryptoCurrency>, val listener: onItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+open class CryptoCurrencyAdapter(val context: Context, val list: ArrayList<CryptoCurrency>, val listener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val filteredList: ArrayList<CryptoCurrency> = ArrayList()
 
@@ -45,14 +45,14 @@ open class CryptoCurrencyAdapter(val context: Context, val list: ArrayList<Crypt
 
 
     class Item(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bindData(item: CryptoCurrency, listener: onItemClickListener) {
+        fun bindData(item: CryptoCurrency, listener: OnItemClickListener) {
             itemView.setOnClickListener { listener.itemOnClick(item) }
             itemView.textViewSymbol.text = item.symbol
             itemView.textViewName.text = item.name
         }
     }
 
-    interface onItemClickListener {
+    interface OnItemClickListener {
         fun itemOnClick(item: CryptoCurrency)
     }
 }

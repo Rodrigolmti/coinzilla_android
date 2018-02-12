@@ -365,6 +365,7 @@
                 android:id="@+id/layerExchange"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="100dp"
                 android:layout_margin="16dp"
                 android:orientation="vertical">
 
@@ -399,10 +400,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:layout_margin="20dp"
+                    android:layout_marginTop="20dp"
                     android:gravity="center"
-                    android:text="@string/activity_detail_error"
-                    android:visibility="gone" />
+                    android:text="@string/activity_detail_error"/>
 
             </RelativeLayout>
 

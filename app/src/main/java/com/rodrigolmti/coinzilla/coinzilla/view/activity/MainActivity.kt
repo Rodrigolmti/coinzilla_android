@@ -5,14 +5,13 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.View
 import com.rodrigolmti.coinzilla.R
+import com.rodrigolmti.coinzilla.coinzilla.model.api.service.CoinZillaService
+import com.rodrigolmti.coinzilla.coinzilla.model.callback.BaseCallBack
 import com.rodrigolmti.coinzilla.coinzilla.model.dao.Preferences
-import com.rodrigolmti.coinzilla.coinzilla.model.presenter.Presenter
 import com.rodrigolmti.coinzilla.coinzilla.view.extensions.gone
 import com.rodrigolmti.coinzilla.coinzilla.view.extensions.visible
 import com.rodrigolmti.coinzilla.library.app.CZApplication
 import com.rodrigolmti.coinzilla.library.controller.activity.BaseActivity
-import com.rodrigolmti.coinzilla.library.controller.mvp.BasePresenter
-import com.rodrigolmti.coinzilla.library.controller.mvp.BaseView
 import com.rodrigolmti.coinzilla.library.util.Action
 import com.rodrigolmti.coinzilla.library.util.Utils
 import kotlinx.android.synthetic.main.activity_main.adView
@@ -40,9 +39,8 @@ import kotlinx.android.synthetic.main.layout_error.textViewErro
 import java.util.Calendar
 import java.util.Date
 
-class MainActivity : BaseActivity(), View.OnClickListener, BaseView {
+class MainActivity : BaseActivity(), View.OnClickListener {
 
-    private val presenter: BasePresenter = Presenter(this, this)
     private val czPreferences: Preferences? = CZApplication.preferences
     private lateinit var token: String
     private val utils: Utils = Utils()
@@ -50,13 +48,9 @@ class MainActivity : BaseActivity(), View.OnClickListener, BaseView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val dateString: String = czPreferences!!.tokenDate
-        token = czPreferences.token
+        token = czPreferences!!.token
 
-        if (token == "noData" || dateString == "noData") {
-            content.visibility = View.GONE
-            presenter.getToken()
-        }
+        getToken()
 
         containerProfitability.setOnClickListener(this)
         containerCryptocurrency.setOnClickListener(this)
@@ -91,30 +85,7 @@ class MainActivity : BaseActivity(), View.OnClickListener, BaseView {
             circle4.visible()
         }
 
-        if (checkTime()) {
-            content.gone()
-            presenter.getToken()
-        }
-    }
-
-    override fun showProgressBar(visibility: Int) {
-        progressBar.visibility = visibility
-    }
-
-    override fun success(action: Action) {
-        content.visible()
-    }
-
-    override fun error(message: String) {
-        if (token == "noData") {
-            contentError.visible()
-            content.gone()
-        }
-
-        if (!Utils().isDeviceOnline(this)) {
-            textViewErro.text = getString(R.string.general_error_connection)
-            imageViewErro.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_offline))
-        }
+        getToken()
     }
 
     override fun onClick(view: View?) {
@@ -131,6 +102,32 @@ class MainActivity : BaseActivity(), View.OnClickListener, BaseView {
                 clickViewBack -> intent = Intent(this, InfoActivity::class.java)
             }
             startActivity(intent)
+        }
+    }
+
+    private fun getToken() {
+        if (!checkTime()) return
+        if ((token != "noData" || czPreferences!!.tokenDate != "noData")) return
+        if (Utils().isDeviceOnline(this)) {
+
+            progressBar.visible()
+            content.gone()
+
+            CoinZillaService(this).getToken(object : BaseCallBack() {
+                override fun onSuccess() {
+                    content.visible()
+                }
+
+                override fun onError() {
+                    contentError.visible()
+                    content.gone()
+                }
+            })
+        } else {
+            imageViewErro.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_offline))
+            textViewErro.text = getString(R.string.general_error_connection)
+            contentError.visible()
+            content.gone()
         }
     }
 

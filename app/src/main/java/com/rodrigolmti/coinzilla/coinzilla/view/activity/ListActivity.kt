@@ -2,36 +2,30 @@ package com.rodrigolmti.coinzilla.coinzilla.view.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.view.Menu
-import android.view.View
 import com.rodrigolmti.coinzilla.R
+import com.rodrigolmti.coinzilla.coinzilla.model.api.service.CoinZillaService
+import com.rodrigolmti.coinzilla.coinzilla.model.callback.BaseCallBack
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.CryptoCurrency
-import com.rodrigolmti.coinzilla.coinzilla.model.presenter.Presenter
 import com.rodrigolmti.coinzilla.coinzilla.view.adapter.CryptoCurrencyAdapter
 import com.rodrigolmti.coinzilla.coinzilla.view.adapter.WhatToMineAdapter
 import com.rodrigolmti.coinzilla.coinzilla.view.extensions.gone
 import com.rodrigolmti.coinzilla.coinzilla.view.extensions.visible
 import com.rodrigolmti.coinzilla.library.controller.activity.BaseActivity
-import com.rodrigolmti.coinzilla.library.controller.mvp.BasePresenter
-import com.rodrigolmti.coinzilla.library.controller.mvp.BaseView
 import com.rodrigolmti.coinzilla.library.util.Action
-import com.rodrigolmti.coinzilla.library.util.Utils
 import kotlinx.android.synthetic.main.activity_list.contentError
 import kotlinx.android.synthetic.main.activity_list.progressBar
 import kotlinx.android.synthetic.main.activity_list.recyclerView
 import kotlinx.android.synthetic.main.activity_list.toolbar
-import kotlinx.android.synthetic.main.layout_error.imageViewErro
-import kotlinx.android.synthetic.main.layout_error.textViewErro
 
-class ListActivity : BaseActivity(), BaseView {
+class ListActivity : BaseActivity() {
 
-    private val presenter: BasePresenter = Presenter(this, this)
     private lateinit var adapterCryptoCurrency: CryptoCurrencyAdapter
     private lateinit var adapterWhatToMine: WhatToMineAdapter
+    private lateinit var coinZillaService: CoinZillaService
     private var resultList: List<Any> = ArrayList()
     private lateinit var action: Action
 
@@ -39,42 +33,97 @@ class ListActivity : BaseActivity(), BaseView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
 
+        coinZillaService = CoinZillaService(this)
         setSupportActionBar(toolbar)
         enableBackButton()
 
         if (intent.hasExtra("action.type")) {
+
             action = Action.valueOf(intent.getStringExtra("action.type"))
-            recyclerView.visibility = View.GONE
-            progressBar.visibility = View.VISIBLE
+
+            progressBar.visible()
+            recyclerView.gone()
+
             when (action) {
                 Action.GPU -> {
-                    presenter.whatToMineGpuWeb()
+                    coinZillaService.getWhatToMineGpu(callBack)
                     title = getString(R.string.activity_list_gpu_title)
                 }
                 Action.ASIC -> {
-                    presenter.whatToMineAsicWeb()
+                    coinZillaService.getWhatToMineAsic(callBack)
                     title = getString(R.string.activity_list_asic_title)
                 }
                 Action.WARZ -> {
-                    presenter.whatToMineWarzWeb()
+                    coinZillaService.getWhatToMineWarz(callBack)
                     title = getString(R.string.activity_main_warz_title)
                 }
                 Action.CRYPTOCURRENCY -> {
-                    presenter.cryptoCurrencyWeb()
+                    coinZillaService.getCryptoCurrency(callBack)
                     title = getString(R.string.activity_main_cryptocurrency_title)
                 }
                 else -> {
-                    recyclerView.visibility = View.GONE
-                    contentError.visibility = View.VISIBLE
+                    contentError.visible()
+                    recyclerView.gone()
+                }
+            }
+        }
+    }
+
+    private val callBack: BaseCallBack = object: BaseCallBack() {
+        override fun onSuccess() {
+
+            recyclerView.visible()
+            progressBar.gone()
+
+            recyclerView.layoutManager = LinearLayoutManager(this@ListActivity)
+            recyclerView.hasFixedSize()
+
+            when (action) {
+                Action.GPU -> {
+                    resultList = coinZillaService.whatToMineGpuLocal()
+                    adapterWhatToMine = WhatToMineAdapter(this@ListActivity, ArrayList(resultList))
+                    recyclerView.adapter = adapterWhatToMine
+                }
+                Action.ASIC -> {
+                    resultList = coinZillaService.whatToMineAsicLocal()
+                    adapterWhatToMine = WhatToMineAdapter(this@ListActivity, ArrayList(resultList))
+                    recyclerView.adapter = adapterWhatToMine
+                }
+                Action.WARZ -> {
+                    resultList = coinZillaService.whatToMineWarzLocal()
+                    adapterWhatToMine = WhatToMineAdapter(this@ListActivity, ArrayList(resultList))
+                    recyclerView.adapter = adapterWhatToMine
+                }
+                Action.CRYPTOCURRENCY -> {
+                    recyclerView.layoutManager = GridLayoutManager(this@ListActivity, 3)
+                    val resultList = coinZillaService.cryptoCurrencyLocal()
+                    adapterCryptoCurrency = CryptoCurrencyAdapter(this@ListActivity, ArrayList(resultList), object : CryptoCurrencyAdapter.OnItemClickListener {
+                        override fun itemOnClick(item: CryptoCurrency) {
+                            val intent = Intent(this@ListActivity, CoinDetailActivity::class.java)
+                            intent.putExtra("action.coin.detail", item)
+                            startActivity(intent)
+                        }
+                    })
+                    recyclerView.adapter = adapterCryptoCurrency
+                }
+                else -> {
+                    contentError.visible()
+                    recyclerView.gone()
                 }
             }
         }
 
-        title = title
+        override fun onError() {
+            contentError.visible()
+            recyclerView.gone()
+            progressBar.gone()
+        }
     }
+
 
     //TODO: Fix search in all cryptocurrency
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
         if (action != Action.CRYPTOCURRENCY) {
             menuInflater.inflate(R.menu.menu_list_home, menu)
             val myActionMenuItem = menu!!.findItem(R.id.action_search)
@@ -95,62 +144,5 @@ class ListActivity : BaseActivity(), BaseView {
         }
 
         return true
-    }
-
-    override fun success(action: Action) {
-        recyclerView.visibility = View.VISIBLE
-        progressBar.visibility = View.GONE
-
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.hasFixedSize()
-
-        when (action) {
-            Action.GPU -> {
-                resultList = presenter.whatToMineGpuLocal()
-                adapterWhatToMine = WhatToMineAdapter(this, ArrayList(resultList))
-                recyclerView.adapter = adapterWhatToMine
-            }
-            Action.ASIC -> {
-                resultList = presenter.whatToMineAsicLocal()
-                adapterWhatToMine = WhatToMineAdapter(this, ArrayList(resultList))
-                recyclerView.adapter = adapterWhatToMine
-            }
-            Action.WARZ -> {
-                resultList = presenter.whatToMineWarzLocal()
-                adapterWhatToMine = WhatToMineAdapter(this, ArrayList(resultList))
-                recyclerView.adapter = adapterWhatToMine
-            }
-            Action.CRYPTOCURRENCY -> {
-                recyclerView.layoutManager = GridLayoutManager(this, 3)
-                val resultList = presenter.cryptoCurrencyLocal()
-                adapterCryptoCurrency = CryptoCurrencyAdapter(this, ArrayList(resultList), object : CryptoCurrencyAdapter.onItemClickListener {
-                    override fun itemOnClick(item: CryptoCurrency) {
-                        val intent = Intent(this@ListActivity, CoinDetailActivity::class.java)
-                        intent.putExtra("action.coin.detail", item)
-                        startActivity(intent)
-                    }
-                })
-                recyclerView.adapter = adapterCryptoCurrency
-            }
-            else -> {
-                contentError.visible()
-                recyclerView.gone()
-            }
-        }
-    }
-
-    override fun error(message: String) {
-        contentError.visible()
-        recyclerView.gone()
-        progressBar.gone()
-
-        if (!Utils().isDeviceOnline(this)) {
-            textViewErro.text = getString(R.string.general_error_connection)
-            imageViewErro.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_offline))
-        }
-    }
-
-    override fun showProgressBar(visibility: Int) {
-        progressBar.visibility = visibility
     }
 }
