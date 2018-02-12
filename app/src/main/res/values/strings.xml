@@ -127,7 +127,6 @@
     <string name="activity_detail_exchanges">Exchanges</string>
     <string name="activity_detail_error">Hey looks like this coin don\'t have any data available, try another currency or later!</string>
     <string name="activity_detail_daily_historic">Daily historic</string>
-    <string name="activity_detail_price_param">%1$s \%</string>
 
     <string name="activity_favorite_title">Favorite</string>
 

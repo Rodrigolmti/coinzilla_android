@@ -51,7 +51,6 @@ class CoinDetailUSDFragment : BaseFragment() {
         if (arguments != null) {
 
             val cryptoCurrency = arguments.getParcelable<CryptoCurrency>("action.coin.detail")
-
             val coinZillaService = CoinZillaService(activity)
 
             coinZillaService.getHistoric(callBackHistoric, cryptoCurrency.symbol!!, getString(R.string.activity_detail_usd))
@@ -124,7 +123,7 @@ class CoinDetailUSDFragment : BaseFragment() {
     companion object {
 
         fun newInstance(cryptoCurrency: CryptoCurrency): BaseFragment {
-            val fragment = CoinDetailBRLFragment()
+            val fragment = CoinDetailUSDFragment()
             val args = Bundle()
             args.putParcelable("action.coin.detail", cryptoCurrency)
             fragment.arguments = args

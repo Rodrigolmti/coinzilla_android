@@ -1,5 +1,6 @@
 package com.rodrigolmti.coinzilla.coinzilla.view.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.content.ContextCompat
@@ -13,8 +14,6 @@ import com.rodrigolmti.coinzilla.library.controller.activity.BaseActivity
 import kotlinx.android.synthetic.main.activity_coin_detail.adView
 import kotlinx.android.synthetic.main.activity_coin_detail.tabLayout
 import kotlinx.android.synthetic.main.activity_coin_detail.viewPager
-import android.content.Intent
-
 
 
 class CoinDetailActivity : BaseActivity() {
