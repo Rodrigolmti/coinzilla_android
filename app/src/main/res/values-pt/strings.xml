@@ -130,13 +130,20 @@
     <string name="activity_detail_price_param">%1$s \%</string>
 
     <string name="activity_favorite_title">Favoritos</string>
-    <string name="menu_refresh">Refresh</string>
-    <string name="menu_add">Add</string>
+
     <string name="activity_exchange_api_key">Input your API Key here</string>
     <string name="activity_exchange_api_secret">Input your API secret here</string>
     <string name="activity_exchange_api_name">Exchange name (Optional)</string>
     <string name="activity_exchange_api_create">Create</string>
     <string name="activity_exchange_api_warning">You need to create a new Api key on this exchange service and provide the date above. Create Read-Only Key, disable Buy/Sell and withdraw permission. (CoinZilla is not responsible for the loss from user\'s mistake). When you send thats means you agree for us to retrieve your exchange/wallet data.</string>
     <string name="activity_exchange_api_title">Exchange Api Keys</string>
+
+    <string name="menu_add">Add</string>
+    <string name="menu_share">Compartilhar</string>
+    <string name="menu_favorite">Favoritar</string>
+    <string name="menu_refresh">Recarregar</string>
+    <string name="menu_search">Pesquisar</string>
+
+    <string name="share">Compartilhar esta moeda</string>
 
 </resources>

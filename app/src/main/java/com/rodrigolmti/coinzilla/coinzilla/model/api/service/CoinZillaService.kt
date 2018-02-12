@@ -11,12 +11,10 @@ import com.rodrigolmti.coinzilla.coinzilla.model.api.service.interfaces.WhatToMi
 import com.rodrigolmti.coinzilla.coinzilla.model.callback.BaseCallBack
 import com.rodrigolmti.coinzilla.coinzilla.model.callback.ExchangesCallBack
 import com.rodrigolmti.coinzilla.coinzilla.model.callback.HistoricCallBack
-import com.rodrigolmti.coinzilla.coinzilla.model.dao.Database
+import com.rodrigolmti.coinzilla.coinzilla.model.dao.CoinDAO
 import com.rodrigolmti.coinzilla.coinzilla.model.dao.Preferences
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.CryptoCurrency
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineAsic
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineGpu
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineWarz
 import com.rodrigolmti.coinzilla.library.app.CZApplication
 import com.rodrigolmti.coinzilla.library.util.Action
 import com.rodrigolmti.coinzilla.library.util.Utils
@@ -30,7 +28,7 @@ import java.util.UUID
 class CoinZillaService(private val context: Context) {
 
     private val czPreferences: Preferences? = CZApplication.preferences
-    private val database: Database = Database()
+    private val coinDao: CoinDAO = CoinDAO()
     private val utils: Utils = Utils()
 
     fun getToken(callback: BaseCallBack) {
@@ -59,7 +57,7 @@ class CoinZillaService(private val context: Context) {
 
     fun getWhatToMineGpu(callback: BaseCallBack) {
         try {
-            if (checkTime(Action.GPU, 15) || whatToMineGpuLocal().isEmpty()) {
+            if (checkTime(Action.GPU, 15) || coinDao.getAllWhatToMineGpu().isEmpty()) {
                 RetrofitService().retrofitInstance(context.getString(R.string.base_url_what_to_mine)).create(WhatToMineAPI::class.java).getGpu()
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -75,13 +73,13 @@ class CoinZillaService(private val context: Context) {
                             }
                             if (gpus.isNotEmpty()) {
                                 czPreferences!!.updateDateGpu = utils.formatDate(Date())
-                                database.insertWhatToMineGpu(gpus)
+                                coinDao.insertWhatToMineGpu(gpus)
                                 callback.onSuccess()
                             } else {
                                 callback.onError(context.getString(R.string.general_error_connection))
                             }
                         }, { error ->
-                            if (whatToMineGpuLocal().isNotEmpty()) {
+                            if (coinDao.getAllWhatToMineGpu().isNotEmpty()) {
                                 callback.onSuccess()
                             } else {
                                 handleError(callback, error)
@@ -97,7 +95,7 @@ class CoinZillaService(private val context: Context) {
 
     fun getWhatToMineAsic(callback: BaseCallBack) {
         try {
-            if (checkTime(Action.ASIC, 15) || whatToMineAsicLocal().isEmpty()) {
+            if (checkTime(Action.ASIC, 15) || coinDao.getAllWhatToMineAsic().isEmpty()) {
                 RetrofitService().retrofitInstance(context.getString(R.string.base_url_what_to_mine)).create(WhatToMineAPI::class.java).getAsic()
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
@@ -113,13 +111,13 @@ class CoinZillaService(private val context: Context) {
                             }
                             if (asics.isNotEmpty()) {
                                 czPreferences!!.updateDateAsic = utils.formatDate(Date())
-                                database.insertWhatToMineAsic(asics)
+                                coinDao.insertWhatToMineAsic(asics)
                                 callback.onSuccess()
                             } else {
                                 callback.onError(context.getString(R.string.general_error_connection))
                             }
                         }, { error ->
-                            if (whatToMineAsicLocal().isNotEmpty()) {
+                            if (coinDao.getAllWhatToMineAsic().isNotEmpty()) {
                                 callback.onSuccess()
                             } else {
                                 handleError(callback, error)
@@ -135,20 +133,20 @@ class CoinZillaService(private val context: Context) {
 
     fun getWhatToMineWarz(callback: BaseCallBack) {
         try {
-            if (checkTime(Action.WARZ, 15) || whatToMineWarzLocal().isEmpty()) {
+            if (checkTime(Action.WARZ, 15) || coinDao.getAllWhatToMineWarz().isEmpty()) {
                 RetrofitService().retrofitInstance(context.getString(R.string.base_url_main)).create(WhatToMineAPI::class.java).getWarz(czPreferences!!.token)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({ data ->
                             if (data.success) {
                                 czPreferences.updateDateWarz = utils.formatDate(Date())
-                                database.insertWhatToMineWarz(data.data)
+                                coinDao.insertWhatToMineWarz(data.data)
                                 callback.onSuccess()
                             } else {
                                 callback.onError(context.getString(R.string.general_error_connection))
                             }
                         }, { error ->
-                            if (whatToMineWarzLocal().isNotEmpty()) {
+                            if (coinDao.getAllWhatToMineWarz().isNotEmpty()) {
                                 callback.onSuccess()
                             } else {
                                 handleError(callback, error)
@@ -169,12 +167,12 @@ class CoinZillaService(private val context: Context) {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ data ->
                         if (data.succes == "Success") {
-                            callback.onSucces(data.exchangeCoin)
+                            callback.onSuccess(data.exchangeCoin)
                         } else {
                             callback.onError()
                         }
                     }, { error ->
-                        if (whatToMineWarzLocal().isNotEmpty()) {
+                        if (coinDao.getAllWhatToMineWarz().isNotEmpty()) {
                             callback.onSuccess()
                         } else {
                             handleError(callback, error)
@@ -197,7 +195,7 @@ class CoinZillaService(private val context: Context) {
                             callback.onError()
                         }
                     }, { error ->
-                        if (whatToMineWarzLocal().isNotEmpty()) {
+                        if (coinDao.getAllWhatToMineWarz().isNotEmpty()) {
                             callback.onSuccess()
                         } else {
                             handleError(callback, error)
@@ -210,16 +208,16 @@ class CoinZillaService(private val context: Context) {
 
     fun getCryptoCurrency(callback: BaseCallBack) {
         try {
-            if (checkTime(Action.CRYPTOCURRENCY, 15) || cryptoCurrencyLocal().isEmpty()) {
+            if (checkTime(Action.CRYPTOCURRENCY, 15) || coinDao.getAllCryptoCurrency().isEmpty()) {
                 RetrofitService().retrofitInstance(context.getString(R.string.base_url_market_Cap)).create(CoinMarketCapApi::class.java).getCryptoCurrency()
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({ data ->
                             czPreferences!!.updateDateCryptoCurrency = utils.formatDate(Date())
-                            database.insertCryptoCurrency(data)
+                            coinDao.insertCryptoCurrency(data)
                             callback.onSuccess()
                         }, { error ->
-                            if (cryptoCurrencyLocal().isNotEmpty()) {
+                            if (coinDao.getAllCryptoCurrency().isNotEmpty()) {
                                 callback.onSuccess()
                             } else {
                                 handleError(callback, error)
@@ -239,10 +237,10 @@ class CoinZillaService(private val context: Context) {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ data ->
-                        database.insertCryptoCurrency(data)
+                        coinDao.insertCryptoCurrency(data)
                         callback.onSuccess()
                     }, { error ->
-                        if (cryptoCurrencyLocal().isNotEmpty()) {
+                        if (coinDao.getAllCryptoCurrency().isNotEmpty()) {
                             callback.onSuccess()
                         } else {
                             handleError(callback, error)
@@ -265,7 +263,7 @@ class CoinZillaService(private val context: Context) {
 //                    }, {
 //                        error ->
 //                        presenter.showProgressBar(View.GONE)
-//                        if (cryptoCurrencyLocal().isNotEmpty()) {
+//                        if (getAllCryptoCurrency().isNotEmpty()) {
 //                            presenter.success(Action.CRYPTOCURRENCY)
 //                        } else {
 //                            presenter.error(presenter.context().getString(R.string.general_error_connection))
@@ -277,30 +275,6 @@ class CoinZillaService(private val context: Context) {
 //            presenter.showProgressBar(View.GONE)
 //            presenter.error(presenter.context().getString(R.string.general_error_connection))
 //        }
-    }
-
-    fun updateCryptoCurrencyFavorite(item: CryptoCurrency) {
-        database.updateCryptoCurrencyFavorite(item)
-    }
-
-    fun getAllFavorites(): List<CryptoCurrency> {
-        return database.getAllFavorites()
-    }
-
-    fun whatToMineGpuLocal(): List<WhatToMineGpu> {
-        return database.getAllWhatToMineGpu()
-    }
-
-    fun whatToMineAsicLocal(): List<WhatToMineAsic> {
-        return database.getAllWhatToMineAsic()
-    }
-
-    fun whatToMineWarzLocal(): List<WhatToMineWarz> {
-        return database.getAllWhatToMineWarz()
-    }
-
-    fun cryptoCurrencyLocal(): List<CryptoCurrency> {
-        return database.getAllCryptoCurrency()
     }
 
     private fun handleError(callback: BaseCallBack, error: Any) {

@@ -63,7 +63,6 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".coinzilla.view.activity.CoinDetailActivity"
-            android:label="@string/title_activity_coin_detail"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeActionBar" />
 

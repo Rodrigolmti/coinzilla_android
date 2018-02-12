@@ -8,5 +8,5 @@ import com.rodrigolmti.coinzilla.coinzilla.model.entity.Exchange
  */
 open class ExchangesCallBack : BaseCallBack() {
 
-    open fun onSucces(list: List<Exchange>) {}
+    open fun onSuccess(list: List<Exchange>) {}
 }

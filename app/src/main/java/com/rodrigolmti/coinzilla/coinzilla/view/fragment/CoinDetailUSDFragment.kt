@@ -25,6 +25,7 @@ import kotlinx.android.synthetic.main.fragment_coin_detail_usd.view.progressBarH
 import kotlinx.android.synthetic.main.fragment_coin_detail_usd.view.recyclerView
 import kotlinx.android.synthetic.main.fragment_coin_detail_usd.view.textViewAvailableSupply
 import kotlinx.android.synthetic.main.fragment_coin_detail_usd.view.textViewErrorExchange
+import kotlinx.android.synthetic.main.fragment_coin_detail_usd.view.textViewErrorHistoric
 import kotlinx.android.synthetic.main.fragment_coin_detail_usd.view.textViewMarketCapUsd
 import kotlinx.android.synthetic.main.fragment_coin_detail_usd.view.textViewName
 import kotlinx.android.synthetic.main.fragment_coin_detail_usd.view.textViewPercentChange1h
@@ -89,17 +90,19 @@ class CoinDetailUSDFragment : BaseFragment() {
         }
 
         override fun onError() {
-            super.onError()
+            viewFragment.textViewErrorHistoric.visible()
+            viewFragment.progressBarHistoric.gone()
         }
     }
     private val callBackExchanges: ExchangesCallBack = object: ExchangesCallBack() {
-        override fun onSucces(list: List<Exchange>) {
+        override fun onSuccess(list: List<Exchange>) {
             viewFragment.progressBarExchange.gone()
             if (list.isNotEmpty()) {
                 viewFragment.recyclerView.layoutManager = LinearLayoutManager(activity)
                 viewFragment.recyclerView.hasFixedSize()
                 viewFragment.recyclerView.adapter = ExchangeAdapter(activity, list)
                 viewFragment.recyclerView.visibility = View.VISIBLE
+                viewFragment.textViewErrorExchange.gone()
             } else {
                 viewFragment.textViewErrorExchange.visible()
                 viewFragment.recyclerView.gone()
@@ -108,6 +111,7 @@ class CoinDetailUSDFragment : BaseFragment() {
 
         override fun onError() {
             viewFragment.textViewErrorExchange.visible()
+            viewFragment.progressBarExchange.gone()
             viewFragment.recyclerView.gone()
         }
     }

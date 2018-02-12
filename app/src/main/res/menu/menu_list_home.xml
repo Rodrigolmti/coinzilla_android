@@ -5,7 +5,13 @@
     <item
         android:id="@+id/action_search"
         android:icon="@android:drawable/ic_menu_search"
-        android:title="Search"
+        android:title="@string/menu_search"
         app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_favorites"
+        android:icon="@drawable/ic_action_favorite_filled"
+        android:title="@string/menu_search"
+        android:visible="false"
         app:showAsAction="always" />
 </menu>

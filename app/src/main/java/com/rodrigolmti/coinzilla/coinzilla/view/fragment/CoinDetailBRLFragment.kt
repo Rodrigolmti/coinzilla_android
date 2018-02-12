@@ -24,6 +24,7 @@ import kotlinx.android.synthetic.main.fragment_coin_detail_brl.view.progressBarH
 import kotlinx.android.synthetic.main.fragment_coin_detail_brl.view.recyclerView
 import kotlinx.android.synthetic.main.fragment_coin_detail_brl.view.textViewAvailableSupply
 import kotlinx.android.synthetic.main.fragment_coin_detail_brl.view.textViewErrorExchange
+import kotlinx.android.synthetic.main.fragment_coin_detail_brl.view.textViewErrorHistoric
 import kotlinx.android.synthetic.main.fragment_coin_detail_brl.view.textViewMarketCapBrl
 import kotlinx.android.synthetic.main.fragment_coin_detail_brl.view.textViewName
 import kotlinx.android.synthetic.main.fragment_coin_detail_brl.view.textViewPercentChange1h
@@ -49,7 +50,6 @@ class CoinDetailBRLFragment : BaseFragment() {
         if (arguments != null) {
 
             val cryptoCurrency = arguments.getParcelable<CryptoCurrency>("action.coin.detail")
-
             val coinZillaService = CoinZillaService(activity)
 
             coinZillaService.getHistoric(callBackHistoric, cryptoCurrency.symbol!!, getString(R.string.activity_detail_brl))
@@ -88,17 +88,19 @@ class CoinDetailBRLFragment : BaseFragment() {
         }
 
         override fun onError() {
-            super.onError()
+            viewFragment.textViewErrorHistoric.visible()
+            viewFragment.progressBarExchange.gone()
         }
     }
     private val callBackExchanges: ExchangesCallBack = object: ExchangesCallBack() {
-        override fun onSucces(list: List<Exchange>) {
+        override fun onSuccess(list: List<Exchange>) {
             viewFragment.progressBarExchange.gone()
             if (list.isNotEmpty()) {
                 viewFragment.recyclerView.layoutManager = LinearLayoutManager(activity)
                 viewFragment.recyclerView.hasFixedSize()
                 viewFragment.recyclerView.adapter = ExchangeAdapter(activity, list)
                 viewFragment.recyclerView.visibility = View.VISIBLE
+                viewFragment.textViewErrorExchange.gone()
             } else {
                 viewFragment.textViewErrorExchange.visible()
                 viewFragment.recyclerView.gone()
@@ -107,6 +109,7 @@ class CoinDetailBRLFragment : BaseFragment() {
 
         override fun onError() {
             viewFragment.textViewErrorExchange.visible()
+            viewFragment.progressBarHistoric.gone()
             viewFragment.recyclerView.gone()
         }
     }
