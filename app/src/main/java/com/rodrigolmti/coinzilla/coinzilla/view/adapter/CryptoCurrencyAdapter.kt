@@ -30,20 +30,6 @@ open class CryptoCurrencyAdapter(val context: Context, val list: ArrayList<Crypt
         (holder as Item).bindData(list[position], listener)
     }
 
-    open fun filter(text: String) {
-        list.clear()
-        if (text.isEmpty()) {
-            list.addAll(filteredList)
-        } else {
-            filteredList.filterTo(list) {
-                it.name!!.contains(text, true) ||
-                        it.symbol!!.contains(text, true)
-            }
-        }
-        notifyDataSetChanged()
-    }
-
-
     class Item(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindData(item: CryptoCurrency, listener: OnItemClickListener) {
             itemView.setOnClickListener { listener.itemOnClick(item) }

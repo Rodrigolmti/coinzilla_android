@@ -4,6 +4,7 @@ import com.rodrigolmti.coinzilla.coinzilla.model.entity.CryptoCurrency
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineAsic
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineGpu
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineWarz
+import io.realm.Case
 import io.realm.Realm
 
 class Database {
@@ -38,6 +39,18 @@ class Database {
         return data
     }
 
+    fun getWhatToMineGpuByFilter(filter: String): List<WhatToMineGpu> {
+        var data: List<WhatToMineGpu> = listOf()
+        realm.executeTransaction {
+            data = realm.where(WhatToMineGpu::class.java)
+                    .contains("tag", filter, Case.INSENSITIVE)
+                    .or()
+                    .contains("algorithm", filter, Case.INSENSITIVE)
+                    .findAll()
+        }
+        return data
+    }
+
     fun insertWhatToMineAsic(data: ArrayList<WhatToMineAsic>) {
         realm.executeTransaction {
             realm.delete(WhatToMineAsic::class.java)
@@ -62,6 +75,18 @@ class Database {
         var data: List<WhatToMineAsic> = listOf()
         realm.executeTransaction {
             data = realm.where(WhatToMineAsic::class.java).findAll()
+        }
+        return data
+    }
+
+    fun getWhatToMineAsicByFilter(filter: String): List<WhatToMineAsic> {
+        var data: List<WhatToMineAsic> = listOf()
+        realm.executeTransaction {
+            data = realm.where(WhatToMineAsic::class.java)
+                    .contains("tag", filter, Case.INSENSITIVE)
+                    .or()
+                    .contains("algorithm", filter, Case.INSENSITIVE)
+                    .findAll()
         }
         return data
     }
@@ -91,6 +116,18 @@ class Database {
         var data: List<WhatToMineWarz> = listOf()
         realm.executeTransaction {
             data = realm.where(WhatToMineWarz::class.java).findAll()
+        }
+        return data
+    }
+
+    fun getWhatToMineWarzByFilter(filter: String): List<WhatToMineWarz> {
+        var data: List<WhatToMineWarz> = listOf()
+        realm.executeTransaction {
+            data = realm.where(WhatToMineWarz::class.java)
+                    .contains("tag", filter, Case.INSENSITIVE)
+                    .or()
+                    .contains("algorithm", filter, Case.INSENSITIVE)
+                    .findAll()
         }
         return data
     }

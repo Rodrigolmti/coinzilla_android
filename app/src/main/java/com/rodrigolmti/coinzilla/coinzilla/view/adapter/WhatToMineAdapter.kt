@@ -16,13 +16,7 @@ import kotlinx.android.synthetic.main.row_what_to_mine.view.textViewNetHash
 import kotlinx.android.synthetic.main.row_what_to_mine.view.textViewResward
 import kotlinx.android.synthetic.main.row_what_to_mine.view.textViewTag
 
-open class WhatToMineAdapter(val context: Context, var list: ArrayList<Any>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-    private val filteredList: ArrayList<Any> = ArrayList()
-
-    init {
-        filteredList.addAll(list)
-    }
+open class WhatToMineAdapter(val context: Context, var list: MutableList<Any>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder? {
         return Item(LayoutInflater.from(context).inflate(R.layout.row_what_to_mine, parent, false))
@@ -34,34 +28,6 @@ open class WhatToMineAdapter(val context: Context, var list: ArrayList<Any>) : R
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
         (holder as Item).bindData(list[position])
-    }
-
-    open fun filter(text: String) {
-        list.clear()
-        if (text.isEmpty()) {
-            list.addAll(filteredList)
-        } else {
-            for (item in filteredList) {
-                when (item) {
-                    is WhatToMineAsic -> {
-                        if (item.tag.contains(text, true)) {
-                            list.add(item)
-                        }
-                    }
-                    is WhatToMineGpu -> {
-                        if (item.tag.contains(text, true)) {
-                            list.add(item)
-                        }
-                    }
-                    is WhatToMineWarz -> {
-                        if (item.tag.contains(text, true)) {
-                            list.add(item)
-                        }
-                    }
-                }
-            }
-        }
-        notifyDataSetChanged()
     }
 
     class Item(itemView: View) : RecyclerView.ViewHolder(itemView) {

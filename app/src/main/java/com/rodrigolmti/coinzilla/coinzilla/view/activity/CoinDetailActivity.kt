@@ -15,7 +15,6 @@ import kotlinx.android.synthetic.main.activity_coin_detail.adView
 import kotlinx.android.synthetic.main.activity_coin_detail.tabLayout
 import kotlinx.android.synthetic.main.activity_coin_detail.viewPager
 
-
 class CoinDetailActivity : BaseActivity() {
 
     private lateinit var coin: CryptoCurrency

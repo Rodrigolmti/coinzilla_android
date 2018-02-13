@@ -2,6 +2,11 @@ package com.rodrigolmti.coinzilla.library.util
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.support.design.widget.Snackbar
+import android.support.v4.content.ContextCompat
+import android.view.View
+import com.rodrigolmti.coinzilla.R
+import kotlinx.android.synthetic.main.activity_list.content
 import java.math.BigInteger
 import java.security.InvalidKeyException
 import java.security.NoSuchAlgorithmException
@@ -62,5 +67,11 @@ open class Utils {
             throw RuntimeException("Problemas calculando HMAC", ex)
         }
         return result
+    }
+
+    open fun showSnackBar(view: View, context: Context, message: String) {
+        val snackbar = Snackbar.make(view, message, 3000)
+        snackbar.view.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary))
+        snackbar.show()
     }
 }

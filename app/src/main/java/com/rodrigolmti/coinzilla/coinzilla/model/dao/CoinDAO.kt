@@ -41,12 +41,24 @@ class CoinDAO {
         return database.getAllWhatToMineGpu()
     }
 
+    fun getWhatToMineGpuByFilter(filter: String): List<WhatToMineGpu> {
+        return database.getWhatToMineGpuByFilter(filter)
+    }
+
     fun getAllWhatToMineAsic(): List<WhatToMineAsic> {
         return database.getAllWhatToMineAsic()
     }
 
+    fun getWhatToMineAsicByFilter(filter: String): List<WhatToMineAsic> {
+        return database.getWhatToMineAsicByFilter(filter)
+    }
+
     fun getAllWhatToMineWarz(): List<WhatToMineWarz> {
         return database.getAllWhatToMineWarz()
+    }
+
+    fun getWhatToMineWarzByFilter(filter: String): List<WhatToMineWarz> {
+        return database.getWhatToMineWarzByFilter(filter)
     }
 
     fun getAllCryptoCurrency(): List<CryptoCurrency> {

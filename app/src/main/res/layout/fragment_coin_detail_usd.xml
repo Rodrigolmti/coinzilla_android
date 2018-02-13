@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Price USD"
+                android:text="@string/activity_detail_price_usd"
                 android:textColor="@color/white" />
 
         </LinearLayout>
@@ -65,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Price BTC"
+                android:text="@string/activity_detail_price_btc"
                 android:textColor="@color/white" />
 
         </LinearLayout>
@@ -150,7 +150,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Detalhes da moeda"
+                    android:text="@string/activity_detail_coin_detail"
                     android:textColor="@color/whiteLilac"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -422,12 +422,5 @@
         </LinearLayout>
 
     </ScrollView>
-
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/admob_detail_activity" />
 
 </LinearLayout>

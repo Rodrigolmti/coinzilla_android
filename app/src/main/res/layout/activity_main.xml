@@ -60,7 +60,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:visibility="gone"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="45dp"
                 android:background="@drawable/custom_background_rounded"
@@ -90,7 +89,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
-                        android:text="Balance"
+                        android:text="@string/activity_main_balance_title"
                         android:textColor="@color/colorPrimary"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -99,7 +98,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        android:text="Check your balance in the most know web platforms in exchange coins, you will need API keys for that."
+                        android:text="@string/activity_main_balance_message"
                         android:textColor="@color/whiteLilac"
                         android:textSize="13sp" />
 
@@ -136,7 +135,7 @@
                 android:id="@+id/containerGpu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/containeInfo"
+                android:layout_below="@+id/containerBalance"
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"

@@ -2,6 +2,8 @@ package com.rodrigolmti.coinzilla.coinzilla.view.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
@@ -19,6 +21,8 @@ import com.rodrigolmti.coinzilla.coinzilla.view.extensions.visible
 import com.rodrigolmti.coinzilla.library.controller.activity.BaseActivity
 import com.rodrigolmti.coinzilla.library.util.Action
 import com.rodrigolmti.coinzilla.library.util.Action.CRYPTOCURRENCY
+import com.rodrigolmti.coinzilla.library.util.Utils
+import kotlinx.android.synthetic.main.activity_list.content
 import kotlinx.android.synthetic.main.activity_list.contentError
 import kotlinx.android.synthetic.main.activity_list.progressBar
 import kotlinx.android.synthetic.main.activity_list.recyclerView
@@ -26,10 +30,9 @@ import kotlinx.android.synthetic.main.activity_list.toolbar
 
 class ListActivity : BaseActivity() {
 
-    private lateinit var adapterCryptoCurrency: CryptoCurrencyAdapter
-    private lateinit var adapterWhatToMine: WhatToMineAdapter
+    private var adapterWhatToMine: WhatToMineAdapter? = null
     private lateinit var coinZillaService: CoinZillaService
-    private var resultList: List<Any> = ArrayList()
+    private var resultList: MutableList<Any> = ArrayList()
     private val coinDao: CoinDAO = CoinDAO()
     private lateinit var action: Action
 
@@ -73,7 +76,6 @@ class ListActivity : BaseActivity() {
         }
     }
 
-    //TODO: Fix search in all cryptocurrency
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_list_home, menu)
         if (action == CRYPTOCURRENCY) {
@@ -84,14 +86,20 @@ class ListActivity : BaseActivity() {
         val searchView = myActionMenuItem.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
+                if (query.isEmpty()) {
+                    searchAllCoins()
+                    return false
+                }
+                searchCoinByFilter(query)
                 return false
             }
 
             override fun onQueryTextChange(query: String): Boolean {
-                if (adapterWhatToMine != null)
-                    adapterWhatToMine.filter(query)
-                else
-                    adapterCryptoCurrency.filter(query)
+                if (query.isEmpty()) {
+                    searchAllCoins()
+                    return false
+                }
+                searchCoinByFilter(query)
                 return true
             }
         })
@@ -100,13 +108,67 @@ class ListActivity : BaseActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item!!.itemId) {
+        when (item!!.itemId) {
             android.R.id.home -> finish()
-            R.id.action_favorites -> startActivity(Intent(this, FavoriteActivity::class.java))
+            R.id.action_favorites -> {
+
+                if (coinDao.getAllFavorites().isEmpty()) {
+                    Utils().showSnackBar(content, this, getString(R.string.activity_list_favorite_coins))
+                    return true
+                }
+
+                startActivity(Intent(this, FavoriteActivity::class.java))
+            }
             else -> finish()
         }
 
         return true
+    }
+
+    private fun searchCoinByFilter(filter: String) {
+        when (action) {
+            Action.GPU -> {
+                resultList.clear()
+                resultList.addAll(coinDao.getWhatToMineGpuByFilter(filter))
+            }
+            Action.ASIC -> {
+                resultList.clear()
+                resultList.addAll(coinDao.getWhatToMineAsicByFilter(filter))
+            }
+            Action.WARZ -> {
+                resultList.clear()
+                resultList.addAll(coinDao.getWhatToMineWarzByFilter(filter))
+            }
+            else -> {
+                resultList.clear()
+                resultList.addAll(coinDao.getWhatToMineGpuByFilter(filter))
+            }
+        }
+
+        adapterWhatToMine?.notifyDataSetChanged()
+    }
+
+    private fun searchAllCoins() {
+        when (action) {
+            Action.GPU -> {
+                resultList.clear()
+                resultList.addAll(coinDao.getAllWhatToMineGpu())
+            }
+            Action.ASIC -> {
+                resultList.clear()
+                resultList.addAll(coinDao.getAllWhatToMineAsic())
+            }
+            Action.WARZ -> {
+                resultList.clear()
+                resultList.addAll(coinDao.getAllWhatToMineWarz())
+            }
+            else -> {
+                resultList.clear()
+                resultList.addAll(coinDao.getAllWhatToMineGpu())
+            }
+        }
+
+        adapterWhatToMine?.notifyDataSetChanged()
     }
 
     private val callBack: BaseCallBack = object : BaseCallBack() {
@@ -120,24 +182,24 @@ class ListActivity : BaseActivity() {
 
             when (action) {
                 Action.GPU -> {
-                    resultList = coinDao.getAllWhatToMineGpu()
-                    adapterWhatToMine = WhatToMineAdapter(this@ListActivity, ArrayList(resultList))
+                    searchAllCoins()
+                    adapterWhatToMine = WhatToMineAdapter(this@ListActivity, resultList)
                     recyclerView.adapter = adapterWhatToMine
                 }
                 Action.ASIC -> {
-                    resultList = coinDao.getAllWhatToMineAsic()
-                    adapterWhatToMine = WhatToMineAdapter(this@ListActivity, ArrayList(resultList))
+                    searchAllCoins()
+                    adapterWhatToMine = WhatToMineAdapter(this@ListActivity, resultList)
                     recyclerView.adapter = adapterWhatToMine
                 }
                 Action.WARZ -> {
-                    resultList = coinDao.getAllWhatToMineWarz()
-                    adapterWhatToMine = WhatToMineAdapter(this@ListActivity, ArrayList(resultList))
+                    searchAllCoins()
+                    adapterWhatToMine = WhatToMineAdapter(this@ListActivity, resultList)
                     recyclerView.adapter = adapterWhatToMine
                 }
                 Action.CRYPTOCURRENCY -> {
                     recyclerView.layoutManager = GridLayoutManager(this@ListActivity, 3)
                     val resultList = coinDao.getAllCryptoCurrency()
-                    adapterCryptoCurrency = CryptoCurrencyAdapter(this@ListActivity, ArrayList(resultList), object : CryptoCurrencyAdapter.OnItemClickListener {
+                    val adapterCryptoCurrency = CryptoCurrencyAdapter(this@ListActivity, ArrayList(resultList), object : CryptoCurrencyAdapter.OnItemClickListener {
                         override fun itemOnClick(item: CryptoCurrency) {
                             val intent = Intent(this@ListActivity, CoinDetailActivity::class.java)
                             intent.putExtra("action.coin.detail", item)

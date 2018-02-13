@@ -26,6 +26,8 @@
     <string name="general_error_empty">Ohh looks like you don\'t have any favorite coins. Add some coins and come back. See ya.</string>
 
     <string name="activity_main_title">MENU</string>
+    <string name="activity_main_balance_title">Balance</string>
+    <string name="activity_main_balance_message">Check your balance in the most know web platforms in exchange coins, you will need API keys for that.</string>
     <string name="activity_main_gpu_title">GPU Mining</string>
     <string name="activity_main_gpu_message">List of the best coins for mining with gpus. Information based with ethereum.</string>
     <string name="activity_main_asic_title">Asic Mining</string>
@@ -45,6 +47,7 @@
     <string name="activity_list_resward">Est Reward</string>
     <string name="activity_list_market">Market cap</string>
     <string name="activity_list_net_hash">NetHash</string>
+    <string name="activity_list_favorite_coins">YOU DON\'T HAVE FAVORITE COINS!</string>
 
     <string name="activity_info_title">Information</string>
     <string name="activity_info_description">
@@ -127,6 +130,11 @@
     <string name="activity_detail_exchanges">Exchanges</string>
     <string name="activity_detail_error">Hey looks like this coin don\'t have any data available, try another currency or later!</string>
     <string name="activity_detail_daily_historic">Daily historic</string>
+    <string name="activity_detail_price_btc">Price BTC</string>
+    <string name="activity_detail_price_brl">Price BRL</string>
+    <string name="activity_detail_price_usd">Price USD</string>
+    <string name="activity_detail_coin_detail">Coin details</string>
+
 
     <string name="activity_favorite_title">Favorite</string>
 
@@ -144,5 +152,4 @@
     <string name="menu_search">Search</string>
 
     <string name="share">Share this coin</string>
-
 </resources>
