@@ -10,11 +10,11 @@ import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.model.api.service.CoinZillaService
 import com.rodrigolmti.coinzilla.coinzilla.model.callback.ExchangesCallBack
 import com.rodrigolmti.coinzilla.coinzilla.model.callback.HistoricCallBack
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.CryptoCurrency
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.CryptoCurrency
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.Exchange
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.Historic
 import com.rodrigolmti.coinzilla.coinzilla.view.adapter.ExchangeAdapter
-import com.rodrigolmti.coinzilla.coinzilla.view.extensions.formatCurrencyBRL
+import com.rodrigolmti.coinzilla.coinzilla.view.extensions.formatCurrencyUSD
 import com.rodrigolmti.coinzilla.coinzilla.view.extensions.gone
 import com.rodrigolmti.coinzilla.coinzilla.view.extensions.visible
 import com.rodrigolmti.coinzilla.library.controller.fragment.BaseFragment
@@ -56,11 +56,11 @@ class CoinDetailUSDFragment : BaseFragment() {
             coinZillaService.getHistoric(callBackHistoric, cryptoCurrency.symbol!!, getString(R.string.activity_detail_usd))
             coinZillaService.getExchanges(callBackExchanges, cryptoCurrency.symbol!!, getString(R.string.activity_detail_usd))
 
-            viewFragment.textViewPriceUsd.text = cryptoCurrency.priceBrl!!.formatCurrencyBRL()
+            viewFragment.textViewPriceUsd.text = cryptoCurrency.priceUsd!!.formatCurrencyUSD()
             viewFragment.textViewAvailableSupply.text = cryptoCurrency.availableSupply
-            viewFragment.textViewMarketCapUsd.text = cryptoCurrency.marketCapBrl
+            viewFragment.textViewMarketCapUsd.text = cryptoCurrency.marketCapUsd
             viewFragment.textViewTotalSupply.text = cryptoCurrency.totalSupply
-            viewFragment.textViewVolumeUsd.text = cryptoCurrency.volumeBrl
+            viewFragment.textViewVolumeUsd.text = cryptoCurrency.volumeUsd
             viewFragment.textViewPriceBtc.text = cryptoCurrency.priceBtc
             viewFragment.textViewSymbol.text = cryptoCurrency.symbol
             viewFragment.textViewName.text = cryptoCurrency.name

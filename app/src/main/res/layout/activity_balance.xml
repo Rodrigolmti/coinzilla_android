@@ -6,19 +6,50 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@color/colorPrimary">
+        android:layout_height="120dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/custom_background_rounded_blue"
+        android:elevation="4dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:text="57777"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableLeft="@drawable/ic_action_wallet"
+                android:drawablePadding="20dp"
+                android:drawableStart="@drawable/ic_action_wallet"
+                android:gravity="center"
+                android:text="Seu saldo atual: "
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textViewBalance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1.6"
+                android:gravity="center"
+                android:text="R$ 2,515.00"
+                android:textColor="@color/white"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
     </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp" />
 
 </LinearLayout>

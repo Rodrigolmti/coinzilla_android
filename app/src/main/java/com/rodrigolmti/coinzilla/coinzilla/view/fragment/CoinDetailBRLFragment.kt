@@ -10,7 +10,7 @@ import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.model.api.service.CoinZillaService
 import com.rodrigolmti.coinzilla.coinzilla.model.callback.ExchangesCallBack
 import com.rodrigolmti.coinzilla.coinzilla.model.callback.HistoricCallBack
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.CryptoCurrency
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.CryptoCurrency
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.Exchange
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.Historic
 import com.rodrigolmti.coinzilla.coinzilla.view.adapter.ExchangeAdapter

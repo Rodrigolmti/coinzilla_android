@@ -1,9 +1,9 @@
 package com.rodrigolmti.coinzilla.coinzilla.model.dao
 
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.CryptoCurrency
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineAsic
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineGpu
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineWarz
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.CryptoCurrency
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.WhatToMineAsic
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.WhatToMineGpu
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.WhatToMineWarz
 
 /**
 * Created by rodrigolmti on 12/02/18.

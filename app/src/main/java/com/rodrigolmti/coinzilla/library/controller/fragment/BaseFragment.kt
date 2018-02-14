@@ -12,7 +12,6 @@ import kotlinx.android.synthetic.main.fragment_coin_detail_brl.candleChart
 
 /**
  * Created by rodrigolmti on 12/02/18.
- * At Framework System
  */
 open class BaseFragment : Fragment() {
 

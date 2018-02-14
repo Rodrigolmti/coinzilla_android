@@ -5,14 +5,27 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textViewTag"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:textColor="@color/pictonBlue"
-        android:textStyle="bold"
-        tools:text="Hush(HUSH)" />
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/imageViewCrypto"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="5dp" />
+
+        <TextView
+            android:id="@+id/textViewTag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textColor="@color/pictonBlue"
+            android:textStyle="bold"
+            tools:text="Hush(HUSH)" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.model.dao.CoinDAO
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.CryptoCurrency
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.CryptoCurrency
 import com.rodrigolmti.coinzilla.coinzilla.view.adapter.CryptoCurrencyAdapter
 import com.rodrigolmti.coinzilla.coinzilla.view.extensions.gone
 import com.rodrigolmti.coinzilla.coinzilla.view.extensions.visible

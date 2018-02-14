@@ -8,7 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.model.dao.CoinDAO
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.CryptoCurrency
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.CryptoCurrency
 import com.rodrigolmti.coinzilla.coinzilla.view.adapter.CoinDetailPagerAdapter
 import com.rodrigolmti.coinzilla.library.controller.activity.BaseActivity
 import kotlinx.android.synthetic.main.activity_coin_detail.adView
@@ -32,7 +32,7 @@ class CoinDetailActivity : BaseActivity() {
         if (intent.hasExtra("action.coin.detail")) {
             coin = intent.getParcelableExtra("action.coin.detail")
             tabLayout.tabGravity = TabLayout.GRAVITY_FILL
-            val adapter = CoinDetailPagerAdapter(supportFragmentManager, coin)
+            val adapter = CoinDetailPagerAdapter(this, supportFragmentManager, coin)
             viewPager.adapter = adapter
             tabLayout.setupWithViewPager(viewPager)
             title = coin.name

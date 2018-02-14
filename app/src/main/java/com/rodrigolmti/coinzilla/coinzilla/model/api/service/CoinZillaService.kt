@@ -13,8 +13,8 @@ import com.rodrigolmti.coinzilla.coinzilla.model.callback.ExchangesCallBack
 import com.rodrigolmti.coinzilla.coinzilla.model.callback.HistoricCallBack
 import com.rodrigolmti.coinzilla.coinzilla.model.dao.CoinDAO
 import com.rodrigolmti.coinzilla.coinzilla.model.dao.Preferences
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineAsic
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.WhatToMineGpu
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.WhatToMineAsic
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.WhatToMineGpu
 import com.rodrigolmti.coinzilla.library.app.CZApplication
 import com.rodrigolmti.coinzilla.library.util.Action
 import com.rodrigolmti.coinzilla.library.util.Utils

@@ -1,9 +1,11 @@
 package com.rodrigolmti.coinzilla.coinzilla.view.adapter
 
+import android.content.Context
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.CryptoCurrency
+import com.rodrigolmti.coinzilla.R.string
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.CryptoCurrency
 import com.rodrigolmti.coinzilla.coinzilla.view.fragment.CoinDetailBRLFragment
 import com.rodrigolmti.coinzilla.coinzilla.view.fragment.CoinDetailUSDFragment
 
@@ -11,7 +13,7 @@ import com.rodrigolmti.coinzilla.coinzilla.view.fragment.CoinDetailUSDFragment
 * Created by rodrigolmti on 18/11/17.
 */
 
-class CoinDetailPagerAdapter constructor(fragmentManager: FragmentManager, cryptoCurrency: CryptoCurrency) : FragmentStatePagerAdapter(fragmentManager) {
+class CoinDetailPagerAdapter constructor(private val context: Context, fragmentManager: FragmentManager, cryptoCurrency: CryptoCurrency) : FragmentStatePagerAdapter(fragmentManager) {
 
     private val coin = cryptoCurrency
 
@@ -25,9 +27,9 @@ class CoinDetailPagerAdapter constructor(fragmentManager: FragmentManager, crypt
 
     override fun getPageTitle(position: Int): CharSequence {
         return when (position) {
-            0 -> "Cotação em Dolar"
-            1 -> "Cotação em Real"
-            else -> "Cotação em Dolar"
+            0 -> context.getString(string.activity_detail_dolar_quote)
+            1 -> context.getString(string.activity_detail_real_quote)
+            else -> context.getString(string.activity_detail_dolar_quote)
         }
     }
 

@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rodrigolmti.coinzilla.R
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.CryptoCurrency
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.CryptoCurrency
 import kotlinx.android.synthetic.main.row_crypto_currency.view.textViewName
 import kotlinx.android.synthetic.main.row_crypto_currency.view.textViewSymbol
 

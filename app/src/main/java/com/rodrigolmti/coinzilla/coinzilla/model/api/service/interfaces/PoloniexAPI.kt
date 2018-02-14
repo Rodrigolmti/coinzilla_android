@@ -1,6 +1,9 @@
 package com.rodrigolmti.coinzilla.coinzilla.model.api.service.interfaces
 
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.PoloniexBalances
+import com.rodrigolmti.coinzilla.coinzilla.model.dto.BaseDTO
+import com.rodrigolmti.coinzilla.coinzilla.model.dto.ExchangeAuthDTO
+import com.rodrigolmti.coinzilla.coinzilla.model.entity.poloniex.PoloniexBalances
+import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 
@@ -10,11 +13,8 @@ import rx.Observable
 
 interface PoloniexAPI {
 
-    @POST("")
-    @FormUrlEncoded
-    fun getBalances(
-            @Header("Key") key: String,
-            @Header("Sign") sign: String,
-            @Field("command") command: String,
-            @Field("nonce") nonce: String): Observable<PoloniexBalances>
+    @POST("poloniex/returnAvailableBalances")
+    fun getAvailableBalances(
+            @Header("authorization") token: String,
+            @Body() exchangeAuth: ExchangeAuthDTO): Observable<BaseDTO<PoloniexBalances>>
 }
