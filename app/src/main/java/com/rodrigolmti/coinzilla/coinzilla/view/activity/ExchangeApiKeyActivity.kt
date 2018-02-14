@@ -36,17 +36,19 @@ class ExchangeApiKeyActivity: AppCompatActivity(), View.OnClickListener {
         var error = false
         if (editTextApiKey.text.isEmpty()) {
             editTextApiKey.error = "Enter your api key"
+            editTextApiKey.requestFocus()
             error = true
         }
-        if (editTextApiSecret.text.isNotEmpty()) {
+        if (editTextApiSecret.text.isEmpty()) {
             editTextApiSecret.error = "Enter your api secret"
+            editTextApiSecret.requestFocus()
             error = true
         }
 
         if (!error) {
-            val secretDigest: String = Utils().hmacDigest("command=returnBalances&nonce=1503788021328002", editTextApiSecret.text.toString())
             czPreferences!!.poloniexKey = editTextApiKey.text.toString()
-            czPreferences.poloniexSecret = secretDigest
+            czPreferences.poloniexSecret = editTextApiSecret.text.toString()
+            finish()
         }
     }
 }

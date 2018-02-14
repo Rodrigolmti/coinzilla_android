@@ -21,7 +21,10 @@ class ExchangeListActivity : BaseActivity(), View.OnClickListener {
 
     override fun onClick(view: View?) {
         when (view) {
-            viewPoloniex -> startActivity(Intent(this, ExchangeApiKeyActivity::class.java))
+            viewPoloniex -> {
+                startActivity(Intent(this, ExchangeApiKeyActivity::class.java))
+                finish()
+            }
         }
     }
 }

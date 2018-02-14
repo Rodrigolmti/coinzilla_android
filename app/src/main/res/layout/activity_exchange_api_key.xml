@@ -20,6 +20,7 @@
             android:id="@+id/editTextApiKey"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:maxLines="1"
             android:layout_below="@+id/imageViewExchangeBg"
             android:layout_marginTop="40dp"
             android:background="@drawable/edit_text_custom_background"
@@ -29,6 +30,7 @@
         <EditText
             android:id="@+id/editTextApiSecret"
             android:layout_width="match_parent"
+            android:maxLines="1"
             android:layout_height="50dp"
             android:layout_below="@+id/editTextApiKey"
             android:layout_marginTop="30dp"
@@ -39,6 +41,7 @@
         <EditText
             android:id="@+id/editTextExchangeName"
             android:layout_width="match_parent"
+            android:maxLines="1"
             android:layout_height="50dp"
             android:layout_below="@+id/editTextApiSecret"
             android:layout_marginTop="30dp"

@@ -7,12 +7,15 @@ import com.google.gson.JsonObject
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.model.api.service.interfaces.CoinMarketCapApi
 import com.rodrigolmti.coinzilla.coinzilla.model.api.service.interfaces.CryptoCompareAPI
+import com.rodrigolmti.coinzilla.coinzilla.model.api.service.interfaces.PoloniexAPI
 import com.rodrigolmti.coinzilla.coinzilla.model.api.service.interfaces.WhatToMineAPI
 import com.rodrigolmti.coinzilla.coinzilla.model.callback.BaseCallBack
 import com.rodrigolmti.coinzilla.coinzilla.model.callback.ExchangesCallBack
 import com.rodrigolmti.coinzilla.coinzilla.model.callback.HistoricCallBack
+import com.rodrigolmti.coinzilla.coinzilla.model.callback.PoloniexBalanceCallBack
 import com.rodrigolmti.coinzilla.coinzilla.model.dao.CoinDAO
 import com.rodrigolmti.coinzilla.coinzilla.model.dao.Preferences
+import com.rodrigolmti.coinzilla.coinzilla.model.dto.ExchangeAuthDTO
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.WhatToMineAsic
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.WhatToMineGpu
 import com.rodrigolmti.coinzilla.library.app.CZApplication
@@ -36,7 +39,8 @@ class CoinZillaService(private val context: Context) {
             if (czPreferences!!.identification == "noData")
                 czPreferences.identification = UUID.randomUUID().toString()
 
-            RetrofitService().retrofitInstance(context.getString(R.string.base_url_main)).create(WhatToMineAPI::class.java).getToken(czPreferences.identification)
+            RetrofitService().retrofitInstance(context.getString(R.string.base_url_main)).create(
+                    WhatToMineAPI::class.java).getToken(czPreferences.identification)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ data ->
@@ -58,7 +62,8 @@ class CoinZillaService(private val context: Context) {
     fun getWhatToMineGpu(callback: BaseCallBack) {
         try {
             if (checkTime(Action.GPU, 15) || coinDao.getAllWhatToMineGpu().isEmpty()) {
-                RetrofitService().retrofitInstance(context.getString(R.string.base_url_what_to_mine)).create(WhatToMineAPI::class.java).getGpu()
+                RetrofitService().retrofitInstance(context.getString(R.string.base_url_what_to_mine)).create(
+                        WhatToMineAPI::class.java).getGpu()
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({ data ->
@@ -96,7 +101,8 @@ class CoinZillaService(private val context: Context) {
     fun getWhatToMineAsic(callback: BaseCallBack) {
         try {
             if (checkTime(Action.ASIC, 15) || coinDao.getAllWhatToMineAsic().isEmpty()) {
-                RetrofitService().retrofitInstance(context.getString(R.string.base_url_what_to_mine)).create(WhatToMineAPI::class.java).getAsic()
+                RetrofitService().retrofitInstance(context.getString(R.string.base_url_what_to_mine)).create(
+                        WhatToMineAPI::class.java).getAsic()
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({ data ->
@@ -134,7 +140,8 @@ class CoinZillaService(private val context: Context) {
     fun getWhatToMineWarz(callback: BaseCallBack) {
         try {
             if (checkTime(Action.WARZ, 15) || coinDao.getAllWhatToMineWarz().isEmpty()) {
-                RetrofitService().retrofitInstance(context.getString(R.string.base_url_main)).create(WhatToMineAPI::class.java).getWarz(czPreferences!!.token)
+                RetrofitService().retrofitInstance(context.getString(R.string.base_url_main)).create(
+                        WhatToMineAPI::class.java).getWarz(czPreferences!!.token)
                         .subscribeOn(Schedulers.newThread())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({ data ->
@@ -162,7 +169,8 @@ class CoinZillaService(private val context: Context) {
 
     fun getExchanges(callback: ExchangesCallBack, fsym: String, tsym: String) {
         try {
-            RetrofitService().retrofitInstance(context.getString(R.string.base_url_crypto_compare_2)).create(CryptoCompareAPI::class.java).getExchanges(fsym, tsym)
+            RetrofitService().retrofitInstance(context.getString(R.string.base_url_crypto_compare_2)).create(
+                    CryptoCompareAPI::class.java).getExchanges(fsym, tsym)
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ data ->
@@ -185,7 +193,8 @@ class CoinZillaService(private val context: Context) {
 
     fun getHistoric(callback: HistoricCallBack, fsym: String, tsym: String) {
         try {
-            RetrofitService().retrofitInstance(context.getString(R.string.base_url_crypto_compare_2)).create(CryptoCompareAPI::class.java).getHistoric(fsym, tsym)
+            RetrofitService().retrofitInstance(context.getString(R.string.base_url_crypto_compare_2)).create(
+                    CryptoCompareAPI::class.java).getHistoric(fsym, tsym)
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ data ->
@@ -209,7 +218,8 @@ class CoinZillaService(private val context: Context) {
     fun getCryptoCurrency(callback: BaseCallBack) {
         try {
             if (checkTime(Action.CRYPTOCURRENCY, 15) || coinDao.getAllCryptoCurrency().isEmpty()) {
-                RetrofitService().retrofitInstance(context.getString(R.string.base_url_market_Cap)).create(CoinMarketCapApi::class.java).getCryptoCurrency()
+                RetrofitService().retrofitInstance(context.getString(R.string.base_url_market_Cap)).create(
+                        CoinMarketCapApi::class.java).getCryptoCurrency()
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({ data ->
@@ -233,7 +243,8 @@ class CoinZillaService(private val context: Context) {
 
     fun getTopTenCryptocurrency(callback: BaseCallBack) {
         try {
-            RetrofitService().retrofitInstance(context.getString(R.string.base_url_market_Cap)).create(CoinMarketCapApi::class.java).getTenCryptoCurrency()
+            RetrofitService().retrofitInstance(context.getString(R.string.base_url_market_Cap)).create(
+                    CoinMarketCapApi::class.java).getTenCryptoCurrency()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ data ->
@@ -251,30 +262,20 @@ class CoinZillaService(private val context: Context) {
         }
     }
 
-    fun poloniexBalance() {
-//        try {
-//            presenter.showProgressBar(View.VISIBLE)
-//            RetrofitService().retrofitInstance(context.getString(R.string.base_url_poloniex_trading)).create(PoloniexAPI::class.java).getBalances()
-//                    .subscribeOn(Schedulers.io())
-//                    .observeOn(AndroidSchedulers.mainThread())
-//                    .subscribe({
-//                        data ->
-//                        presenter.showProgressBar(View.GONE)
-//                    }, {
-//                        error ->
-//                        presenter.showProgressBar(View.GONE)
-//                        if (getAllCryptoCurrency().isNotEmpty()) {
-//                            presenter.success(Action.CRYPTOCURRENCY)
-//                        } else {
-//                            presenter.error(presenter.context().getString(R.string.general_error_connection))
-//                            error.printStackTrace()
-//                        }
-//                    })
-//        } catch (error: Exception) {
-//            Crashlytics.logException(error)
-//            presenter.showProgressBar(View.GONE)
-//            presenter.error(presenter.context().getString(R.string.general_error_connection))
-//        }
+    fun getAvailableBalances(callback: PoloniexBalanceCallBack, exchangeAuthDTO: ExchangeAuthDTO) {
+        try {
+            RetrofitService().retrofitInstance(context.getString(R.string.base_url_main)).create(
+                    PoloniexAPI::class.java).getAvailableBalances(czPreferences!!.token, exchangeAuthDTO)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({ data ->
+                        callback.onSuccess(data.data)
+                    }, { error ->
+                        handleError(callback, error)
+                    })
+        } catch (error: Exception) {
+            handleError(callback, error)
+        }
     }
 
     private fun handleError(callback: BaseCallBack, error: Any) {
@@ -283,6 +284,7 @@ class CoinZillaService(private val context: Context) {
             Crashlytics.logException(error)
             error.printStackTrace()
         }
+        callback.onError()
     }
 
     private fun checkTime(action: Action, time: Int): Boolean {
