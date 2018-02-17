@@ -50,6 +50,7 @@ open class WhatToMineAdapter(private val context: Context, var list: MutableList
                         else
                             itemView.imageViewCrypto.setImageResource(res)
                     } catch (error: Exception) {
+                        itemView.imageViewCrypto.setImageResource(R.drawable.ic_action_money)
                     }
 
                     itemView.textViewTag.text = item.tag
@@ -75,6 +76,7 @@ open class WhatToMineAdapter(private val context: Context, var list: MutableList
                         else
                             itemView.imageViewCrypto.setImageResource(res)
                     } catch (error: Exception) {
+                        itemView.imageViewCrypto.setImageResource(R.drawable.ic_action_money)
                     }
 
                     itemView.textViewTag.text = item.tag
@@ -87,14 +89,14 @@ open class WhatToMineAdapter(private val context: Context, var list: MutableList
                 is WhatToMineWarz -> {
 
                     try {
-                        val regex = Pattern.compile("\\((.*?)\\)")
-                        val regexMatcher = regex.matcher(item.tag)
-                        val res = context.resources.getIdentifier(regexMatcher.group(0).toLowerCase(), "drawable", context.packageName)
+                        val tag: String = item.tag.split("(")[1].replace(")", "").trim().toLowerCase()
+                        val res = context.resources.getIdentifier(tag, "drawable", context.packageName)
                         if (res == 0)
                             itemView.imageViewCrypto.setImageResource(R.drawable.ic_action_money)
                         else
                             itemView.imageViewCrypto.setImageResource(res)
                     } catch (error: Exception) {
+                        itemView.imageViewCrypto.setImageResource(R.drawable.ic_action_money)
                     }
 
                     itemView.textViewTag.text = item.tag

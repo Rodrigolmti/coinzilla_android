@@ -18,8 +18,8 @@ android {
         minSdkVersion 16
         multiDexEnabled true
         targetSdkVersion 26
-        versionCode 201802131
-        versionName "1.7.2"
+        versionCode 201802171
+        versionName "1.0.8"
         javaCompileOptions {
             annotationProcessorOptions {
                 includeCompileClasspath false

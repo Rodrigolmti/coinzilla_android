@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.rodrigolmti.coinzilla.R
+import com.rodrigolmti.coinzilla.R.string
 import com.rodrigolmti.coinzilla.library.controller.activity.BaseActivity
 import kotlinx.android.synthetic.main.activity_exchange_list.viewPoloniex
 
@@ -13,7 +14,7 @@ class ExchangeListActivity : BaseActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exchange_list)
 
-        supportActionBar!!.title = "Select your exchange"
+        supportActionBar!!.title = getString(string.activity_exchange_list_title)
         enableBackButton()
 
         viewPoloniex.setOnClickListener(this)

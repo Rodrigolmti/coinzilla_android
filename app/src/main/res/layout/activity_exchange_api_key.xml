@@ -5,8 +5,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:padding="16dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="16dp">
 
         <ImageView
             android:id="@+id/imageViewExchangeBg"
@@ -20,40 +20,31 @@
             android:id="@+id/editTextApiKey"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:maxLines="1"
             android:layout_below="@+id/imageViewExchangeBg"
             android:layout_marginTop="40dp"
             android:background="@drawable/edit_text_custom_background"
             android:gravity="center"
-            android:hint="@string/activity_exchange_api_key" />
+            android:hint="@string/activity_exchange_api_key"
+            android:maxLines="1"
+            android:nextFocusDown="@id/editTextApiSecret" />
 
         <EditText
             android:id="@+id/editTextApiSecret"
             android:layout_width="match_parent"
-            android:maxLines="1"
             android:layout_height="50dp"
             android:layout_below="@+id/editTextApiKey"
             android:layout_marginTop="30dp"
             android:background="@drawable/edit_text_custom_background"
             android:gravity="center"
-            android:hint="@string/activity_exchange_api_secret" />
-
-        <EditText
-            android:id="@+id/editTextExchangeName"
-            android:layout_width="match_parent"
+            android:hint="@string/activity_exchange_api_secret"
             android:maxLines="1"
-            android:layout_height="50dp"
-            android:layout_below="@+id/editTextApiSecret"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/edit_text_custom_background"
-            android:gravity="center"
-            android:hint="@string/activity_exchange_api_name" />
+            android:nextFocusDown="@id/buttonContact" />
 
         <Button
             android:id="@+id/buttonContact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextExchangeName"
+            android:layout_below="@+id/editTextApiSecret"
             android:layout_marginTop="40dp"
             android:background="@drawable/custom_button_background_blue"
             android:text="@string/activity_exchange_api_create"
@@ -65,10 +56,10 @@
             android:id="@+id/textViewAlert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
             android:layout_below="@+id/buttonContact"
             android:layout_marginTop="20dp"
-            android:text="@string/activity_exchange_api_warning" />
+            android:text="@string/activity_exchange_api_warning"
+            android:textSize="16sp" />
 
     </RelativeLayout>
 

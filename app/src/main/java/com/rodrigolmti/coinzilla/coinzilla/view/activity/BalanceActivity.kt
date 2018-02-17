@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import com.rodrigolmti.coinzilla.R
+import com.rodrigolmti.coinzilla.R.string
 import com.rodrigolmti.coinzilla.coinzilla.model.api.service.CoinZillaService
 import com.rodrigolmti.coinzilla.coinzilla.model.callback.PoloniexBalanceCallBack
 import com.rodrigolmti.coinzilla.coinzilla.model.dao.Preferences
@@ -28,8 +29,31 @@ class BalanceActivity : BaseActivity() {
         setContentView(R.layout.activity_balance)
 
         enableBackButton()
-        title = "Balance"
+        title = getString(string.activity_balance_title)
+    }
 
+    override fun onResume() {
+        super.onResume()
+        loadData()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_balance, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        item?.let {
+            when (item.itemId) {
+                android.R.id.home -> finish()
+                R.id.actionRefresh -> { }
+                R.id.actionAdd -> startActivity(Intent(this, ExchangeListActivity::class.java))
+            }
+        }
+        return true
+    }
+
+    private fun loadData() {
         if (czPreferences!!.poloniexKey == "noData") {
             startActivity(Intent(this, ExchangeListActivity::class.java))
         } else {
@@ -48,21 +72,5 @@ class BalanceActivity : BaseActivity() {
                 }
             }, exchangeAuth)
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_balance, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        item?.let {
-            when (item.itemId) {
-                android.R.id.home -> finish()
-                R.id.actionRefresh -> { }
-                R.id.actionAdd -> startActivity(Intent(this, ExchangeListActivity::class.java))
-            }
-        }
-        return true
     }
 }

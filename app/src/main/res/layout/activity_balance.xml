@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +32,7 @@
                     android:drawablePadding="10dp"
                     android:drawableStart="@drawable/ic_action_wallet"
                     android:gravity="center"
-                    android:text="Seu saldo atual: "
+                    android:text="@string/activity_balance_current_balance"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
@@ -42,7 +43,7 @@
                     android:layout_gravity="center"
                     android:layout_weight="1.6"
                     android:gravity="center"
-                    android:text="R$ 2,515.00"
+                    tools:text="R$ 2,515.00"
                     android:textColor="@color/white"
                     android:textSize="28sp"
                     android:textStyle="bold" />
