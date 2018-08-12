@@ -9,27 +9,20 @@ import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.WhatToMineAsic
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.WhatToMineGpu
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.WhatToMineWarz
-import kotlinx.android.synthetic.main.row_what_to_mine.view.imageViewCrypto
-import kotlinx.android.synthetic.main.row_what_to_mine.view.textViewAlgorithm
-import kotlinx.android.synthetic.main.row_what_to_mine.view.textViewDifficulty
-import kotlinx.android.synthetic.main.row_what_to_mine.view.textViewMarket
-import kotlinx.android.synthetic.main.row_what_to_mine.view.textViewNetHash
-import kotlinx.android.synthetic.main.row_what_to_mine.view.textViewResward
-import kotlinx.android.synthetic.main.row_what_to_mine.view.textViewTag
-import java.util.regex.Pattern
+import kotlinx.android.synthetic.main.row_what_to_mine.view.*
 
 open class WhatToMineAdapter(private val context: Context, var list: MutableList<Any>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder? {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return Item(LayoutInflater.from(context).inflate(R.layout.row_what_to_mine, parent, false))
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        (holder as Item).bindData(context, list[position])
     }
 
     override fun getItemCount(): Int {
         return list.size
-    }
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-        (holder as Item).bindData(context, list[position])
     }
 
     class Item(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'realm-android'
 apply plugin: 'io.fabric'
@@ -10,14 +10,15 @@ repositories {
 }
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
     defaultConfig {
         vectorDrawables.useSupportLibrary = true
         applicationId "com.rodrigolmti.coinzilla"
         minSdkVersion 16
         multiDexEnabled true
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 201802171
         versionName "1.0.8"
         javaCompileOptions {
@@ -26,9 +27,15 @@ android {
             }
         }
     }
+
+    dataBinding {
+        enabled = true
+    }
+
     packagingOptions {
         exclude 'META-INF/XXX'
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -39,82 +46,66 @@ android {
             minifyEnabled false
         }
     }
+
     dexOptions {
         javaMaxHeapSize "4g"
     }
 }
 
-task cleanDir(type: Delete) {
-    delete rootProject.buildDir
-}
-
-task copyTestClasses(type: Copy) {
-    from "build/tmp/kotlin-classes/debugUnitTest"
-    into "build/intermediates/classes/debug"
-}
-
-task copySdkClasses(type: Copy) {
-    from "build/tmp/kotlin-classes/debug"
-    into "build/intermediates/classes/debug"
-}
-kapt {
-    generateStubs = true
-}
-
-buildscript {
-    repositories {
-        mavenCentral()
-        jcenter()
-    }
-    dependencies {
-        classpath "io.realm:realm-gradle-plugin:3.4.0"
-    }
-}
-
 dependencies {
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation 'com.android.support:support-v4:26.1.0'
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
 
-    //Google Support Libs
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.android.support:support-compat:26.1.0'
-    compile 'com.android.support:recyclerview-v7:26.1.0'
-    compile 'com.android.support:cardview-v7:26.1.0'
-    compile 'com.android.support:design:26.1.0'
-    compile 'com.google.firebase:firebase-core:11.8.0'
-    compile 'com.google.android.gms:play-services-ads:11.8.0'
+    def support_version = "27.1.1"
+    def retrofit_version = "2.3.0"
+    def dagger_version = "2.15"
 
-    //Android Multidex
-    compile 'com.android.support:multidex:1.0.1'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    kapt 'com.android.databinding:compiler:3.1.4'
+    implementation 'com.android.support:multidex:1.0.1'
+
+    //Google Support
+    implementation "com.android.support:support-v4:$support_version"
+    implementation "com.android.support:appcompat-v7:$support_version"
+    implementation "com.android.support:support-compat:$support_version"
+    implementation "com.android.support:recyclerview-v7:$support_version"
+    implementation "com.android.support:cardview-v7:$support_version"
+    implementation "com.android.support:design:$support_version"
+
+    //Google Firebase
+    implementation 'com.google.firebase:firebase-core:11.8.0'
+    implementation 'com.google.android.gms:play-services-ads:11.8.0'
+
+    //Realm
+    kapt "io.realm:realm-annotations-processor:$realm_version"
+    kapt "io.realm:realm-annotations:$realm_version"
+
+    //Util
+    implementation 'com.jakewharton.timber:timber:4.6.1'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
 
     // RxJava & RxAndroid
-    compile 'io.reactivex:rxjava:1.3.0'
-    compile 'io.reactivex:rxandroid:1.1.0'
+    implementation 'io.reactivex:rxjava:1.3.0'
+    implementation 'io.reactivex:rxandroid:1.2.1'
 
-    // RetrofitService Libs
-    compile "com.squareup.retrofit2:retrofit:2.3.0"
-    compile "com.squareup.retrofit2:adapter-rxjava:2.3.0"
-    compile "com.squareup.retrofit2:converter-gson:2.3.0"
+    //Dagger 2
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    implementation "com.google.dagger:dagger:$dagger_version"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
     // MPAndroidCharts libs
-    compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.2'
 
     // Crashlytics
-    compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+    implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
         transitive = true
     }
-
-    testCompile 'junit:junit:4.12'
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-}
-
-repositories {
-    mavenCentral()
-    google()
 }
 
 apply plugin: 'com.google.gms.google-services'

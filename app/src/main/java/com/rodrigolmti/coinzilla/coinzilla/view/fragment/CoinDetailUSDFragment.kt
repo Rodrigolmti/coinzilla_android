@@ -45,13 +45,13 @@ class CoinDetailUSDFragment : BaseFragment() {
 
     private lateinit var viewFragment: View
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewFragment = inflater!!.inflate(R.layout.fragment_coin_detail_usd, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        viewFragment = inflater.inflate(R.layout.fragment_coin_detail_usd, container, false)
 
         if (arguments != null) {
 
-            val cryptoCurrency = arguments.getParcelable<CryptoCurrency>("action.coin.detail")
-            val coinZillaService = CoinZillaService(activity)
+            val cryptoCurrency = arguments!!.getParcelable<CryptoCurrency>("action.coin.detail")
+            val coinZillaService = CoinZillaService(context!!)
 
             coinZillaService.getHistoric(callBackHistoric, cryptoCurrency.symbol!!, getString(R.string.activity_detail_usd))
             coinZillaService.getExchanges(callBackExchanges, cryptoCurrency.symbol!!, getString(R.string.activity_detail_usd))
@@ -66,13 +66,13 @@ class CoinDetailUSDFragment : BaseFragment() {
             viewFragment.textViewName.text = cryptoCurrency.name
 
             if (cryptoCurrency.percentChange1H!!.contains("-"))
-                viewFragment.textViewPercentChange1h.setTextColor(ContextCompat.getColor(context, R.color.alizarin))
+                viewFragment.textViewPercentChange1h.setTextColor(ContextCompat.getColor(context!!, R.color.alizarin))
             viewFragment.textViewPercentChange1h.text = "${cryptoCurrency.percentChange1H}%"
             if (cryptoCurrency.percentChange24H!!.contains("-"))
-                viewFragment.textViewPercentChange24H.setTextColor(ContextCompat.getColor(context, R.color.alizarin))
+                viewFragment.textViewPercentChange24H.setTextColor(ContextCompat.getColor(context!!, R.color.alizarin))
             viewFragment.textViewPercentChange24H.text = "${cryptoCurrency.percentChange24H}%"
             if (cryptoCurrency.percentChange7D!!.contains("-"))
-                viewFragment.textViewPercentChange7D.setTextColor(ContextCompat.getColor(context, R.color.alizarin))
+                viewFragment.textViewPercentChange7D.setTextColor(ContextCompat.getColor(context!!, R.color.alizarin))
             viewFragment.textViewPercentChange7D.text = "${cryptoCurrency.percentChange7D}%"
         }
 
@@ -99,7 +99,7 @@ class CoinDetailUSDFragment : BaseFragment() {
             if (list.isNotEmpty()) {
                 viewFragment.recyclerView.layoutManager = LinearLayoutManager(activity)
                 viewFragment.recyclerView.hasFixedSize()
-                viewFragment.recyclerView.adapter = ExchangeAdapter(activity, list)
+                viewFragment.recyclerView.adapter = ExchangeAdapter(context!!, list)
                 viewFragment.recyclerView.visibility = View.VISIBLE
                 viewFragment.textViewErrorExchange.gone()
             } else {

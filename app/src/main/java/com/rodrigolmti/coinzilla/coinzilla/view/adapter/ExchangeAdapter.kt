@@ -7,21 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.Exchange
-import kotlinx.android.synthetic.main.row_exchange.view.textViewExchangeName
-import kotlinx.android.synthetic.main.row_exchange.view.textViewExchangeValue
+import kotlinx.android.synthetic.main.row_exchange.view.*
 
 class ExchangeAdapter(val context: Context, val list: List<Exchange>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder? {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        (holder as Item).bindData(list[position])
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return Item(LayoutInflater.from(context).inflate(R.layout.row_exchange, parent, false))
     }
 
     override fun getItemCount(): Int {
         return list.size
-    }
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-        (holder as Item).bindData(list[position])
     }
 
     class Item(itemView: View) : RecyclerView.ViewHolder(itemView) {

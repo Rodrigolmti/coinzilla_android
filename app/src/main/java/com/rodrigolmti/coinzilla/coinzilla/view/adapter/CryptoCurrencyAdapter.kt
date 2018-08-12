@@ -12,22 +12,22 @@ import kotlinx.android.synthetic.main.row_crypto_currency.view.textViewSymbol
 
 open class CryptoCurrencyAdapter(val context: Context, val list: ArrayList<CryptoCurrency>, val listener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return Item(LayoutInflater.from(context).inflate(R.layout.row_crypto_currency, parent, false))
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        (holder as Item).bindData(list[position], listener)
+    }
+
     private val filteredList: ArrayList<CryptoCurrency> = ArrayList()
 
     init {
         filteredList.addAll(list)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder? {
-        return Item(LayoutInflater.from(context).inflate(R.layout.row_crypto_currency, parent, false))
-    }
-
     override fun getItemCount(): Int {
         return list.size
-    }
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-        (holder as Item).bindData(list[position], listener)
     }
 
     class Item(itemView: View) : RecyclerView.ViewHolder(itemView) {

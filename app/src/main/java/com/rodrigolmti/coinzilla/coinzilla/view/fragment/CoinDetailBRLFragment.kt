@@ -1,6 +1,7 @@
 package com.rodrigolmti.coinzilla.coinzilla.view.fragment
 
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -44,13 +45,24 @@ class CoinDetailBRLFragment : BaseFragment() {
 
     private lateinit var viewFragment: View
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewFragment = inflater!!.inflate(R.layout.fragment_coin_detail_brl, container, false)
+    companion object {
+
+        fun newInstance(cryptoCurrency: CryptoCurrency): BaseFragment {
+            val fragment = CoinDetailBRLFragment()
+            val args = Bundle()
+            args.putParcelable("action.coin.detail", cryptoCurrency)
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        viewFragment = inflater.inflate(R.layout.fragment_coin_detail_brl, container, false)
 
         if (arguments != null) {
 
-            val cryptoCurrency = arguments.getParcelable<CryptoCurrency>("action.coin.detail")
-            val coinZillaService = CoinZillaService(activity)
+            val cryptoCurrency = arguments!!.getParcelable<CryptoCurrency>("action.coin.detail")
+            val coinZillaService = CoinZillaService(context!!)
 
             coinZillaService.getHistoric(callBackHistoric, cryptoCurrency.symbol!!, getString(R.string.activity_detail_brl))
             coinZillaService.getExchanges(callBackExchanges, cryptoCurrency.symbol!!, getString(R.string.activity_detail_brl))
@@ -65,13 +77,13 @@ class CoinDetailBRLFragment : BaseFragment() {
             viewFragment.textViewName.text = cryptoCurrency.name
 
             if (cryptoCurrency.percentChange1H!!.contains("-"))
-                viewFragment.textViewPercentChange1h.setTextColor(ContextCompat.getColor(context, R.color.alizarin))
+                viewFragment.textViewPercentChange1h.setTextColor(ContextCompat.getColor(context!!, R.color.alizarin))
             viewFragment.textViewPercentChange1h.text = "${cryptoCurrency.percentChange1H}%"
             if (cryptoCurrency.percentChange24H!!.contains("-"))
-                viewFragment.textViewPercentChange24H.setTextColor(ContextCompat.getColor(context, R.color.alizarin))
+                viewFragment.textViewPercentChange24H.setTextColor(ContextCompat.getColor(context!!, R.color.alizarin))
             viewFragment.textViewPercentChange24H.text = "${cryptoCurrency.percentChange24H}%"
             if (cryptoCurrency.percentChange7D!!.contains("-"))
-                viewFragment.textViewPercentChange7D.setTextColor(ContextCompat.getColor(context, R.color.alizarin))
+                viewFragment.textViewPercentChange7D.setTextColor(ContextCompat.getColor(context!!, R.color.alizarin))
             viewFragment.textViewPercentChange7D.text = "${cryptoCurrency.percentChange7D}%"
         }
 
@@ -92,13 +104,16 @@ class CoinDetailBRLFragment : BaseFragment() {
             viewFragment.progressBarExchange.gone()
         }
     }
+
     private val callBackExchanges: ExchangesCallBack = object: ExchangesCallBack() {
+
         override fun onSuccess(list: List<Exchange>) {
             viewFragment.progressBarExchange.gone()
+
             if (list.isNotEmpty()) {
                 viewFragment.recyclerView.layoutManager = LinearLayoutManager(activity)
                 viewFragment.recyclerView.hasFixedSize()
-                viewFragment.recyclerView.adapter = ExchangeAdapter(activity, list)
+                viewFragment.recyclerView.adapter = ExchangeAdapter(context!!, list)
                 viewFragment.recyclerView.visibility = View.VISIBLE
                 viewFragment.textViewErrorExchange.gone()
             } else {
@@ -117,16 +132,5 @@ class CoinDetailBRLFragment : BaseFragment() {
     private fun showChart() {
         viewFragment.progressBarHistoric.gone()
         candleChart.visible()
-    }
-
-    companion object {
-
-        fun newInstance(cryptoCurrency: CryptoCurrency): BaseFragment {
-            val fragment = CoinDetailBRLFragment()
-            val args = Bundle()
-            args.putParcelable("action.coin.detail", cryptoCurrency)
-            fragment.arguments = args
-            return fragment
-        }
     }
 }

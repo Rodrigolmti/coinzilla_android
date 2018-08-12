@@ -7,25 +7,23 @@ import android.view.View
 import android.view.ViewGroup
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.poloniex.PoloniexCoin
-import kotlinx.android.synthetic.main.row_poloniex_balance.view.imageViewCoin
-import kotlinx.android.synthetic.main.row_poloniex_balance.view.textViewAmount
-import kotlinx.android.synthetic.main.row_poloniex_balance.view.textViewTag
+import kotlinx.android.synthetic.main.row_poloniex_balance.view.*
 
 /**
  * Created by rodrigolmti on 12/02/18.
  */
-class PoloniexBalanceAdapter (val context: Context, val list: List<PoloniexCoin>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class PoloniexBalanceAdapter(val context: Context, val list: List<PoloniexCoin>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder? {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return Item(LayoutInflater.from(context).inflate(R.layout.row_poloniex_balance, parent, false))
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        (holder as Item).bindData(context, list[position])
     }
 
     override fun getItemCount(): Int {
         return list.size
-    }
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-        (holder as Item).bindData(context, list[position])
     }
 
     class Item(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -31,7 +31,7 @@ open class Utils {
 
     open fun stringToDate(date: String): Date? {
         return try {
-            val fmt = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("pt", "BR"))
+            val fmt = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
             fmt.parse(date)
         } catch (e: ParseException) {
             e.printStackTrace()
