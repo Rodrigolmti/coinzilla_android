@@ -19,14 +19,17 @@ import javax.crypto.spec.SecretKeySpec
 
 open class Utils {
 
-    open fun formatDate(date: Date): String {
-        val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
-        return sdf.format(date)
-    }
+    companion object {
 
-    open fun formatCustomDate(date: Date): String {
-        val sdf = SimpleDateFormat("dd/MM - HH:mm", Locale.getDefault())
-        return sdf.format(date)
+        fun formatDate(date: Date): String {
+            val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+            return sdf.format(date)
+        }
+
+        fun formatCustomDate(date: Date): String {
+            val sdf = SimpleDateFormat("dd/MM - HH:mm", Locale.getDefault())
+            return sdf.format(date)
+        }
     }
 
     open fun stringToDate(date: String): Date? {

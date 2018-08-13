@@ -6,8 +6,7 @@ import android.view.MenuItem
 import android.view.View
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.model.dao.Preferences
-import com.rodrigolmti.coinzilla.library.app.CZApplication
-import com.rodrigolmti.coinzilla.library.util.Utils
+import com.rodrigolmti.coinzilla.CZApplication
 import kotlinx.android.synthetic.main.activity_exchange_api_key.buttonContact
 import kotlinx.android.synthetic.main.activity_exchange_api_key.editTextApiKey
 import kotlinx.android.synthetic.main.activity_exchange_api_key.editTextApiSecret

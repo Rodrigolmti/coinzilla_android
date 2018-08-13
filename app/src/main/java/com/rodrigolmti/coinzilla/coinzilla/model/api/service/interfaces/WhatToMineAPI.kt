@@ -3,9 +3,9 @@ package com.rodrigolmti.coinzilla.coinzilla.model.api.service.interfaces
 import com.google.gson.JsonObject
 import com.rodrigolmti.coinzilla.coinzilla.model.dto.BaseListDTO
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.WhatToMineWarz
+import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Header
-import rx.Observable
 
 interface WhatToMineAPI {
 

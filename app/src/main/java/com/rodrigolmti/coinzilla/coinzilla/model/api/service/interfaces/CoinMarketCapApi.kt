@@ -1,8 +1,8 @@
 package com.rodrigolmti.coinzilla.coinzilla.model.api.service.interfaces
 
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.CryptoCurrency
+import io.reactivex.Observable
 import retrofit2.http.GET
-import rx.Observable
 
 interface CoinMarketCapApi {
 

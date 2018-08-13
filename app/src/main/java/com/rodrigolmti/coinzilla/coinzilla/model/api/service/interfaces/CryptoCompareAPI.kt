@@ -2,9 +2,9 @@ package com.rodrigolmti.coinzilla.coinzilla.model.api.service.interfaces
 
 import com.rodrigolmti.coinzilla.coinzilla.model.dto.BaseExchangeDTO
 import com.rodrigolmti.coinzilla.coinzilla.model.dto.BaseHistoricDTO
+import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
-import rx.Observable
 
 interface CryptoCompareAPI {
 

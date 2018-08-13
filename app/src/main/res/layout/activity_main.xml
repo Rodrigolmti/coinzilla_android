@@ -1,516 +1,543 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".coinzilla.view.activity.MainActivity">
+<layout>
 
-    <ScrollView
-        android:id="@+id/content"
+    <data>
+        <variable
+            name="viewModel"
+            type="com.rodrigolmti.coinzilla.ui.main.MainActivityViewModel"/>
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_main"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.main.MainActivity">
 
-        <LinearLayout
+        <ScrollView
+            android:id="@+id/content"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="9"
+            android:visibility="@{!viewModel.loading &amp;&amp; !viewModel.error}"
+            tools:visibility="visible">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <View
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="90dp"
-                    android:background="@color/colorPrimary" />
+                    android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:background="@color/colorPrimary"/>
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/activity_main_title"
+                        android:textColor="@color/aliceBlue"
+                        android:textSize="20sp"/>
+
+                    <View
+                        android:id="@+id/clickViewBack"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerHorizontal="true"
+                        android:onClick="@{() -> viewModel.clickInfo()}"/>
+
+                    <ImageView
+                        android:id="@+id/containeInfo"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="18dp"
+                        android:layout_marginRight="18dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/ic_info"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/containerBalance"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="45dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/custom_background_rounded"
+                    android:elevation="2dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/imageViewBalnce"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_bank"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toEndOf="@+id/imageViewBalnce"
+                        android:layout_toRightOf="@+id/imageViewBalnce"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:text="@string/activity_main_balance_title"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:text="@string/activity_main_balance_message"
+                            android:textColor="@color/whiteLilac"
+                            android:textSize="13sp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp">
+
+                            <View
+                                android:id="@+id/circle0"
+                                android:layout_width="7dp"
+                                android:layout_height="7dp"
+                                android:layout_gravity="center"
+                                android:background="@drawable/custom_circle_green"
+                                android:visibility="gone"/>
+
+                            <TextView
+                                android:id="@+id/textViewUpdateTimeBalance"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_gravity="center"
+                                android:textSize="12sp"
+                                tools:text="Update time 07/09 - 12:00"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/containerGpu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-45dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/custom_background_rounded"
+                    android:elevation="2dp"
+                    android:onClick="@{() -> viewModel.clickGpuMining()}">
+
+                    <ImageView
+                        android:id="@+id/imageViewGpu"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_gpu"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toEndOf="@+id/imageViewGpu"
+                        android:layout_toRightOf="@+id/imageViewGpu"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:text="@string/activity_main_gpu_title"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:text="@string/activity_main_gpu_message"
+                            android:textColor="@color/whiteLilac"
+                            android:textSize="13sp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:visibility="@{!viewModel.gpuUpdateTime.get().isEmpty()}">
+
+                            <View
+                                android:id="@+id/circle1"
+                                android:layout_width="7dp"
+                                android:layout_height="7dp"
+                                android:layout_gravity="center"
+                                android:background="@drawable/custom_circle_green"/>
+
+                            <TextView
+                                android:id="@+id/textViewUpdateTimeGpu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_gravity="center"
+                                android:text="@{viewModel.gpuUpdateTime}"
+                                android:textSize="12sp"
+                                tools:text="Update time 07/09 - 12:00"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/containerAsic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@string/activity_main_title"
-                    android:textColor="@color/aliceBlue"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/custom_background_rounded"
+                    android:elevation="2dp"
+                    android:onClick="@{() -> viewModel.clickAsicMining()}">
 
-                <View
-                    android:id="@+id/clickViewBack"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginTop="3dp" />
-
-                <ImageView
-                    android:id="@+id/containeInfo"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginEnd="18dp"
-                    android:layout_marginRight="18dp"
-                    android:layout_marginTop="12dp"
-                    android:src="@drawable/ic_info" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/containerBalance"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                android:visibility="gone"
-                android:layout_marginTop="45dp"
-                android:background="@drawable/custom_background_rounded"
-                android:elevation="2dp">
-
-                <ImageView
-                    android:id="@+id/imageViewBalnce"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp"
-                    android:src="@drawable/ic_bank" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_toEndOf="@+id/imageViewBalnce"
-                    android:layout_toRightOf="@+id/imageViewBalnce"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="@string/activity_main_balance_title"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:text="@string/activity_main_balance_message"
-                        android:textColor="@color/whiteLilac"
-                        android:textSize="13sp" />
+                    <ImageView
+                        android:id="@+id/imageViewAsic"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_asic"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp">
-
-                        <View
-                            android:id="@+id/circle0"
-                            android:layout_width="7dp"
-                            android:layout_height="7dp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/custom_circle_green"
-                            android:visibility="gone" />
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toEndOf="@+id/imageViewAsic"
+                        android:layout_toRightOf="@+id/imageViewAsic"
+                        android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textViewUpdateTimeBalance"
+                            android:textStyle="bold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginStart="8dp"
-                            android:textSize="12sp"
-                            tools:text="Update time 07/09 - 12:00" />
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:text="@string/activity_main_asic_title"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:text="@string/activity_main_asic_message"
+                            android:textColor="@color/whiteLilac"
+                            android:textSize="13sp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:visibility="@{!viewModel.asicUpdateTime.get().isEmpty()}">
+
+                            <View
+                                android:id="@+id/circle2"
+                                android:layout_width="7dp"
+                                android:layout_height="7dp"
+                                android:layout_gravity="center"
+                                android:background="@drawable/custom_circle_green"
+                                android:visibility="gone"/>
+
+                            <TextView
+                                android:id="@+id/textViewUpdateTimeAsic"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginLeft="8dp"
+                                android:text="@{viewModel.asicUpdateTime}"
+                                android:textSize="12sp"
+                                tools:text="Update time 07/09 - 12:00"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
-                </LinearLayout>
+                </RelativeLayout>
 
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/containerGpu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="-45dp"
-                android:background="@drawable/custom_background_rounded"
-                android:elevation="2dp">
-
-                <ImageView
-                    android:id="@+id/imageViewGpu"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp"
-                    android:src="@drawable/ic_gpu" />
-
-                <LinearLayout
+                <RelativeLayout
+                    android:id="@+id/containerWarz"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_toEndOf="@+id/imageViewGpu"
-                    android:layout_toRightOf="@+id/imageViewGpu"
-                    android:orientation="vertical">
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/custom_background_rounded"
+                    android:elevation="2dp"
+                    android:onClick="@{() -> viewModel.clickAltCoin()}">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="@string/activity_main_gpu_title"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:text="@string/activity_main_gpu_message"
-                        android:textColor="@color/whiteLilac"
-                        android:textSize="13sp" />
+                    <ImageView
+                        android:id="@+id/imageViewWarz"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_compare"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp">
-
-                        <View
-                            android:id="@+id/circle1"
-                            android:layout_width="7dp"
-                            android:layout_height="7dp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/custom_circle_green"
-                            android:visibility="gone" />
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toEndOf="@+id/imageViewWarz"
+                        android:layout_toRightOf="@+id/imageViewWarz"
+                        android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textViewUpdateTimeGpu"
+                            android:textStyle="bold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginStart="8dp"
-                            android:textSize="12sp"
-                            tools:text="Update time 07/09 - 12:00" />
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:text="@string/activity_main_warz_title"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:text="@string/activity_main_warz_message"
+                            android:textColor="@color/whiteLilac"
+                            android:textSize="13sp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:visibility="@{!viewModel.altcoinUpdateTime.get().isEmpty()}">
+
+                            <View
+                                android:id="@+id/circle3"
+                                android:layout_width="7dp"
+                                android:layout_height="7dp"
+                                android:layout_gravity="center"
+                                android:background="@drawable/custom_circle_green"
+                                android:visibility="gone"/>
+
+                            <TextView
+                                android:id="@+id/textViewUpdateTimeWarz"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginLeft="8dp"
+                                android:text="@{viewModel.altcoinUpdateTime}"
+                                android:textSize="12sp"
+                                tools:text="Update time 07/09 - 12:00"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
-                </LinearLayout>
+                </RelativeLayout>
 
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/containerAsic"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/custom_background_rounded"
-                android:elevation="2dp">
-
-                <ImageView
-                    android:id="@+id/imageViewAsic"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp"
-                    android:src="@drawable/ic_asic" />
-
-                <LinearLayout
+                <RelativeLayout
+                    android:id="@+id/containerCryptocurrency"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_toEndOf="@+id/imageViewAsic"
-                    android:layout_toRightOf="@+id/imageViewAsic"
-                    android:orientation="vertical">
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/custom_background_rounded"
+                    android:elevation="2dp"
+                    android:onClick="@{() -> viewModel.clickCryptoCurrency()}">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="@string/activity_main_asic_title"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:text="@string/activity_main_asic_message"
-                        android:textColor="@color/whiteLilac"
-                        android:textSize="13sp" />
+                    <ImageView
+                        android:id="@+id/imageViewCryptocurrency"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_coins"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp">
-
-                        <View
-                            android:id="@+id/circle2"
-                            android:layout_width="7dp"
-                            android:layout_height="7dp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/custom_circle_green"
-                            android:visibility="gone" />
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toEndOf="@+id/imageViewCryptocurrency"
+                        android:layout_toRightOf="@+id/imageViewCryptocurrency"
+                        android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textViewUpdateTimeAsic"
+                            android:textStyle="bold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginStart="8dp"
-                            android:textSize="12sp"
-                            tools:text="Update time 07/09 - 12:00" />
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:text="@string/activity_main_cryptocurrency_title"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:text="@string/activity_main_cryptocurrency_message"
+                            android:textColor="@color/whiteLilac"
+                            android:textSize="13sp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:visibility="@{!viewModel.cryptocurrencyUpdateTime.get().isEmpty()}">
+
+                            <View
+                                android:id="@+id/circle4"
+                                android:layout_width="7dp"
+                                android:layout_height="7dp"
+                                android:layout_gravity="center"
+                                android:background="@drawable/custom_circle_green"
+                                android:visibility="gone"/>
+
+                            <TextView
+                                android:id="@+id/textViewUpdateTimeCryptoCurrency"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_marginLeft="8dp"
+                                android:text="@{viewModel.cryptocurrencyUpdateTime}"
+                                android:textSize="12sp"
+                                tools:text="Update time 07/09 - 12:00"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
-                </LinearLayout>
+                </RelativeLayout>
 
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/containerWarz"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/custom_background_rounded"
-                android:elevation="2dp">
-
-                <ImageView
-                    android:id="@+id/imageViewWarz"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp"
-                    android:src="@drawable/ic_compare" />
-
-                <LinearLayout
+                <RelativeLayout
+                    android:id="@+id/containerProfitability"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_toEndOf="@+id/imageViewWarz"
-                    android:layout_toRightOf="@+id/imageViewWarz"
-                    android:orientation="vertical">
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/custom_background_rounded"
+                    android:elevation="2dp"
+                    android:onClick="@{() -> viewModel.clickProfitability()}">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="@string/activity_main_warz_title"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:text="@string/activity_main_warz_message"
-                        android:textColor="@color/whiteLilac"
-                        android:textSize="13sp" />
+                    <ImageView
+                        android:id="@+id/imageViewProfitability"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_costs"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp">
-
-                        <View
-                            android:id="@+id/circle3"
-                            android:layout_width="7dp"
-                            android:layout_height="7dp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/custom_circle_green"
-                            android:visibility="gone" />
+                        android:layout_marginStart="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_toEndOf="@+id/imageViewProfitability"
+                        android:layout_toRightOf="@+id/imageViewProfitability"
+                        android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textViewUpdateTimeWarz"
+                            android:textStyle="bold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginStart="8dp"
-                            android:textSize="12sp"
-                            tools:text="Update time 07/09 - 12:00" />
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:text="@string/activity_main_profitability_title"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="8dp"
+                            android:text="@string/activity_main_profitability_message"
+                            android:textColor="@color/whiteLilac"
+                            android:textSize="13sp"/>
 
                     </LinearLayout>
 
-                </LinearLayout>
+                </RelativeLayout>
 
-            </RelativeLayout>
+            </LinearLayout>
 
-            <RelativeLayout
-                android:id="@+id/containerCryptocurrency"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/custom_background_rounded"
-                android:elevation="2dp">
+        </ScrollView>
 
-                <ImageView
-                    android:id="@+id/imageViewCryptocurrency"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp"
-                    android:src="@drawable/ic_coins" />
+        <include
+            android:id="@+id/progressBar"
+            layout="@layout/progress_bar"
+            android:visibility="@{viewModel.loading}"
+            tools:visibility="gone"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_toEndOf="@+id/imageViewCryptocurrency"
-                    android:layout_toRightOf="@+id/imageViewCryptocurrency"
-                    android:orientation="vertical">
+        <include
+            android:id="@+id/contentError"
+            layout="@layout/layout_error"
+            android:visibility="@{viewModel.error}"
+            tools:visibility="gone"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="@string/activity_main_cryptocurrency_title"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/admob_main_activity"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:text="@string/activity_main_cryptocurrency_message"
-                        android:textColor="@color/whiteLilac"
-                        android:textSize="13sp" />
+    </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp">
-
-                        <View
-                            android:id="@+id/circle4"
-                            android:layout_width="7dp"
-                            android:layout_height="7dp"
-                            android:layout_gravity="center"
-                            android:background="@drawable/custom_circle_green"
-                            android:visibility="gone" />
-
-                        <TextView
-                            android:id="@+id/textViewUpdateTimeCryptoCurrency"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginStart="8dp"
-                            android:textSize="12sp"
-                            tools:text="Update time 07/09 - 12:00" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/containerProfitability"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/custom_background_rounded"
-                android:elevation="2dp">
-
-                <ImageView
-                    android:id="@+id/imageViewProfitability"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp"
-                    android:src="@drawable/ic_costs" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_toEndOf="@+id/imageViewProfitability"
-                    android:layout_toRightOf="@+id/imageViewProfitability"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="@string/activity_main_profitability_title"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:text="@string/activity_main_profitability_message"
-                        android:textColor="@color/whiteLilac"
-                        android:textSize="13sp" />
-
-                </LinearLayout>
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-    </ScrollView>
-
-    <include
-        android:id="@+id/progressBar"
-        layout="@layout/progress_bar"
-        android:visibility="gone" />
-
-    <include
-        android:id="@+id/contentError"
-        layout="@layout/layout_error"
-        android:visibility="gone" />
-
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/admob_main_activity" />
-
-</LinearLayout>
+</layout>

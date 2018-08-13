@@ -15,7 +15,7 @@ import com.rodrigolmti.coinzilla.coinzilla.model.entity.poloniex.PoloniexBalance
 import com.rodrigolmti.coinzilla.coinzilla.view.adapter.PoloniexBalanceAdapter
 import com.rodrigolmti.coinzilla.coinzilla.view.extensions.gone
 import com.rodrigolmti.coinzilla.coinzilla.view.extensions.visible
-import com.rodrigolmti.coinzilla.library.app.CZApplication
+import com.rodrigolmti.coinzilla.CZApplication
 import com.rodrigolmti.coinzilla.library.controller.activity.BaseActivity
 import kotlinx.android.synthetic.main.activity_balance.progressBar
 import kotlinx.android.synthetic.main.activity_balance.recyclerView

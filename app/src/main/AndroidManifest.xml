@@ -12,7 +12,7 @@
     <uses-permission android:name="com.google.android.gms.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".library.app.CZApplication"
+        android:name=".CZApplication"
         android:allowBackup="true"
         android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".coinzilla.view.activity.MainActivity"
+            android:name=".ui.main.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
