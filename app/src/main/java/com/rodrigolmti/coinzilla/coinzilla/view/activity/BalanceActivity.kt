@@ -10,7 +10,7 @@ import com.rodrigolmti.coinzilla.R.string
 import com.rodrigolmti.coinzilla.coinzilla.model.api.service.CoinZillaService
 import com.rodrigolmti.coinzilla.coinzilla.model.callback.PoloniexBalanceCallBack
 import com.rodrigolmti.coinzilla.coinzilla.model.dao.Preferences
-import com.rodrigolmti.coinzilla.coinzilla.model.dto.ExchangeAuthDTO
+import com.rodrigolmti.coinzilla.coinzilla.model.dto.ExchangesResponse
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.poloniex.PoloniexBalances
 import com.rodrigolmti.coinzilla.coinzilla.view.adapter.PoloniexBalanceAdapter
 import com.rodrigolmti.coinzilla.coinzilla.view.extensions.gone
@@ -58,7 +58,7 @@ class BalanceActivity : BaseActivity() {
             startActivity(Intent(this, ExchangeListActivity::class.java))
         } else {
             progressBar.visible()
-            val exchangeAuth = ExchangeAuthDTO(czPreferences.poloniexKey, czPreferences.poloniexSecret)
+            val exchangeAuth = ExchangesResponse(czPreferences.poloniexKey, czPreferences.poloniexSecret)
             CoinZillaService(this).getAvailableBalances(object : PoloniexBalanceCallBack() {
                 override fun onSuccess(data: PoloniexBalances) {
                     recyclerView.layoutManager = LinearLayoutManager(this@BalanceActivity)

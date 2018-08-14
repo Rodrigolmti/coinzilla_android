@@ -2,14 +2,15 @@ package com.rodrigolmti.coinzilla.di.modules
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.google.gson.reflect.TypeToken
 import com.rodrigolmti.coinzilla.BuildConfig
-import com.rodrigolmti.coinzilla.data.remote.IRemoteApi
+import com.rodrigolmti.coinzilla.data.remote.ICryptoCompareApi
+import com.rodrigolmti.coinzilla.data.remote.IMakertCapApi
+import com.rodrigolmti.coinzilla.data.remote.INodeApi
+import com.rodrigolmti.coinzilla.data.remote.IWhatToMineApi
 import com.rodrigolmti.coinzilla.di.scopes.PerApplication
 import dagger.Module
 import dagger.Provides
 import io.reactivex.schedulers.Schedulers
-import io.realm.RealmList
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -18,6 +19,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
 class NetModule {
+
+    companion object {
+
+        const val BASE_URL_NODE = "http://67.205.185.235:3000/api/v1/"
+        const val BASE_URL_WHAT_TO_MINE = "https://whattomine.com/"
+        const val BASE_URL_MARKET_CAP = "https://api.coinmarketcap.com/v1/"
+        const val BASE_URL_CRYPTO_COMPARE = "https://min-api.cryptocompare.com/data/"
+
+    }
+
+    //TODO: Refactor
 
     @Provides
     @PerApplication
@@ -33,7 +45,57 @@ class NetModule {
 
     @Provides
     @PerApplication
-    internal fun provideRemoteApi(gson: Gson, okHttpClient: OkHttpClient): IRemoteApi {
+    internal fun provideRemoteNodeApi(gson: Gson, okHttpClient: OkHttpClient): INodeApi {
+        val httpClientBuilder = setupHttpBuilder(okHttpClient)
+
+        return Retrofit.Builder()
+                .baseUrl(BASE_URL_NODE)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+                .callFactory(httpClientBuilder.build())
+                .build().create(INodeApi::class.java)
+    }
+
+    @Provides
+    @PerApplication
+    internal fun provideRemoteWhatToMineApi(gson: Gson, okHttpClient: OkHttpClient): IWhatToMineApi {
+        val httpClientBuilder = setupHttpBuilder(okHttpClient)
+
+        return Retrofit.Builder()
+                .baseUrl(BASE_URL_WHAT_TO_MINE)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+                .callFactory(httpClientBuilder.build())
+                .build().create(IWhatToMineApi::class.java)
+    }
+
+    @Provides
+    @PerApplication
+    internal fun provideRemoteMarketCapApi(gson: Gson, okHttpClient: OkHttpClient): IMakertCapApi {
+        val httpClientBuilder = setupHttpBuilder(okHttpClient)
+
+        return Retrofit.Builder()
+                .baseUrl(BASE_URL_MARKET_CAP)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+                .callFactory(httpClientBuilder.build())
+                .build().create(IMakertCapApi::class.java)
+    }
+
+    @Provides
+    @PerApplication
+    internal fun provideRemoteCryptoCompareApi(gson: Gson, okHttpClient: OkHttpClient): ICryptoCompareApi {
+        val httpClientBuilder = setupHttpBuilder(okHttpClient)
+
+        return Retrofit.Builder()
+                .baseUrl(BASE_URL_CRYPTO_COMPARE)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+                .callFactory(httpClientBuilder.build())
+                .build().create(ICryptoCompareApi::class.java)
+    }
+
+    private fun setupHttpBuilder(okHttpClient: OkHttpClient): OkHttpClient.Builder {
         val httpClientBuilder = okHttpClient.newBuilder()
 
         if (BuildConfig.DEBUG) {
@@ -41,12 +103,6 @@ class NetModule {
             loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
             httpClientBuilder.addInterceptor(loggingInterceptor)
         }
-
-        return Retrofit.Builder()
-                .baseUrl("http://67.205.185.235:3000/api/v1/")
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
-                .callFactory(httpClientBuilder.build())
-                .build().create(IRemoteApi::class.java)
+        return httpClientBuilder
     }
 }

@@ -7,10 +7,10 @@ import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.view.activity.InfoActivity
-import com.rodrigolmti.coinzilla.coinzilla.view.activity.ListActivity
+import com.rodrigolmti.coinzilla.ui.list.CoinListActivity
 import com.rodrigolmti.coinzilla.coinzilla.view.activity.ProfitabilityActivity
 import com.rodrigolmti.coinzilla.data.local.IPreferencesRepository
-import com.rodrigolmti.coinzilla.data.remote.IRemoteApi
+import com.rodrigolmti.coinzilla.data.remote.INodeApi
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext
 import com.rodrigolmti.coinzilla.di.scopes.PerActivity
 import com.rodrigolmti.coinzilla.library.util.Action
@@ -28,7 +28,7 @@ import javax.inject.Inject
 class MainActivityViewModel
 @Inject constructor(@AppContext val context: Context,
                     private val resources: Resources,
-                    private val iRemoteApi: IRemoteApi,
+                    private val iNodeApi: INodeApi,
                     private val activityNavigator: IActivityNavigator,
                     private val iPreferencesRepository: IPreferencesRepository)
     : BaseViewModel<MvvmView>(), MainMvvm {
@@ -49,7 +49,7 @@ class MainActivityViewModel
         if (checkTime()) return
         if (Utils().isDeviceOnline(context)) {
             loading.set(true)
-            compositeDisposable.add(iRemoteApi.getToken(UUID.randomUUID().toString())
+            compositeDisposable.add(iNodeApi.getToken(UUID.randomUUID().toString())
                     .observeOn(AndroidSchedulers.mainThread())
                     .flatMap {
                         if (it.success) {
@@ -60,9 +60,8 @@ class MainActivityViewModel
                     }
                     .subscribe({
                         loading.set(false)
-                        Timber.i(it.token)
                     }, {
-                        Timber.e(it, "Could not authenticate the app with server, try again later!")
+                        Timber.e(it, resources.getString(R.string.general_error))
                         loading.set(false)
                         error.set(true)
                     }))
@@ -104,25 +103,25 @@ class MainActivityViewModel
     }
 
     fun clickGpuMining() {
-        val intent = Intent(context, ListActivity::class.java)
+        val intent = Intent(context, CoinListActivity::class.java)
         intent.putExtra("action.type", Action.GPU.name)
         startActivity(intent)
     }
 
     fun clickAsicMining() {
-        val intent = Intent(context, ListActivity::class.java)
+        val intent = Intent(context, CoinListActivity::class.java)
         intent.putExtra("action.type", Action.ASIC.name)
         startActivity(intent)
     }
 
     fun clickAltCoin() {
-        val intent = Intent(context, ListActivity::class.java)
+        val intent = Intent(context, CoinListActivity::class.java)
         intent.putExtra("action.type", Action.WARZ.name)
         startActivity(intent)
     }
 
     fun clickCryptoCurrency() {
-        val intent = Intent(context, ListActivity::class.java)
+        val intent = Intent(context, CoinListActivity::class.java)
         intent.putExtra("action.type", Action.CRYPTOCURRENCY)
         startActivity(intent)
     }

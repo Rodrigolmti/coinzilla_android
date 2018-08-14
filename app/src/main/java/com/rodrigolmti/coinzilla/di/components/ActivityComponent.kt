@@ -9,6 +9,7 @@ import com.rodrigolmti.coinzilla.di.qualifier.ActivityContext
 import com.rodrigolmti.coinzilla.di.qualifier.ActivityFragmentManager
 import com.rodrigolmti.coinzilla.di.scopes.PerActivity
 import com.rodrigolmti.coinzilla.ui.base.navigation.IActivityNavigator
+import com.rodrigolmti.coinzilla.ui.list.CoinListActivity
 import com.rodrigolmti.coinzilla.ui.main.MainActivity
 import dagger.Component
 
@@ -30,7 +31,7 @@ interface ActivityComponent : ActivityComponentProvides {
 
     fun inject(activity: InfoActivity)
 
-    fun inject(activity: ListActivity)
+    fun inject(activity: CoinListActivity)
 
     fun inject(activity: ProfitabilityActivity)
 }

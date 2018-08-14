@@ -2,60 +2,25 @@ package com.rodrigolmti.coinzilla.coinzilla.model.api.service
 
 import android.content.Context
 import com.crashlytics.android.Crashlytics
-import com.google.gson.Gson
-import com.google.gson.JsonObject
 import com.rodrigolmti.coinzilla.R
-import com.rodrigolmti.coinzilla.coinzilla.model.api.service.interfaces.CoinMarketCapApi
-import com.rodrigolmti.coinzilla.coinzilla.model.api.service.interfaces.CryptoCompareAPI
-import com.rodrigolmti.coinzilla.coinzilla.model.api.service.interfaces.PoloniexAPI
-import com.rodrigolmti.coinzilla.coinzilla.model.api.service.interfaces.WhatToMineAPI
 import com.rodrigolmti.coinzilla.coinzilla.model.callback.BaseCallBack
 import com.rodrigolmti.coinzilla.coinzilla.model.callback.ExchangesCallBack
 import com.rodrigolmti.coinzilla.coinzilla.model.callback.HistoricCallBack
 import com.rodrigolmti.coinzilla.coinzilla.model.callback.PoloniexBalanceCallBack
 import com.rodrigolmti.coinzilla.coinzilla.model.dao.CoinDAO
 import com.rodrigolmti.coinzilla.coinzilla.model.dao.Preferences
-import com.rodrigolmti.coinzilla.coinzilla.model.dto.ExchangeAuthDTO
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.WhatToMineAsic
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.WhatToMineGpu
+import com.rodrigolmti.coinzilla.coinzilla.model.dto.ExchangesResponse
 import com.rodrigolmti.coinzilla.CZApplication
 import com.rodrigolmti.coinzilla.library.util.Action
 import com.rodrigolmti.coinzilla.library.util.Utils
-import java.util.ArrayList
 import java.util.Calendar
 import java.util.Date
-import java.util.UUID
 
 class CoinZillaService(private val context: Context) {
 
     private val czPreferences: Preferences? = CZApplication.preferences
     private val coinDao: CoinDAO = CoinDAO()
     private val utils: Utils = Utils()
-
-    fun getToken(callback: BaseCallBack) {
-//        try {
-//            if (czPreferences!!.identification == "noData")
-//                czPreferences.identification = UUID.randomUUID().toString()
-//
-//            RetrofitService().retrofitInstance(context.getString(R.string.base_url_main)).create(
-//                    WhatToMineAPI::class.java).getToken(czPreferences.identification)
-//                    .subscribeOn(Schedulers.io())
-//                    .observeOn(AndroidSchedulers.mainThread())
-//                    .subscribe({ data ->
-//                        if (data.success) {
-//                            czPreferences.token = data.token
-//                            czPreferences.tokenDate = utils.formatDate(Date())
-//                            callback.onSuccess()
-//                        } else {
-//                            callback.onError(context.getString(R.string.general_error_connection))
-//                        }
-//                    }, { error ->
-//                        handleError(callback, error)
-//                    })
-//        } catch (error: Exception) {
-//            handleError(callback, error)
-//        }
-    }
 
     fun getWhatToMineGpu(callback: BaseCallBack) {
 //        try {
@@ -260,7 +225,7 @@ class CoinZillaService(private val context: Context) {
 //        }
     }
 
-    fun getAvailableBalances(callback: PoloniexBalanceCallBack, exchangeAuthDTO: ExchangeAuthDTO) {
+    fun getAvailableBalances(callback: PoloniexBalanceCallBack, exchangeAuthDTO: ExchangesResponse) {
 //        try {
 //            RetrofitService().retrofitInstance(context.getString(R.string.base_url_main)).create(
 //                    PoloniexAPI::class.java).getAvailableBalances(czPreferences!!.token, exchangeAuthDTO)

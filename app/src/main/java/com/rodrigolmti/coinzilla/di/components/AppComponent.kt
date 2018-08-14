@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.res.Resources
 import com.rodrigolmti.coinzilla.data.local.IPreferencesRepository
 import com.rodrigolmti.coinzilla.data.local.IRepository
-import com.rodrigolmti.coinzilla.data.remote.IRemoteApi
+import com.rodrigolmti.coinzilla.data.remote.INodeApi
 import com.rodrigolmti.coinzilla.di.modules.AppModule
 import com.rodrigolmti.coinzilla.di.modules.DataModule
 import com.rodrigolmti.coinzilla.di.modules.NetModule
@@ -33,5 +33,5 @@ interface AppComponentProvides {
 
     fun preferencesRepository(): IPreferencesRepository
 
-    fun remoteApi(): IRemoteApi
+    fun remoteApi(): INodeApi
 }

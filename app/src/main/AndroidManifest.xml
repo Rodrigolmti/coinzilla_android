@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".coinzilla.view.activity.ListActivity"
+            android:name=".ui.list.CoinListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity

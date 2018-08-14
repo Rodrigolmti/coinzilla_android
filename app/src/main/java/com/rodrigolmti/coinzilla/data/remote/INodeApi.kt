@@ -5,8 +5,8 @@ import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Header
 
-interface IRemoteApi {
+interface INodeApi {
 
     @GET("getToken")
-    fun getToken(@Header("identification") identification : String) : Single<BaseListDTO<Any>>
+    fun getToken(@Header("identification") identification: String): Single<BaseListDTO<Any>>
 }
