@@ -7,7 +7,7 @@ import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.ui.info.InfoActivity
-import com.rodrigolmti.coinzilla.coinzilla.view.activity.ProfitabilityActivity
+import com.rodrigolmti.coinzilla.ui.profitability.ProfitabilityActivity
 import com.rodrigolmti.coinzilla.data.IRepository
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext
 import com.rodrigolmti.coinzilla.di.scopes.PerActivity

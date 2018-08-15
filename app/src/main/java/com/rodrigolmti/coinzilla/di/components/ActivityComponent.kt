@@ -12,6 +12,7 @@ import com.rodrigolmti.coinzilla.ui.base.navigation.IActivityNavigator
 import com.rodrigolmti.coinzilla.ui.info.InfoActivity
 import com.rodrigolmti.coinzilla.ui.list.CoinListActivity
 import com.rodrigolmti.coinzilla.ui.main.MainActivity
+import com.rodrigolmti.coinzilla.ui.profitability.ProfitabilityActivity
 import dagger.Component
 
 @PerActivity

@@ -42,7 +42,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeActionBar" />
         <activity
-            android:name=".coinzilla.view.activity.ProfitabilityActivity"
+            android:name=".ui.profitability.ProfitabilityActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeActionBar"
             android:windowSoftInputMode="adjustPan" />

@@ -1,305 +1,321 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ScrollView
+    <data>
+        <variable
+            name="viewModel"
+            type="com.rodrigolmti.coinzilla.ui.profitability.ProfitabilityViewModel"/>
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
-                android:text="@string/activity_profitability_select_calc"
-                android:textColor="@color/black" />
+            android:layout_height="0dp"
+            android:layout_weight="9">
 
             <LinearLayout
-                android:id="@+id/layerCalc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal"
-                android:padding="6dp">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_math" />
-
-                <Spinner
-                    android:id="@+id/spinnerCalcType"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp"
-                    android:entries="@array/activity_profitability_type" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layerResult"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:padding="16dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/activity_profitability_estimated"
-                    android:textSize="16sp" />
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/activity_profitability_select_calc"
+                    android:textColor="@color/black"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:padding="6dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_math"/>
+
+                    <Spinner
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:gravity="center"
-                        android:text="@string/activity_profitability_day" />
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center"
+                        android:entries="@array/activity_profitability_type"
+                        app:itemSelectedListener="@{viewModel.onItemSelectedCalcListener}"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layerResult"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.result}">
 
                     <TextView
-                        android:id="@+id/textViewResultDay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_weight="5"
-                        android:gravity="center"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        tools:text="100" />
+                        android:text="@string/activity_profitability_estimated"
+                        android:textSize="16sp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5"
+                            android:gravity="center"
+                            android:text="@string/activity_profitability_day"/>
+
+                        <TextView
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center"
+                            android:text="@{viewModel.resultDay}"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="20sp"
+                            tools:text="100"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5"
+                            android:gravity="center"
+                            android:text="@string/activity_profitability_month"/>
+
+                        <TextView
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center"
+                            android:text="@{viewModel.resultMonth}"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="20sp"
+                            tools:text="100"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5"
+                            android:gravity="center"
+                            android:text="@string/activity_profitability_year"/>
+
+                        <TextView
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginLeft="20dp"
+                            android:gravity="center"
+                            android:text="@{viewModel.resultYear}"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="20sp"
+                            tools:text="100"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:padding="6dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:gravity="center"
-                        android:text="@string/activity_profitability_month" />
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_hash"/>
 
-                    <TextView
-                        android:id="@+id/textViewResultMonth"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_weight="5"
-                        android:gravity="center"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        tools:text="100" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="10"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/activity_profitability_hash"
+                                android:inputType="numberDecimal"
+                                android:text="@{viewModel.hashField}"
+                                app:editTextError="@{viewModel.errorHashMessage}"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <Spinner
+                            android:id="@+id/spinnerCalcHash"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:entries="@array/activity_profitability_hash_type"
+                            app:itemSelectedListener="@{viewModel.onItemSelectedHashListener}"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:padding="6dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5"
-                        android:gravity="center"
-                        android:text="@string/activity_profitability_year" />
-
-                    <TextView
-                        android:id="@+id/textViewResultYear"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_weight="5"
-                        android:gravity="center"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        tools:text="100" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:orientation="horizontal"
-                android:padding="6dp">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_hash" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_reward"/>
 
                     <android.support.design.widget.TextInputLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
                         android:layout_marginStart="10dp"
-                        android:layout_weight="10">
+                        android:layout_marginLeft="10dp">
 
                         <EditText
-                            android:id="@+id/editTextHash"
+                            android:id="@+id/editTextReward"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/activity_profitability_hash"
-                            android:inputType="numberDecimal" />
+                            android:hint="@string/activity_profitability_block_reward"
+                            android:inputType="numberDecimal"
+                            android:text="@{viewModel.rewardField}"
+                            app:editTextError="@{viewModel.errorRewardMessage}"/>
 
                     </android.support.design.widget.TextInputLayout>
 
-                    <Spinner
-                        android:id="@+id/spinnerCalcHash"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="6dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_gravity="center"
-                        android:entries="@array/activity_profitability_hash_type" />
+                        android:src="@drawable/ic_difficulty"/>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp">
+
+                        <EditText
+                            android:id="@+id/editTextDifficulty"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/activity_profitability_difficulty"
+                            android:inputType="numberDecimal"
+                            android:text="@{viewModel.difficultyField}"
+                            app:editTextError="@{viewModel.errorDifficultyMessage}"/>
+
+                    </android.support.design.widget.TextInputLayout>
 
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="6dp">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_reward" />
-
-                <android.support.design.widget.TextInputLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp">
+                    android:padding="6dp"
+                    android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/editTextReward"
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_fee"/>
+
+                    <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/activity_profitability_block_reward"
-                        android:inputType="numberDecimal" />
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp">
 
-                </android.support.design.widget.TextInputLayout>
+                        <EditText
+                            android:id="@+id/editTextFee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/activity_profitability_fee"
+                            android:inputType="numberDecimal"
+                            android:text="@{viewModel.feeField}"/>
 
-            </LinearLayout>
+                    </android.support.design.widget.TextInputLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="6dp">
+                </LinearLayout>
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_difficulty" />
-
-                <android.support.design.widget.TextInputLayout
+                <Button
+                    android:textStyle="bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp">
-
-                    <EditText
-                        android:id="@+id/editTextDifficulty"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/activity_profitability_difficulty"
-                        android:inputType="numberDecimal" />
-
-                </android.support.design.widget.TextInputLayout>
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/custom_button_background_blue"
+                    android:onClick="@{() -> viewModel.onClickCalc()}"
+                    android:text="@string/activity_profitability_calculate"
+                    android:textColor="@color/aliceBlue"
+                    android:textSize="16sp"/>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="6dp">
+        </ScrollView>
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_fee" />
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            ads:adSize="BANNER"
+            ads:adUnitId="@string/admob_profitability_activity"/>
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginStart="10dp">
+    </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/editTextFee"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/activity_profitability_fee"
-                        android:inputType="numberDecimal" />
-
-                </android.support.design.widget.TextInputLayout>
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/buttonCalc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/custom_button_background_blue"
-                android:text="@string/activity_profitability_calculate"
-                android:textColor="@color/aliceBlue"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-    </ScrollView>
-
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/admob_profitability_activity" />
-
-</LinearLayout>
+</layout>
