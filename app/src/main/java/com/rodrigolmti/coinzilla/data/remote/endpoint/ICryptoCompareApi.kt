@@ -1,4 +1,4 @@
-package com.rodrigolmti.coinzilla.data.remote
+package com.rodrigolmti.coinzilla.data.remote.endpoint
 
 import com.rodrigolmti.coinzilla.coinzilla.model.dto.BaseExchangeDTO
 import com.rodrigolmti.coinzilla.coinzilla.model.dto.HistoricResponse

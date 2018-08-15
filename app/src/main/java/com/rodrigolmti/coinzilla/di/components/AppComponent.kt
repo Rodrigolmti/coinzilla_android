@@ -2,9 +2,10 @@ package com.rodrigolmti.coinzilla.di.components
 
 import android.content.Context
 import android.content.res.Resources
-import com.rodrigolmti.coinzilla.data.local.IPreferencesRepository
-import com.rodrigolmti.coinzilla.data.local.IRepository
-import com.rodrigolmti.coinzilla.data.remote.INodeApi
+import com.rodrigolmti.coinzilla.data.IRepository
+import com.rodrigolmti.coinzilla.data.local.db.IDatabaseHelper
+import com.rodrigolmti.coinzilla.data.local.prefs.IPreferencesHelper
+import com.rodrigolmti.coinzilla.data.remote.IApiHelper
 import com.rodrigolmti.coinzilla.di.modules.AppModule
 import com.rodrigolmti.coinzilla.di.modules.DataModule
 import com.rodrigolmti.coinzilla.di.modules.NetModule
@@ -29,9 +30,11 @@ interface AppComponentProvides {
 
     fun realm(): Realm
 
+    fun databaseHelper(): IDatabaseHelper
+
+    fun preferencesHelper(): IPreferencesHelper
+
+    fun remoteApi(): IApiHelper
+
     fun repository(): IRepository
-
-    fun preferencesRepository(): IPreferencesRepository
-
-    fun remoteApi(): INodeApi
 }

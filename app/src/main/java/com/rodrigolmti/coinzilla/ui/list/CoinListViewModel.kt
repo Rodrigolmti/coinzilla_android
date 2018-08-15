@@ -3,9 +3,6 @@ package com.rodrigolmti.coinzilla.ui.list
 import android.content.Context
 import android.content.res.Resources
 import android.databinding.ObservableBoolean
-import com.rodrigolmti.coinzilla.R
-import com.rodrigolmti.coinzilla.data.local.IPreferencesRepository
-import com.rodrigolmti.coinzilla.data.remote.INodeApi
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext
 import com.rodrigolmti.coinzilla.di.scopes.PerActivity
 import com.rodrigolmti.coinzilla.library.util.Action
@@ -16,11 +13,11 @@ import com.rodrigolmti.coinzilla.ui.main.MainMvvm
 import javax.inject.Inject
 
 @PerActivity
-class CoinListViewModel @Inject constructor(@AppContext val context: Context,
-                                            private val resources: Resources,
-                                            private val iRemoteApi: INodeApi,
-                                            private val activityNavigator: IActivityNavigator,
-                                            private val iPreferencesRepository: IPreferencesRepository)
+class CoinListViewModel
+@Inject constructor(
+        @AppContext val context: Context,
+        private val resources: Resources,
+        private val activityNavigator: IActivityNavigator)
     : BaseViewModel<MvvmView>(), MainMvvm {
 
     val loading: ObservableBoolean = ObservableBoolean(false)

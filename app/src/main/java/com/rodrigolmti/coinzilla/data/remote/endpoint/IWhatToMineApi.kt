@@ -1,4 +1,4 @@
-package com.rodrigolmti.coinzilla.data.remote
+package com.rodrigolmti.coinzilla.data.remote.endpoint
 
 import com.google.gson.JsonObject
 import com.rodrigolmti.coinzilla.coinzilla.model.dto.BaseListDTO
@@ -8,9 +8,6 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 
 interface IWhatToMineApi {
-
-    @GET("getToken")
-    fun getToken(@Header("identification") identification: String): Single<BaseListDTO<Any>>
 
     @GET("coins.json")
     fun getGpu(): Single<JsonObject>

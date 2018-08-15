@@ -7,10 +7,8 @@ import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.coinzilla.view.activity.InfoActivity
-import com.rodrigolmti.coinzilla.ui.list.CoinListActivity
 import com.rodrigolmti.coinzilla.coinzilla.view.activity.ProfitabilityActivity
-import com.rodrigolmti.coinzilla.data.local.IPreferencesRepository
-import com.rodrigolmti.coinzilla.data.remote.INodeApi
+import com.rodrigolmti.coinzilla.data.IRepository
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext
 import com.rodrigolmti.coinzilla.di.scopes.PerActivity
 import com.rodrigolmti.coinzilla.library.util.Action
@@ -18,7 +16,7 @@ import com.rodrigolmti.coinzilla.library.util.Utils
 import com.rodrigolmti.coinzilla.ui.base.navigation.IActivityNavigator
 import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
 import com.rodrigolmti.coinzilla.ui.base.viewModel.BaseViewModel
-import io.reactivex.Single
+import com.rodrigolmti.coinzilla.ui.list.CoinListActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import timber.log.Timber
 import java.util.*
@@ -28,9 +26,8 @@ import javax.inject.Inject
 class MainActivityViewModel
 @Inject constructor(@AppContext val context: Context,
                     private val resources: Resources,
-                    private val iNodeApi: INodeApi,
-                    private val activityNavigator: IActivityNavigator,
-                    private val iPreferencesRepository: IPreferencesRepository)
+                    private val iRepository: IRepository,
+                    private val activityNavigator: IActivityNavigator)
     : BaseViewModel<MvvmView>(), MainMvvm {
 
     val gpuUpdateTime: ObservableField<String> = ObservableField("")
@@ -41,60 +38,22 @@ class MainActivityViewModel
     val loading: ObservableBoolean = ObservableBoolean(false)
     val error: ObservableBoolean = ObservableBoolean(false)
 
-    init {
-        getToken()
-    }
-
-    private fun getToken() {
-        if (checkTime()) return
-        if (Utils().isDeviceOnline(context)) {
-            loading.set(true)
-            compositeDisposable.add(iNodeApi.getToken(UUID.randomUUID().toString())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .flatMap {
-                        if (it.success) {
-                            iPreferencesRepository.authenticationToken = it.token
-                            iPreferencesRepository.authenticationTokenTime = Date().time
-                        }
-                        Single.just(it)
-                    }
-                    .subscribe({
-                        loading.set(false)
-                    }, {
-                        Timber.e(it, resources.getString(R.string.general_error))
-                        loading.set(false)
-                        error.set(true)
-                    }))
-        }
-    }
-
-    private fun checkTime(): Boolean {
-        if (iPreferencesRepository.authenticationTokenTime > 0) {
-            val calendar: Calendar = Calendar.getInstance()
-            calendar.time = Date(iPreferencesRepository.authenticationTokenTime)
-            calendar.add(Calendar.MINUTE, +1000)
-            val dateAfter: Date = calendar.time
-            return Date().after(dateAfter)
-        }
-        return false
-    }
-
     fun updateTimeLabel() {
-        if (iPreferencesRepository.gpuUpdateTime > 0) {
+        if (iRepository.getGpuUpdateTime() > 0) {
             gpuUpdateTime.set(resources.getString(R.string.activity_list_update,
-                    Utils.formatCustomDate(Date(iPreferencesRepository.gpuUpdateTime))))
+                    Utils.formatCustomDate(Date(iRepository.getGpuUpdateTime()))))
         }
-        if (iPreferencesRepository.asicUpdateTime > 0) {
+        if (iRepository.getAsicUpdateTime() > 0) {
             asicUpdateTime.set(resources.getString(R.string.activity_list_update,
-                    Utils.formatCustomDate(Date(iPreferencesRepository.asicUpdateTime))))
+                    Utils.formatCustomDate(Date(iRepository.getAsicUpdateTime()))))
         }
-        if (iPreferencesRepository.altcoinUpdateTime > 0) {
+        if (iRepository.getAltcoinUpdateTime() > 0) {
             altcoinUpdateTime.set(resources.getString(R.string.activity_list_update,
-                    Utils.formatCustomDate(Date(iPreferencesRepository.altcoinUpdateTime))))
+                    Utils.formatCustomDate(Date(iRepository.getAltcoinUpdateTime()))))
         }
-        if (iPreferencesRepository.cryptocurrencyUpdateTime > 0) {
+        if (iRepository.getCryptocurrencyUpdateTime() > 0) {
             cryptocurrencyUpdateTime.set(resources.getString(R.string.activity_list_update,
-                    Utils.formatCustomDate(Date(iPreferencesRepository.cryptocurrencyUpdateTime))))
+                    Utils.formatCustomDate(Date(iRepository.getCryptocurrencyUpdateTime()))))
         }
     }
 
@@ -103,34 +62,27 @@ class MainActivityViewModel
     }
 
     fun clickGpuMining() {
-        val intent = Intent(context, CoinListActivity::class.java)
-        intent.putExtra("action.type", Action.GPU.name)
-        startActivity(intent)
+        startActivity(Intent(context, CoinListActivity::class.java), Action.GPU)
     }
 
     fun clickAsicMining() {
-        val intent = Intent(context, CoinListActivity::class.java)
-        intent.putExtra("action.type", Action.ASIC.name)
-        startActivity(intent)
+        startActivity(Intent(context, CoinListActivity::class.java), Action.ASIC)
     }
 
     fun clickAltCoin() {
-        val intent = Intent(context, CoinListActivity::class.java)
-        intent.putExtra("action.type", Action.WARZ.name)
-        startActivity(intent)
+        startActivity(Intent(context, CoinListActivity::class.java), Action.WARZ)
     }
 
     fun clickCryptoCurrency() {
-        val intent = Intent(context, CoinListActivity::class.java)
-        intent.putExtra("action.type", Action.CRYPTOCURRENCY)
-        startActivity(intent)
+        startActivity(Intent(context, CoinListActivity::class.java), Action.CRYPTOCURRENCY)
     }
 
     fun clickProfitability() {
         startActivity(Intent(context, ProfitabilityActivity::class.java))
     }
 
-    private fun startActivity(intent: Intent) {
+    private fun startActivity(intent: Intent, action: Action? = null) {
+        action ?: intent.putExtra("action.type", action!!.name)
         activityNavigator.startActivity(intent)
     }
 }
