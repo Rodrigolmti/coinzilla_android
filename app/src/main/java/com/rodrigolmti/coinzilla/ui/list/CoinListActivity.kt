@@ -34,6 +34,17 @@ class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel
         setupRecycler()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_list_home, menu)
+        if (action == Action.CRYPTOCURRENCY) {
+            menu!!.findItem(R.id.action_search).isVisible = false
+            menu.findItem(R.id.action_favorites).isVisible = true
+        }
+        val myActionMenuItem = menu!!.findItem(R.id.action_search)
+        setupSearchView(myActionMenuItem)
+        return true
+    }
+
     private fun setupRecycler() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this@CoinListActivity)
         binding.recyclerView.hasFixedSize()
@@ -52,35 +63,27 @@ class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel
         })
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_list_home, menu)
-        if (action == Action.CRYPTOCURRENCY) {
-            menu!!.findItem(R.id.action_search).isVisible = false
-            menu.findItem(R.id.action_favorites).isVisible = true
-        }
-        val myActionMenuItem = menu!!.findItem(R.id.action_search)
+    private fun setupSearchView(myActionMenuItem: MenuItem) {
         val searchView = myActionMenuItem.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-//                if (query.isEmpty()) {
-//                    searchAllCoins()
-//                    return false
-//                }
-//                searchCoinByFilter(query)
+    //                if (query.isEmpty()) {
+    //                    searchAllCoins()
+    //                    return false
+    //                }
+    //                searchCoinByFilter(query)
                 return false
             }
 
             override fun onQueryTextChange(query: String): Boolean {
-//                if (query.isEmpty()) {
-//                    searchAllCoins()
-//                    return false
-//                }
-//                searchCoinByFilter(query)
+    //                if (query.isEmpty()) {
+    //                    searchAllCoins()
+    //                    return false
+    //                }
+    //                searchCoinByFilter(query)
                 return true
             }
         })
-
-        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
