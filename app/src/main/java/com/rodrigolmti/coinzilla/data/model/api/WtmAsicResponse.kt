@@ -1,11 +1,11 @@
-package com.rodrigolmti.coinzilla.coinzilla.model.entity.coin
+package com.rodrigolmti.coinzilla.data.model.api
 
 import com.google.gson.annotations.SerializedName
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import java.util.Date
 
-open class WhatToMineAsic constructor (
+open class WtmAsicResponse constructor (
         @PrimaryKey
         open var id: Int = 0,
         open var tag: String = "",
@@ -20,4 +20,4 @@ open class WhatToMineAsic constructor (
         @SerializedName("market_cap")
         open var marketCap: String = "",
         open var updateDate: Date = Date()
-) : RealmObject()
+)

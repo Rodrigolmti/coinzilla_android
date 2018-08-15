@@ -38,17 +38,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="?android:attr/actionBarSize"
+                android:visibility="@{!viewModel.loading &amp;&amp; !viewModel.error}"
                 tools:listitem="@layout/row_crypto_currency"/>
 
             <include
                 android:id="@+id/progressBar"
                 layout="@layout/progress_bar"
-                android:visibility="gone"/>
+                android:visibility="@{viewModel.loading}"
+                tools:visibility="gone"/>
 
             <include
                 android:id="@+id/contentError"
                 layout="@layout/layout_error"
-                android:visibility="gone"/>
+                android:visibility="@{viewModel.error}"
+                tools:visibility="gone"/>
 
         </RelativeLayout>
 

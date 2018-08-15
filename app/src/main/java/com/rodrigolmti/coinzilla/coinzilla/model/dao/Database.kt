@@ -1,9 +1,9 @@
 package com.rodrigolmti.coinzilla.coinzilla.model.dao
 
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.CryptoCurrency
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.WhatToMineAsic
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.WhatToMineGpu
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.WhatToMineWarz
+import com.rodrigolmti.coinzilla.data.model.api.WtmAsicResponse
+import com.rodrigolmti.coinzilla.data.model.api.WtmGpuResponse
+import com.rodrigolmti.coinzilla.data.model.api.WtmWarzResponse
 import io.realm.Case
 import io.realm.Realm
 
@@ -11,123 +11,123 @@ class Database {
 
     val realm: Realm = Realm.getDefaultInstance()
 
-    fun insertWhatToMineGpu(data: ArrayList<WhatToMineGpu>) {
+    fun insertWhatToMineGpu(data: ArrayList<WtmGpuResponse>) {
         realm.executeTransaction {
-            realm.delete(WhatToMineGpu::class.java)
+//            realm.delete(WtmGpuResponse::class.java)
         }
 
         for ((id, obj) in data.withIndex()) {
             realm.executeTransaction {
-                val whatToMine = realm.createObject(WhatToMineGpu::class.java, id)
-                whatToMine.tag = obj.tag
-                whatToMine.algorithm = obj.algorithm
-                whatToMine.difficulty = obj.difficulty
-                whatToMine.netHash = obj.netHash
-                whatToMine.estReward = obj.estReward
-                whatToMine.estReward24 = obj.estReward24
-                whatToMine.marketCap = obj.marketCap
-                whatToMine.updateDate = obj.updateDate
+//                val whatToMine = realm.createObject(WtmGpuResponse::class.java, id)
+//                whatToMine.tag = obj.tag
+//                whatToMine.algorithm = obj.algorithm
+//                whatToMine.difficulty = obj.difficulty
+//                whatToMine.netHash = obj.netHash
+//                whatToMine.estReward = obj.estReward
+//                whatToMine.estReward24 = obj.estReward24
+//                whatToMine.marketCap = obj.marketCap
+//                whatToMine.updateDate = obj.updateDate
             }
         }
     }
 
-    fun getAllWhatToMineGpu(): List<WhatToMineGpu> {
-        var data: List<WhatToMineGpu> = listOf()
+    fun getAllWhatToMineGpu(): List<WtmGpuResponse> {
+        var data: List<WtmGpuResponse> = listOf()
         realm.executeTransaction {
-            data = realm.where(WhatToMineGpu::class.java).findAll()
+//            data = realm.where(WtmGpuResponse::class.java).findAll()
         }
         return data
     }
 
-    fun getWhatToMineGpuByFilter(filter: String): List<WhatToMineGpu> {
-        var data: List<WhatToMineGpu> = listOf()
+    fun getWhatToMineGpuByFilter(filter: String): List<WtmGpuResponse> {
+        var data: List<WtmGpuResponse> = listOf()
         realm.executeTransaction {
-            data = realm.where(WhatToMineGpu::class.java)
-                    .contains("tag", filter, Case.INSENSITIVE)
-                    .or()
-                    .contains("algorithm", filter, Case.INSENSITIVE)
-                    .findAll()
+//            data = realm.where(WtmGpuResponse::class.java)
+//                    .contains("tag", filter, Case.INSENSITIVE)
+//                    .or()
+//                    .contains("algorithm", filter, Case.INSENSITIVE)
+//                    .findAll()
         }
         return data
     }
 
-    fun insertWhatToMineAsic(data: ArrayList<WhatToMineAsic>) {
+    fun insertWhatToMineAsic(data: ArrayList<WtmAsicResponse>) {
         realm.executeTransaction {
-            realm.delete(WhatToMineAsic::class.java)
+//            realm.delete(WtmAsicResponse::class.java)
         }
 
         for ((id, obj) in data.withIndex()) {
             realm.executeTransaction {
-                val whatToMine = realm.createObject(WhatToMineAsic::class.java, id)
-                whatToMine.tag = obj.tag
-                whatToMine.algorithm = obj.algorithm
-                whatToMine.difficulty = obj.difficulty
-                whatToMine.netHash = obj.netHash
-                whatToMine.estReward = obj.estReward
-                whatToMine.estReward24 = obj.estReward24
-                whatToMine.marketCap = obj.marketCap
-                whatToMine.updateDate = obj.updateDate
+//                val whatToMine = realm.createObject(WtmAsicResponse::class.java, id)
+//                whatToMine.tag = obj.tag
+//                whatToMine.algorithm = obj.algorithm
+//                whatToMine.difficulty = obj.difficulty
+//                whatToMine.netHash = obj.netHash
+//                whatToMine.estReward = obj.estReward
+//                whatToMine.estReward24 = obj.estReward24
+//                whatToMine.marketCap = obj.marketCap
+//                whatToMine.updateDate = obj.updateDate
             }
         }
     }
 
-    fun getAllWhatToMineAsic(): List<WhatToMineAsic> {
-        var data: List<WhatToMineAsic> = listOf()
+    fun getAllWhatToMineAsic(): List<WtmAsicResponse> {
+        var data: List<WtmAsicResponse> = listOf()
         realm.executeTransaction {
-            data = realm.where(WhatToMineAsic::class.java).findAll()
+//            data = realm.where(WtmAsicResponse::class.java).findAll()
         }
         return data
     }
 
-    fun getWhatToMineAsicByFilter(filter: String): List<WhatToMineAsic> {
-        var data: List<WhatToMineAsic> = listOf()
+    fun getWhatToMineAsicByFilter(filter: String): List<WtmAsicResponse> {
+        var data: List<WtmAsicResponse> = listOf()
         realm.executeTransaction {
-            data = realm.where(WhatToMineAsic::class.java)
-                    .contains("tag", filter, Case.INSENSITIVE)
-                    .or()
-                    .contains("algorithm", filter, Case.INSENSITIVE)
-                    .findAll()
+//            data = realm.where(WtmAsicResponse::class.java)
+//                    .contains("tag", filter, Case.INSENSITIVE)
+//                    .or()
+//                    .contains("algorithm", filter, Case.INSENSITIVE)
+//                    .findAll()
         }
         return data
     }
 
-    fun insertWhatToMineWarz(data: List<WhatToMineWarz>) {
+    fun insertWhatToMineWarz(data: List<WtmWarzResponse>) {
         realm.executeTransaction {
-            realm.delete(WhatToMineWarz::class.java)
+//            realm.delete(WtmWarzResponse::class.java)
         }
 
         for (obj in data) {
             realm.executeTransaction {
-                val whatToMine = realm.createObject(WhatToMineWarz::class.java, obj.id)
-                whatToMine.tag = obj.tag
-                whatToMine.algorithm = obj.algorithm
-                whatToMine.difficulty = obj.difficulty
-                whatToMine.netHash = obj.netHash
-                whatToMine.estReward = obj.estReward
-                whatToMine.estReward24 = obj.estReward24
-                whatToMine.marketCap = obj.marketCap
-                whatToMine.volume = obj.volume
-                whatToMine.updateDate = obj.updateDate
+//                val whatToMine = realm.createObject(WtmWarzResponse::class.java, obj.id)
+//                whatToMine.tag = obj.tag
+//                whatToMine.algorithm = obj.algorithm
+//                whatToMine.difficulty = obj.difficulty
+//                whatToMine.netHash = obj.netHash
+//                whatToMine.estReward = obj.estReward
+//                whatToMine.estReward24 = obj.estReward24
+//                whatToMine.marketCap = obj.marketCap
+//                whatToMine.volume = obj.volume
+//                whatToMine.updateDate = obj.updateDate
             }
         }
     }
 
-    fun getAllWhatToMineWarz(): List<WhatToMineWarz> {
-        var data: List<WhatToMineWarz> = listOf()
+    fun getAllWhatToMineWarz(): List<WtmWarzResponse> {
+        var data: List<WtmWarzResponse> = listOf()
         realm.executeTransaction {
-            data = realm.where(WhatToMineWarz::class.java).findAll()
+//            data = realm.where(WtmWarzResponse::class.java).findAll()
         }
         return data
     }
 
-    fun getWhatToMineWarzByFilter(filter: String): List<WhatToMineWarz> {
-        var data: List<WhatToMineWarz> = listOf()
+    fun getWhatToMineWarzByFilter(filter: String): List<WtmWarzResponse> {
+        var data: List<WtmWarzResponse> = listOf()
         realm.executeTransaction {
-            data = realm.where(WhatToMineWarz::class.java)
-                    .contains("tag", filter, Case.INSENSITIVE)
-                    .or()
-                    .contains("algorithm", filter, Case.INSENSITIVE)
-                    .findAll()
+//            data = realm.where(WtmWarzResponse::class.java)
+//                    .contains("tag", filter, Case.INSENSITIVE)
+//                    .or()
+//                    .contains("algorithm", filter, Case.INSENSITIVE)
+//                    .findAll()
         }
         return data
     }

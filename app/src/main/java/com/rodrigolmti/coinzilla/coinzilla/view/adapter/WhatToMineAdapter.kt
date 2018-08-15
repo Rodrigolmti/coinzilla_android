@@ -6,29 +6,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rodrigolmti.coinzilla.R
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.WhatToMineAsic
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.WhatToMineGpu
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.WhatToMineWarz
+import com.rodrigolmti.coinzilla.data.model.api.WtmAsicResponse
+import com.rodrigolmti.coinzilla.data.model.api.WtmGpuResponse
+import com.rodrigolmti.coinzilla.data.model.api.WtmWarzResponse
 import kotlinx.android.synthetic.main.row_what_to_mine.view.*
 
-open class WhatToMineAdapter(private val context: Context, var list: MutableList<Any>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+open class WhatToMineAdapter(private val context: Context, var list: List<Any>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return Item(LayoutInflater.from(context).inflate(R.layout.row_what_to_mine, parent, false))
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as Item).bindData(context, list[position])
+        (holder as Item).bindData(context, list!![position])
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return list!!.size
     }
 
     class Item(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bindData(context: Context, item: Any) {
             when (item) {
-                is WhatToMineAsic -> {
+                is WtmAsicResponse -> {
 
                     var netHash = 0
                     try {
@@ -54,7 +54,7 @@ open class WhatToMineAdapter(private val context: Context, var list: MutableList
                     itemView.textViewNetHash.text = netHash.toString()
 
                 }
-                is WhatToMineGpu -> {
+                is WtmGpuResponse -> {
 
                     var netHash = 0
                     try {
@@ -79,7 +79,7 @@ open class WhatToMineAdapter(private val context: Context, var list: MutableList
                     itemView.textViewMarket.text = item.marketCap
                     itemView.textViewNetHash.text = netHash.toString()
                 }
-                is WhatToMineWarz -> {
+                is WtmWarzResponse -> {
 
                     try {
                         val tag: String = item.tag.split("(")[1].replace(")", "").trim().toLowerCase()

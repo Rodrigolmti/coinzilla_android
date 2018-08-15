@@ -17,17 +17,16 @@ import com.rodrigolmti.coinzilla.ui.base.navigation.IActivityNavigator
 import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
 import com.rodrigolmti.coinzilla.ui.base.viewModel.BaseViewModel
 import com.rodrigolmti.coinzilla.ui.list.CoinListActivity
-import io.reactivex.android.schedulers.AndroidSchedulers
-import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
 @PerActivity
 class MainActivityViewModel
-@Inject constructor(@AppContext val context: Context,
-                    private val resources: Resources,
-                    private val iRepository: IRepository,
-                    private val activityNavigator: IActivityNavigator)
+@Inject constructor(
+        @AppContext val context: Context,
+        private val resources: Resources,
+        private val iRepository: IRepository,
+        private val activityNavigator: IActivityNavigator)
     : BaseViewModel<MvvmView>(), MainMvvm {
 
     val gpuUpdateTime: ObservableField<String> = ObservableField("")
@@ -82,7 +81,9 @@ class MainActivityViewModel
     }
 
     private fun startActivity(intent: Intent, action: Action? = null) {
-        action ?: intent.putExtra("action.type", action!!.name)
+        if (action != null) {
+            intent.putExtra("action.type", action.name)
+        }
         activityNavigator.startActivity(intent)
     }
 }

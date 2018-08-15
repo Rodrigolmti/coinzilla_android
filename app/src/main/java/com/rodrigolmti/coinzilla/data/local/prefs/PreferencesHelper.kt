@@ -14,6 +14,8 @@ constructor(@AppContext context: Context) : IPreferencesHelper {
     companion object {
 
         private const val REALM_ENCRYPTION_KEY = "realm_encryption_key"
+        private const val AUTHENTICATION_TOKEN = "authentication_token"
+        private const val AUTHENTICATION_TOKEN_TIME = "authentication_token_time"
         private const val GPU_UPDATE_TIME = "gpu_update_time"
         private const val ASIC_UPDATE_TIME = "asic_update_time"
         private const val ALTCOINS_UPDATE_TIME = "altcoins_update_time"
@@ -28,6 +30,22 @@ constructor(@AppContext context: Context) : IPreferencesHelper {
 
     override fun setRealmEncryptionKey(bytes: ByteArray?) {
         prefs.edit().putString(REALM_ENCRYPTION_KEY, android.util.Base64.encodeToString(bytes, android.util.Base64.DEFAULT)).apply()
+    }
+
+    override fun getAuthenticationToken(): String {
+        return prefs.getString(AUTHENTICATION_TOKEN, "")
+    }
+
+    override fun setAuthenticationToken(token: String) {
+        prefs.edit().putString(AUTHENTICATION_TOKEN, token).apply()
+    }
+
+    override fun getAuthenticationTokenTime(): Long {
+        return prefs.getLong(AUTHENTICATION_TOKEN_TIME, 0L)
+    }
+
+    override fun setAuthenticationTokenTime(time: Long) {
+        prefs.edit().putLong(AUTHENTICATION_TOKEN_TIME, time).apply()
     }
 
     override fun getGpuUpdateTime(): Long {

@@ -6,6 +6,14 @@ interface IPreferencesHelper {
 
     fun setRealmEncryptionKey(bytes: ByteArray?)
 
+    fun getAuthenticationToken(): String
+
+    fun setAuthenticationToken(token: String)
+
+    fun getAuthenticationTokenTime(): Long
+
+    fun setAuthenticationTokenTime(time: Long)
+
     fun getGpuUpdateTime(): Long
 
     fun setGpuUpdateTime(time: Long)
@@ -14,11 +22,11 @@ interface IPreferencesHelper {
 
     fun setAsicUpdateTime(time: Long)
 
-    fun getAltcoinUpdateTime(): Long
+    fun getAltcoinUpdateTime() : Long
 
-    fun setAltcoinUpdateTime(time: Long)
+    fun setAltcoinUpdateTime(time : Long)
 
-    fun getCryptocurrencyUpdateTime(): Long
+    fun getCryptocurrencyUpdateTime() : Long
 
     fun setCryptocurrencyUpdateTime(time: Long)
 }

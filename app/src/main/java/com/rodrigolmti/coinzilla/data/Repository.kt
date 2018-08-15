@@ -2,8 +2,12 @@ package com.rodrigolmti.coinzilla.data
 
 import com.rodrigolmti.coinzilla.data.local.db.IDatabaseHelper
 import com.rodrigolmti.coinzilla.data.local.prefs.IPreferencesHelper
+import com.rodrigolmti.coinzilla.data.model.api.WtmAsicResponse
+import com.rodrigolmti.coinzilla.data.model.api.WtmGpuResponse
+import com.rodrigolmti.coinzilla.data.model.api.WtmWarzResponse
 import com.rodrigolmti.coinzilla.data.remote.IApiHelper
 import com.rodrigolmti.coinzilla.di.scopes.PerApplication
+import io.reactivex.Single
 import javax.inject.Inject
 
 @PerApplication
@@ -12,6 +16,26 @@ class Repository
         private val iApiHelper: IApiHelper,
         private val iDatabaseHelper: IDatabaseHelper,
         private val iPreferencesHelper: IPreferencesHelper) : IRepository {
+
+    override fun getToken() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getAuthenticationToken(): String {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun setAuthenticationToken(token: String) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getAuthenticationTokenTime(): Long {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun setAuthenticationTokenTime(time: Long) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     override fun getRealmEncryptionKey(): ByteArray? {
         return iPreferencesHelper.getRealmEncryptionKey()
@@ -53,16 +77,16 @@ class Repository
         iPreferencesHelper.setCryptocurrencyUpdateTime(time)
     }
 
-    override fun getWhatToMineGpu() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getWhatToMineGpu(): Single<List<WtmGpuResponse>> {
+        return iApiHelper.getWhatToMineGpu()
     }
 
-    override fun getWhatToMineAsic() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getWhatToMineAsic(): Single<List<WtmAsicResponse>> {
+        return iApiHelper.getWhatToMineAsic()
     }
 
-    override fun getWhatToMineWarz() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getWhatToMineWarz(): Single<List<WtmWarzResponse>> {
+        return iApiHelper.getWhatToMineWarz()
     }
 
     override fun getCryptoCurrency() {

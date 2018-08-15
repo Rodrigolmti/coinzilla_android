@@ -1,9 +1,9 @@
 package com.rodrigolmti.coinzilla.coinzilla.model.dao
 
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.CryptoCurrency
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.WhatToMineAsic
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.WhatToMineGpu
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.WhatToMineWarz
+import com.rodrigolmti.coinzilla.data.model.api.WtmAsicResponse
+import com.rodrigolmti.coinzilla.data.model.api.WtmGpuResponse
+import com.rodrigolmti.coinzilla.data.model.api.WtmWarzResponse
 
 /**
 * Created by rodrigolmti on 12/02/18.
@@ -13,15 +13,15 @@ class CoinDAO {
 
     private val database: Database = Database()
 
-    fun insertWhatToMineGpu(list: ArrayList<WhatToMineGpu>) {
+    fun insertWhatToMineGpu(list: ArrayList<WtmGpuResponse>) {
         database.insertWhatToMineGpu(list)
     }
 
-    fun insertWhatToMineAsic(list: ArrayList<WhatToMineAsic>) {
+    fun insertWhatToMineAsic(list: ArrayList<WtmAsicResponse>) {
         database.insertWhatToMineAsic(list)
     }
 
-    fun insertWhatToMineWarz(list: List<WhatToMineWarz>) {
+    fun insertWhatToMineWarz(list: List<WtmWarzResponse>) {
         database.insertWhatToMineWarz(list)
     }
 
@@ -37,27 +37,27 @@ class CoinDAO {
         return database.getAllFavorites()
     }
 
-    fun getAllWhatToMineGpu(): List<WhatToMineGpu> {
+    fun getAllWhatToMineGpu(): List<WtmGpuResponse> {
         return database.getAllWhatToMineGpu()
     }
 
-    fun getWhatToMineGpuByFilter(filter: String): List<WhatToMineGpu> {
+    fun getWhatToMineGpuByFilter(filter: String): List<WtmGpuResponse> {
         return database.getWhatToMineGpuByFilter(filter)
     }
 
-    fun getAllWhatToMineAsic(): List<WhatToMineAsic> {
+    fun getAllWhatToMineAsic(): List<WtmAsicResponse> {
         return database.getAllWhatToMineAsic()
     }
 
-    fun getWhatToMineAsicByFilter(filter: String): List<WhatToMineAsic> {
+    fun getWhatToMineAsicByFilter(filter: String): List<WtmAsicResponse> {
         return database.getWhatToMineAsicByFilter(filter)
     }
 
-    fun getAllWhatToMineWarz(): List<WhatToMineWarz> {
+    fun getAllWhatToMineWarz(): List<WtmWarzResponse> {
         return database.getAllWhatToMineWarz()
     }
 
-    fun getWhatToMineWarzByFilter(filter: String): List<WhatToMineWarz> {
+    fun getWhatToMineWarzByFilter(filter: String): List<WtmWarzResponse> {
         return database.getWhatToMineWarzByFilter(filter)
     }
 
