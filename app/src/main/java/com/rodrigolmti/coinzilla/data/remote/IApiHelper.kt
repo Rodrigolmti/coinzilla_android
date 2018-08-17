@@ -13,5 +13,5 @@ interface IApiHelper {
 
     fun getWhatToMineAltcoins(): Single<List<WtmAltcoinResponse>>
 
-    fun getCryptoCurrency()
+    fun getCryptoCurrency(): Single<List<CryptoCurrencyResponse>>
 }

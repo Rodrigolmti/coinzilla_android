@@ -8,16 +8,19 @@ import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
 import com.rodrigolmti.coinzilla.R
-import com.rodrigolmti.coinzilla.coinzilla.model.callback.BaseCallBack
+import com.rodrigolmti.coinzilla.coinzilla.view.activity.CoinDetailActivity
 import com.rodrigolmti.coinzilla.coinzilla.view.activity.FavoriteActivity
+import com.rodrigolmti.coinzilla.coinzilla.view.adapter.CryptoCurrencyAdapter
 import com.rodrigolmti.coinzilla.coinzilla.view.adapter.WhatToMineAdapter
+import com.rodrigolmti.coinzilla.data.model.api.CryptoCurrencyResponse
 import com.rodrigolmti.coinzilla.databinding.ActivityCoinListBinding
 import com.rodrigolmti.coinzilla.library.util.Action
 import com.rodrigolmti.coinzilla.ui.base.BaseActivity
 
 class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel>() {
 
-    private var adapterWhatToMine: WhatToMineAdapter? = null
+    private lateinit var cryptoCurrencyAdapter: CryptoCurrencyAdapter
+    private lateinit var whatToMineAdapter: WhatToMineAdapter
     private lateinit var action: Action
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,41 +49,63 @@ class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel
     }
 
     private fun setupRecycler() {
-        binding.recyclerView.layoutManager = LinearLayoutManager(this@CoinListActivity)
-        binding.recyclerView.hasFixedSize()
+
+        when (action) {
+            Action.GPU, Action.ASIC, Action.ALTCOIN -> setupLinearListAdapter()
+            else -> setupGridListAdapter()
+        }
 
         viewModel.mutableGpuLiveData.observe(this, Observer {
-            adapterWhatToMine = WhatToMineAdapter(this@CoinListActivity, it)
-            binding.recyclerView.adapter = adapterWhatToMine
+            whatToMineAdapter = WhatToMineAdapter(this@CoinListActivity, it)
+            binding.recyclerView.adapter = whatToMineAdapter
         })
         viewModel.mutableAsicLiveData.observe(this, Observer {
-            adapterWhatToMine = WhatToMineAdapter(this@CoinListActivity, it)
-            binding.recyclerView.adapter = adapterWhatToMine
+            whatToMineAdapter = WhatToMineAdapter(this@CoinListActivity, it)
+            binding.recyclerView.adapter = whatToMineAdapter
         })
         viewModel.mutableAltcoinLiveData.observe(this, Observer {
-            adapterWhatToMine = WhatToMineAdapter(this@CoinListActivity, it)
-            binding.recyclerView.adapter = adapterWhatToMine
+            whatToMineAdapter = WhatToMineAdapter(this@CoinListActivity, it)
+            binding.recyclerView.adapter = whatToMineAdapter
         })
+        viewModel.mutableCryptoCurrencyLiveData.observe(this, Observer {
+            cryptoCurrencyAdapter = CryptoCurrencyAdapter(this@CoinListActivity, it, object : CryptoCurrencyAdapter.OnItemClickListener {
+                override fun itemOnClick(item: CryptoCurrencyResponse) {
+                    val intent = Intent(this@CoinListActivity, CoinDetailActivity::class.java)
+//                    intent.putExtra("action.coin.detail", item)
+                    activityNavigator.startActivity(intent)
+                }
+            })
+            binding.recyclerView.adapter = cryptoCurrencyAdapter
+        })
+    }
+
+    private fun setupLinearListAdapter() {
+        binding.recyclerView.layoutManager = LinearLayoutManager(this@CoinListActivity)
+        binding.recyclerView.hasFixedSize()
+    }
+
+    private fun setupGridListAdapter() {
+        binding.recyclerView.layoutManager = LinearLayoutManager(this@CoinListActivity)
     }
 
     private fun setupSearchView(myActionMenuItem: MenuItem) {
         val searchView = myActionMenuItem.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-    //                if (query.isEmpty()) {
-    //                    searchAllCoins()
-    //                    return false
-    //                }
-    //                searchCoinByFilter(query)
+                //                if (query.isEmpty()) {
+                //                    searchAllCoins()
+                //                    return false
+                //                }
+                //                searchCoinByFilter(query)
                 return false
             }
 
             override fun onQueryTextChange(query: String): Boolean {
-    //                if (query.isEmpty()) {
-    //                    searchAllCoins()
-    //                    return false
-    //                }
-    //                searchCoinByFilter(query)
+                //                if (query.isEmpty()) {
+                //                    searchAllCoins()
+                //                    return false
+                //                }
+                //                searchCoinByFilter(query)
                 return true
             }
         })
@@ -101,28 +126,5 @@ class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel
         }
 
         return true
-    }
-
-    private val callBack: BaseCallBack = object : BaseCallBack() {
-        override fun onSuccess() {
-
-//                Action.CRYPTOCURRENCY -> {
-//                    recyclerView.layoutManager = GridLayoutManager(this@CoinListActivity, 3)
-//                    val resultList = coinDao.getAllCryptoCurrency()
-//                    val adapterCryptoCurrency = CryptoCurrencyAdapter(this@CoinListActivity, ArrayList(resultList), object : CryptoCurrencyAdapter.OnItemClickListener {
-//                        override fun itemOnClick(item: CryptoCurrency) {
-//                            val intent = Intent(this@CoinListActivity, CoinDetailActivity::class.java)
-//                            intent.putExtra("action.coin.detail", item)
-//                            startActivity(intent)
-//                        }
-//                    })
-//                    recyclerView.adapter = adapterCryptoCurrency
-//                }
-//                else -> {
-//                    contentError.visible()
-//                    recyclerView.gone()
-//                }
-//            }
-        }
     }
 }

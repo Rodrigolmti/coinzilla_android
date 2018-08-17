@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rodrigolmti.coinzilla.R
+import com.rodrigolmti.coinzilla.data.model.api.WtmAltcoinResponse
 import com.rodrigolmti.coinzilla.data.model.api.WtmAsicResponse
 import com.rodrigolmti.coinzilla.data.model.api.WtmGpuResponse
-import com.rodrigolmti.coinzilla.data.model.api.WtmAltcoinResponse
 import kotlinx.android.synthetic.main.row_what_to_mine.view.*
 
 open class WhatToMineAdapter(private val context: Context, var list: List<Any>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

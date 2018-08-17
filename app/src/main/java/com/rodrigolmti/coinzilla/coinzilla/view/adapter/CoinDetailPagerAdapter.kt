@@ -5,15 +5,15 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import com.rodrigolmti.coinzilla.R.string
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.CryptoCurrency
 import com.rodrigolmti.coinzilla.coinzilla.view.fragment.CoinDetailBRLFragment
 import com.rodrigolmti.coinzilla.coinzilla.view.fragment.CoinDetailUSDFragment
+import com.rodrigolmti.coinzilla.data.model.api.CryptoCurrencyResponse
 
 /**
 * Created by rodrigolmti on 18/11/17.
 */
 
-class CoinDetailPagerAdapter constructor(private val context: Context, fragmentManager: FragmentManager, cryptoCurrency: CryptoCurrency) : FragmentStatePagerAdapter(fragmentManager) {
+class CoinDetailPagerAdapter constructor(private val context: Context, fragmentManager: FragmentManager, cryptoCurrency: CryptoCurrencyResponse) : FragmentStatePagerAdapter(fragmentManager) {
 
     private val coin = cryptoCurrency
 

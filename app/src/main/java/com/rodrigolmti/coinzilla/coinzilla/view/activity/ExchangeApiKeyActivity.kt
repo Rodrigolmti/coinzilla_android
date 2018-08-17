@@ -5,15 +5,9 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.view.View
 import com.rodrigolmti.coinzilla.R
-import com.rodrigolmti.coinzilla.coinzilla.model.dao.Preferences
-import com.rodrigolmti.coinzilla.CZApplication
-import kotlinx.android.synthetic.main.activity_exchange_api_key.buttonContact
-import kotlinx.android.synthetic.main.activity_exchange_api_key.editTextApiKey
-import kotlinx.android.synthetic.main.activity_exchange_api_key.editTextApiSecret
+import kotlinx.android.synthetic.main.activity_exchange_api_key.*
 
-class ExchangeApiKeyActivity: AppCompatActivity(), View.OnClickListener {
-
-    private val czPreferences: Preferences? = CZApplication.preferences
+class ExchangeApiKeyActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,8 +39,8 @@ class ExchangeApiKeyActivity: AppCompatActivity(), View.OnClickListener {
         }
 
         if (!error) {
-            czPreferences!!.poloniexKey = editTextApiKey.text.toString()
-            czPreferences.poloniexSecret = editTextApiSecret.text.toString()
+//            czPreferences!!.poloniexKey = editTextApiKey.text.toString()
+//            czPreferences.poloniexSecret = editTextApiSecret.text.toString()
             finish()
         }
     }

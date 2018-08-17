@@ -6,7 +6,7 @@ import android.view.View
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.R.string
 import com.rodrigolmti.coinzilla.library.controller.activity.BaseActivity
-import kotlinx.android.synthetic.main.activity_exchange_list.viewPoloniex
+import kotlinx.android.synthetic.main.activity_exchange_list.*
 
 class ExchangeListActivity : BaseActivity(), View.OnClickListener {
 

@@ -2,23 +2,17 @@ package com.rodrigolmti.coinzilla.coinzilla.view.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.TabLayout
 import android.support.v4.content.ContextCompat
 import android.view.Menu
 import android.view.MenuItem
 import com.rodrigolmti.coinzilla.R
-import com.rodrigolmti.coinzilla.coinzilla.model.dao.CoinDAO
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.CryptoCurrency
-import com.rodrigolmti.coinzilla.coinzilla.view.adapter.CoinDetailPagerAdapter
+import com.rodrigolmti.coinzilla.data.model.api.CryptoCurrencyResponse
 import com.rodrigolmti.coinzilla.library.controller.activity.BaseActivity
-import kotlinx.android.synthetic.main.activity_coin_detail.adView
-import kotlinx.android.synthetic.main.activity_coin_detail.tabLayout
-import kotlinx.android.synthetic.main.activity_coin_detail.viewPager
+import kotlinx.android.synthetic.main.activity_coin_detail.*
 
 class CoinDetailActivity : BaseActivity() {
 
-    private lateinit var coin: CryptoCurrency
-    private val coinDao: CoinDAO = CoinDAO()
+    private lateinit var coin: CryptoCurrencyResponse
     private lateinit var menu: Menu
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,14 +23,14 @@ class CoinDetailActivity : BaseActivity() {
         removeElevation()
         initAds(adView)
 
-        if (intent.hasExtra("action.coin.detail")) {
-            coin = intent.getParcelableExtra("action.coin.detail")
-            tabLayout.tabGravity = TabLayout.GRAVITY_FILL
-            val adapter = CoinDetailPagerAdapter(this, supportFragmentManager, coin)
-            viewPager.adapter = adapter
-            tabLayout.setupWithViewPager(viewPager)
-            title = coin.name
-        }
+//        if (intent.hasExtra("action.coin.detail")) {
+//            coin = intent.getParcelableExtra("action.coin.detail")
+//            tabLayout.tabGravity = TabLayout.GRAVITY_FILL
+//            val adapter = CoinDetailPagerAdapter(this, supportFragmentManager, coin)
+//            viewPager.adapter = adapter
+//            tabLayout.setupWithViewPager(viewPager)
+//            title = coin.name
+//        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -52,7 +46,7 @@ class CoinDetailActivity : BaseActivity() {
             R.id.action_share -> shareCoin()
             R.id.action_favorite -> {
                 coin.favorite = !coin.favorite
-                coinDao.updateCryptoCurrencyFavorite(coin)
+//                coinDao.updateCryptoCurrencyFavorite(coin)
                 handleFavoriteIcon()
             }
             else -> finish()

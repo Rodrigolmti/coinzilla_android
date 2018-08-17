@@ -1,12 +1,9 @@
 package com.rodrigolmti.coinzilla.data.model.api
 
 import com.google.gson.annotations.SerializedName
-import io.realm.RealmObject
-import io.realm.annotations.PrimaryKey
-import java.util.Date
+import java.util.*
 
-open class WtmAsicResponse constructor (
-        @PrimaryKey
+open class WtmAsicResponse constructor(
         open var id: Int = 0,
         open var tag: String = "",
         open var algorithm: String = "",

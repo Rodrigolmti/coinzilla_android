@@ -6,16 +6,9 @@ import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.view.View
 import com.rodrigolmti.coinzilla.R
-import kotlinx.android.synthetic.main.activity_coin_list.content
-import java.math.BigInteger
-import java.security.InvalidKeyException
-import java.security.NoSuchAlgorithmException
 import java.text.ParseException
 import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
-import javax.crypto.Mac
-import javax.crypto.spec.SecretKeySpec
+import java.util.*
 
 open class Utils {
 

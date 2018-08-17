@@ -1,7 +1,6 @@
 package com.rodrigolmti.coinzilla.ui.main
 
 import android.os.Bundle
-import android.view.View
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.databinding.ActivityMainBinding
 import com.rodrigolmti.coinzilla.ui.base.BaseActivity

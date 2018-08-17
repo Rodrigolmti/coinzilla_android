@@ -15,25 +15,26 @@ import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.di.components.ActivityComponent
 import com.rodrigolmti.coinzilla.di.components.DaggerActivityComponent
 import com.rodrigolmti.coinzilla.di.modules.ActivityModule
+import com.rodrigolmti.coinzilla.ui.base.navigation.IActivityNavigator
 import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
 import com.rodrigolmti.coinzilla.ui.base.viewModel.MvvmViewModel
 import com.rodrigolmti.coinzilla.util.exceptions.RtfmException
 import com.rodrigolmti.coinzilla.util.extensions.attachViewOrThrowRuntimeException
 import com.squareup.leakcanary.RefWatcher
-import io.realm.Realm
 import javax.inject.Inject
 
 abstract class BaseActivity<B : ViewDataBinding, VM : MvvmViewModel<*>> : AppCompatActivity(), MvvmView {
 
     @Inject
-    protected lateinit var realm: Realm
+    protected lateinit var activityNavigator: IActivityNavigator
 
-    protected lateinit var binding: B
     @Inject
     protected lateinit var viewModel: VM
 
     @Inject
     protected lateinit var refWatcher: RefWatcher
+
+    protected lateinit var binding: B
 
     internal val activityComponent: ActivityComponent by lazy {
         DaggerActivityComponent.builder()
@@ -65,7 +66,6 @@ abstract class BaseActivity<B : ViewDataBinding, VM : MvvmViewModel<*>> : AppCom
         viewModel.detachView()
         refWatcher.watch(activityComponent)
         refWatcher.watch(viewModel)
-        realm.close()
     }
 
     protected fun initAds(adView: AdView) {

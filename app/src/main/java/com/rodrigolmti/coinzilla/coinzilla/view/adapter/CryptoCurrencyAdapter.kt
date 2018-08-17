@@ -6,32 +6,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rodrigolmti.coinzilla.R
-import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.CryptoCurrency
-import kotlinx.android.synthetic.main.row_crypto_currency.view.textViewName
-import kotlinx.android.synthetic.main.row_crypto_currency.view.textViewSymbol
+import com.rodrigolmti.coinzilla.data.model.api.CryptoCurrencyResponse
+import kotlinx.android.synthetic.main.row_crypto_currency.view.*
 
-open class CryptoCurrencyAdapter(val context: Context, val list: ArrayList<CryptoCurrency>, val listener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+open class CryptoCurrencyAdapter(val context: Context, val list: List<CryptoCurrencyResponse>?,
+                                 private val listener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return Item(LayoutInflater.from(context).inflate(R.layout.row_crypto_currency, parent, false))
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as Item).bindData(list[position], listener)
+        (holder as Item).bindData(list!![position], listener)
     }
 
-    private val filteredList: ArrayList<CryptoCurrency> = ArrayList()
+    private val filteredList: ArrayList<CryptoCurrencyResponse> = ArrayList()
 
     init {
-        filteredList.addAll(list)
+        filteredList.addAll(list!!)
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return list!!.size
     }
 
     class Item(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bindData(item: CryptoCurrency, listener: OnItemClickListener) {
+        fun bindData(item: CryptoCurrencyResponse, listener: OnItemClickListener) {
             itemView.setOnClickListener { listener.itemOnClick(item) }
             itemView.textViewSymbol.text = item.symbol
             itemView.textViewName.text = item.name
@@ -39,6 +39,6 @@ open class CryptoCurrencyAdapter(val context: Context, val list: ArrayList<Crypt
     }
 
     interface OnItemClickListener {
-        fun itemOnClick(item: CryptoCurrency)
+        fun itemOnClick(item: CryptoCurrencyResponse)
     }
 }

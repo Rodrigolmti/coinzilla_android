@@ -8,7 +8,7 @@ import com.github.mikephil.charting.data.CandleData
 import com.github.mikephil.charting.data.CandleDataSet
 import com.github.mikephil.charting.data.CandleEntry
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.Historic
-import kotlinx.android.synthetic.main.fragment_coin_detail_brl.candleChart
+import kotlinx.android.synthetic.main.fragment_coin_detail_brl.*
 
 /**
  * Created by rodrigolmti on 12/02/18.

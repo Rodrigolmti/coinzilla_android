@@ -1,11 +1,7 @@
 package com.rodrigolmti.coinzilla.data
 
-import com.rodrigolmti.coinzilla.data.local.db.IDatabaseHelper
 import com.rodrigolmti.coinzilla.data.local.prefs.IPreferencesHelper
-import com.rodrigolmti.coinzilla.data.model.api.AuthenticationResponse
-import com.rodrigolmti.coinzilla.data.model.api.WtmAsicResponse
-import com.rodrigolmti.coinzilla.data.model.api.WtmGpuResponse
-import com.rodrigolmti.coinzilla.data.model.api.WtmAltcoinResponse
+import com.rodrigolmti.coinzilla.data.model.api.*
 import com.rodrigolmti.coinzilla.data.remote.IApiHelper
 import com.rodrigolmti.coinzilla.di.scopes.PerApplication
 import io.reactivex.Single
@@ -16,7 +12,6 @@ import javax.inject.Inject
 class Repository
 @Inject constructor(
         private val iApiHelper: IApiHelper,
-        private val iDatabaseHelper: IDatabaseHelper,
         private val iPreferencesHelper: IPreferencesHelper) : IRepository {
 
     override fun getToken(): Single<AuthenticationResponse> {
@@ -46,14 +41,6 @@ class Repository
 
     override fun setAuthenticationTokenTime(time: Long) {
         iPreferencesHelper.setAuthenticationTokenTime(time)
-    }
-
-    override fun getRealmEncryptionKey(): ByteArray? {
-        return iPreferencesHelper.getRealmEncryptionKey()
-    }
-
-    override fun setRealmEncryptionKey(bytes: ByteArray?) {
-        iPreferencesHelper.setRealmEncryptionKey(bytes)
     }
 
     override fun getGpuUpdateTime(): Long {
@@ -109,8 +96,11 @@ class Repository
         }
     }
 
-    override fun getCryptoCurrency() {
-        return iApiHelper.getCryptoCurrency()
+    override fun getCryptoCurrency(): Single<List<CryptoCurrencyResponse>> {
+        return iApiHelper.getCryptoCurrency().flatMap { it ->
+            setCryptocurrencyUpdateTime(Date().time)
+            Single.just(it)
+        }
     }
 
     private fun checkTime(): Boolean {

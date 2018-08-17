@@ -6,6 +6,7 @@ import android.content.res.Resources
 import android.databinding.ObservableBoolean
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.data.IRepository
+import com.rodrigolmti.coinzilla.data.model.api.CryptoCurrencyResponse
 import com.rodrigolmti.coinzilla.data.model.api.WtmAltcoinResponse
 import com.rodrigolmti.coinzilla.data.model.api.WtmAsicResponse
 import com.rodrigolmti.coinzilla.data.model.api.WtmGpuResponse
@@ -31,18 +32,17 @@ class CoinListViewModel
     val mutableGpuLiveData: MutableLiveData<List<WtmGpuResponse>> = MutableLiveData()
     val mutableAsicLiveData: MutableLiveData<List<WtmAsicResponse>> = MutableLiveData()
     val mutableAltcoinLiveData: MutableLiveData<List<WtmAltcoinResponse>> = MutableLiveData()
+    val mutableCryptoCurrencyLiveData: MutableLiveData<List<CryptoCurrencyResponse>> = MutableLiveData()
 
     val loading: ObservableBoolean = ObservableBoolean(false)
     val error: ObservableBoolean = ObservableBoolean(false)
 
     fun getDataByAction(action: Action) {
-        loading.set(true)
         when (action) {
             Action.GPU -> fetchGpuCoins()
             Action.ASIC -> fetchAsicCoins()
             Action.ALTCOIN -> fetchAltcoins()
-            Action.CRYPTOCURRENCY -> {
-            }
+            Action.CRYPTOCURRENCY -> fetchCryptoCurrency()
         }
     }
 
@@ -89,6 +89,23 @@ class CoinListViewModel
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     mutableAltcoinLiveData.value = it
+                    loading.set(false)
+                }, {
+                    Timber.e(it, resources.getString(R.string.general_error))
+                    loading.set(false)
+                    error.set(true)
+                }))
+    }
+
+    private fun fetchCryptoCurrency() {
+        compositeDisposable.add(iRepository.getCryptoCurrency()
+                .doOnSubscribe {
+                    loading.set(true)
+                }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    mutableCryptoCurrencyLiveData.value = it
                     loading.set(false)
                 }, {
                     Timber.e(it, resources.getString(R.string.general_error))

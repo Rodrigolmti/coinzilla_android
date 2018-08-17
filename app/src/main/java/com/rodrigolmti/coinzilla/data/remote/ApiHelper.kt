@@ -3,10 +3,7 @@ package com.rodrigolmti.coinzilla.data.remote
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.rodrigolmti.coinzilla.data.local.prefs.IPreferencesHelper
-import com.rodrigolmti.coinzilla.data.model.api.AuthenticationResponse
-import com.rodrigolmti.coinzilla.data.model.api.WtmAltcoinResponse
-import com.rodrigolmti.coinzilla.data.model.api.WtmAsicResponse
-import com.rodrigolmti.coinzilla.data.model.api.WtmGpuResponse
+import com.rodrigolmti.coinzilla.data.model.api.*
 import com.rodrigolmti.coinzilla.data.remote.endpoint.ICryptoCompareApi
 import com.rodrigolmti.coinzilla.data.remote.endpoint.IMarketCapApi
 import com.rodrigolmti.coinzilla.data.remote.endpoint.INodeApi
@@ -22,7 +19,7 @@ class ApiHelper
         private val iPreferencesHelper: IPreferencesHelper,
         private val iCryptoCompareApi: ICryptoCompareApi,
         private val iWhatToMineApi: IWhatToMineApi,
-        private val iMakertCapApi: IMarketCapApi,
+        private val iMarketCapApi: IMarketCapApi,
         private val iNodeApi: INodeApi) : IApiHelper {
 
     override fun getToken(): Single<AuthenticationResponse> {
@@ -47,8 +44,8 @@ class ApiHelper
         }
     }
 
-    override fun getCryptoCurrency() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getCryptoCurrency(): Single<List<CryptoCurrencyResponse>> {
+        return iMarketCapApi.getCryptoCurrency()
     }
 
     private inline fun <reified T> mapJsonToArrayList(jsonObject: JsonObject): ArrayList<T> {

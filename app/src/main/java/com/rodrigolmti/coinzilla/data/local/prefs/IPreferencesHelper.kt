@@ -2,10 +2,6 @@ package com.rodrigolmti.coinzilla.data.local.prefs
 
 interface IPreferencesHelper {
 
-    fun getRealmEncryptionKey(): ByteArray?
-
-    fun setRealmEncryptionKey(bytes: ByteArray?)
-
     fun getAuthenticationToken(): String
 
     fun setAuthenticationToken(token: String)

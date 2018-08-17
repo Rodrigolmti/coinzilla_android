@@ -9,9 +9,9 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.rodrigolmti.coinzilla.di.components.FragmentComponent
 import com.rodrigolmti.coinzilla.BR
 import com.rodrigolmti.coinzilla.di.components.DaggerFragmentComponent
+import com.rodrigolmti.coinzilla.di.components.FragmentComponent
 import com.rodrigolmti.coinzilla.di.modules.FragmentModule
 import com.rodrigolmti.coinzilla.di.scopes.PerFragment
 import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
