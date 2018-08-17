@@ -12,7 +12,7 @@ import com.rodrigolmti.coinzilla.data.model.api.WtmAsicResponse
 import com.rodrigolmti.coinzilla.data.model.api.WtmGpuResponse
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext
 import com.rodrigolmti.coinzilla.di.scopes.PerActivity
-import com.rodrigolmti.coinzilla.library.util.Action
+import com.rodrigolmti.coinzilla.util.MenuActionEnum
 import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
 import com.rodrigolmti.coinzilla.ui.base.viewModel.BaseViewModel
 import com.rodrigolmti.coinzilla.ui.main.MainMvvm
@@ -37,12 +37,12 @@ class CoinListViewModel
     val loading: ObservableBoolean = ObservableBoolean(false)
     val error: ObservableBoolean = ObservableBoolean(false)
 
-    fun getDataByAction(action: Action) {
+    fun getDataByAction(action: MenuActionEnum) {
         when (action) {
-            Action.GPU -> fetchGpuCoins()
-            Action.ASIC -> fetchAsicCoins()
-            Action.ALTCOIN -> fetchAltcoins()
-            Action.CRYPTOCURRENCY -> fetchCryptoCurrency()
+            MenuActionEnum.GPU -> fetchGpuCoins()
+            MenuActionEnum.ASIC -> fetchAsicCoins()
+            MenuActionEnum.ALTCOIN -> fetchAltcoins()
+            MenuActionEnum.CRYPTOCURRENCY -> fetchCryptoCurrency()
         }
     }
 

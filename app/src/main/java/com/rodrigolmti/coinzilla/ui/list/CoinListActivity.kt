@@ -14,14 +14,14 @@ import com.rodrigolmti.coinzilla.coinzilla.view.adapter.CryptoCurrencyAdapter
 import com.rodrigolmti.coinzilla.coinzilla.view.adapter.WhatToMineAdapter
 import com.rodrigolmti.coinzilla.data.model.api.CryptoCurrencyResponse
 import com.rodrigolmti.coinzilla.databinding.ActivityCoinListBinding
-import com.rodrigolmti.coinzilla.library.util.Action
+import com.rodrigolmti.coinzilla.util.MenuActionEnum
 import com.rodrigolmti.coinzilla.ui.base.BaseActivity
 
 class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel>() {
 
     private lateinit var cryptoCurrencyAdapter: CryptoCurrencyAdapter
     private lateinit var whatToMineAdapter: WhatToMineAdapter
-    private lateinit var action: Action
+    private lateinit var action: MenuActionEnum
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,7 @@ class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel
         enableBackButton()
 
         if (intent.hasExtra("action.type")) {
-            action = Action.valueOf(intent.getStringExtra("action.type"))
+            action = MenuActionEnum.valueOf(intent.getStringExtra("action.type"))
             viewModel.getDataByAction(action)
         }
 
@@ -39,7 +39,7 @@ class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_list_home, menu)
-        if (action == Action.CRYPTOCURRENCY) {
+        if (action == MenuActionEnum.CRYPTOCURRENCY) {
             menu!!.findItem(R.id.action_search).isVisible = false
             menu.findItem(R.id.action_favorites).isVisible = true
         }
@@ -51,7 +51,7 @@ class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel
     private fun setupRecycler() {
 
         when (action) {
-            Action.GPU, Action.ASIC, Action.ALTCOIN -> setupLinearListAdapter()
+            MenuActionEnum.GPU, MenuActionEnum.ASIC, MenuActionEnum.ALTCOIN -> setupLinearListAdapter()
             else -> setupGridListAdapter()
         }
 

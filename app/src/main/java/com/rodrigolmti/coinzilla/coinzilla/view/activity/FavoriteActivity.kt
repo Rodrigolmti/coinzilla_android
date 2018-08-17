@@ -2,7 +2,7 @@ package com.rodrigolmti.coinzilla.coinzilla.view.activity
 
 import android.os.Bundle
 import com.rodrigolmti.coinzilla.R
-import com.rodrigolmti.coinzilla.library.controller.activity.BaseActivity
+import com.rodrigolmti.coinzilla.coinzilla.controller.activity.BaseActivity
 import kotlinx.android.synthetic.main.activity_favorite.*
 
 class FavoriteActivity : BaseActivity() {

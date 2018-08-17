@@ -12,7 +12,7 @@ import com.rodrigolmti.coinzilla.coinzilla.model.entity.Exchange
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.Historic
 import com.rodrigolmti.coinzilla.coinzilla.view.adapter.ExchangeAdapter
 import com.rodrigolmti.coinzilla.data.model.api.CryptoCurrencyResponse
-import com.rodrigolmti.coinzilla.library.controller.fragment.BaseFragment
+import com.rodrigolmti.coinzilla.coinzilla.controller.fragment.BaseFragment
 import com.rodrigolmti.coinzilla.util.extensions.gone
 import com.rodrigolmti.coinzilla.util.extensions.visible
 import kotlinx.android.synthetic.main.fragment_coin_detail_usd.*

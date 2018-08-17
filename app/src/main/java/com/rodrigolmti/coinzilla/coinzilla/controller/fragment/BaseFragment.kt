@@ -1,4 +1,4 @@
-package com.rodrigolmti.coinzilla.library.controller.fragment
+package com.rodrigolmti.coinzilla.coinzilla.controller.fragment
 
 import android.graphics.Color
 import android.graphics.Paint

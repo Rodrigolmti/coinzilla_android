@@ -1,4 +1,4 @@
-package com.rodrigolmti.coinzilla.library.controller.activity
+package com.rodrigolmti.coinzilla.coinzilla.controller.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem

@@ -7,7 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.data.model.api.CryptoCurrencyResponse
-import com.rodrigolmti.coinzilla.library.controller.activity.BaseActivity
+import com.rodrigolmti.coinzilla.coinzilla.controller.activity.BaseActivity
 import kotlinx.android.synthetic.main.activity_coin_detail.*
 
 class CoinDetailActivity : BaseActivity() {

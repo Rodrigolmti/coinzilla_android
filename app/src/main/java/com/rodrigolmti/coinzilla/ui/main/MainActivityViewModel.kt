@@ -9,8 +9,8 @@ import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.data.IRepository
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext
 import com.rodrigolmti.coinzilla.di.scopes.PerActivity
-import com.rodrigolmti.coinzilla.library.util.Action
-import com.rodrigolmti.coinzilla.library.util.Utils
+import com.rodrigolmti.coinzilla.util.MenuActionEnum
+import com.rodrigolmti.coinzilla.util.Utils
 import com.rodrigolmti.coinzilla.ui.base.navigation.IActivityNavigator
 import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
 import com.rodrigolmti.coinzilla.ui.base.viewModel.BaseViewModel
@@ -77,26 +77,26 @@ class MainActivityViewModel
     }
 
     fun clickGpuMining() {
-        startActivity(Intent(context, CoinListActivity::class.java), Action.GPU)
+        startActivity(Intent(context, CoinListActivity::class.java), MenuActionEnum.GPU)
     }
 
     fun clickAsicMining() {
-        startActivity(Intent(context, CoinListActivity::class.java), Action.ASIC)
+        startActivity(Intent(context, CoinListActivity::class.java), MenuActionEnum.ASIC)
     }
 
     fun clickAltCoin() {
-        startActivity(Intent(context, CoinListActivity::class.java), Action.ALTCOIN)
+        startActivity(Intent(context, CoinListActivity::class.java), MenuActionEnum.ALTCOIN)
     }
 
     fun clickCryptoCurrency() {
-        startActivity(Intent(context, CoinListActivity::class.java), Action.CRYPTOCURRENCY)
+        startActivity(Intent(context, CoinListActivity::class.java), MenuActionEnum.CRYPTOCURRENCY)
     }
 
     fun clickProfitability() {
         startActivity(Intent(context, ProfitabilityActivity::class.java))
     }
 
-    private fun startActivity(intent: Intent, action: Action? = null) {
+    private fun startActivity(intent: Intent, action: MenuActionEnum? = null) {
         if (action != null) {
             intent.putExtra("action.type", action.name)
         }
