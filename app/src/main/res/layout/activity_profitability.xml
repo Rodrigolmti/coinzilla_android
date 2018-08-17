@@ -185,7 +185,7 @@
                                 android:layout_height="wrap_content"
                                 android:hint="@string/activity_profitability_hash"
                                 android:inputType="numberDecimal"
-                                android:text="@{viewModel.hashField}"
+                                android:text="@={viewModel.hashField}"
                                 app:editTextError="@{viewModel.errorHashMessage}"/>
 
                         </android.support.design.widget.TextInputLayout>
@@ -226,7 +226,7 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/activity_profitability_block_reward"
                             android:inputType="numberDecimal"
-                            android:text="@{viewModel.rewardField}"
+                            android:text="@={viewModel.rewardField}"
                             app:editTextError="@{viewModel.errorRewardMessage}"/>
 
                     </android.support.design.widget.TextInputLayout>
@@ -257,7 +257,7 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/activity_profitability_difficulty"
                             android:inputType="numberDecimal"
-                            android:text="@{viewModel.difficultyField}"
+                            android:text="@={viewModel.difficultyField}"
                             app:editTextError="@{viewModel.errorDifficultyMessage}"/>
 
                     </android.support.design.widget.TextInputLayout>
@@ -288,7 +288,7 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/activity_profitability_fee"
                             android:inputType="numberDecimal"
-                            android:text="@{viewModel.feeField}"/>
+                            android:text="@={viewModel.feeField}"/>
 
                     </android.support.design.widget.TextInputLayout>
 
