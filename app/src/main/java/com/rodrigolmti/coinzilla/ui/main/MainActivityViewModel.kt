@@ -6,8 +6,6 @@ import android.content.res.Resources
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
 import com.rodrigolmti.coinzilla.R
-import com.rodrigolmti.coinzilla.ui.info.InfoActivity
-import com.rodrigolmti.coinzilla.ui.profitability.ProfitabilityActivity
 import com.rodrigolmti.coinzilla.data.IRepository
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext
 import com.rodrigolmti.coinzilla.di.scopes.PerActivity
@@ -16,7 +14,12 @@ import com.rodrigolmti.coinzilla.library.util.Utils
 import com.rodrigolmti.coinzilla.ui.base.navigation.IActivityNavigator
 import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
 import com.rodrigolmti.coinzilla.ui.base.viewModel.BaseViewModel
+import com.rodrigolmti.coinzilla.ui.info.InfoActivity
 import com.rodrigolmti.coinzilla.ui.list.CoinListActivity
+import com.rodrigolmti.coinzilla.ui.profitability.ProfitabilityActivity
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
@@ -36,6 +39,19 @@ class MainActivityViewModel
 
     val loading: ObservableBoolean = ObservableBoolean(false)
     val error: ObservableBoolean = ObservableBoolean(false)
+
+    init {
+        compositeDisposable.add(iRepository.getToken()
+                .doOnSubscribe { loading.set(true) }
+                .doOnSuccess { loading.set(false) }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ updateTimeLabel() }, {
+                    Timber.e(it, resources.getString(R.string.general_error))
+                    loading.set(false)
+                    error.set(true)
+                }))
+    }
 
     fun updateTimeLabel() {
         if (iRepository.getGpuUpdateTime() > 0) {
@@ -69,7 +85,7 @@ class MainActivityViewModel
     }
 
     fun clickAltCoin() {
-        startActivity(Intent(context, CoinListActivity::class.java), Action.WARZ)
+        startActivity(Intent(context, CoinListActivity::class.java), Action.ALTCOIN)
     }
 
     fun clickCryptoCurrency() {

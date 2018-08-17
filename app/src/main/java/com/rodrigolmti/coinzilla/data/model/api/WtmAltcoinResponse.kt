@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import io.realm.annotations.PrimaryKey
 import java.util.*
 
-open class WtmWarzResponse constructor(
+open class WtmAltcoinResponse constructor(
         @PrimaryKey
         @SerializedName("_id")
         open var id: String = "",

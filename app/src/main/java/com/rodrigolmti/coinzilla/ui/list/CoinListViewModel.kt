@@ -6,9 +6,9 @@ import android.content.res.Resources
 import android.databinding.ObservableBoolean
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.data.IRepository
+import com.rodrigolmti.coinzilla.data.model.api.WtmAltcoinResponse
 import com.rodrigolmti.coinzilla.data.model.api.WtmAsicResponse
 import com.rodrigolmti.coinzilla.data.model.api.WtmGpuResponse
-import com.rodrigolmti.coinzilla.data.model.api.WtmWarzResponse
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext
 import com.rodrigolmti.coinzilla.di.scopes.PerActivity
 import com.rodrigolmti.coinzilla.library.util.Action
@@ -30,59 +30,70 @@ class CoinListViewModel
 
     val mutableGpuLiveData: MutableLiveData<List<WtmGpuResponse>> = MutableLiveData()
     val mutableAsicLiveData: MutableLiveData<List<WtmAsicResponse>> = MutableLiveData()
-    val mutableWarzLiveData: MutableLiveData<List<WtmWarzResponse>> = MutableLiveData()
+    val mutableAltcoinLiveData: MutableLiveData<List<WtmAltcoinResponse>> = MutableLiveData()
 
     val loading: ObservableBoolean = ObservableBoolean(false)
     val error: ObservableBoolean = ObservableBoolean(false)
 
     fun getDataByAction(action: Action) {
-
         loading.set(true)
         when (action) {
-            Action.GPU -> {
-
-                compositeDisposable.add(iRepository.getWhatToMineGpu()
-                        .doOnSubscribe {
-                            loading.set(true)
-                        }
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({
-                            mutableGpuLiveData.value = it
-                            loading.set(false)
-                        }, {
-                            Timber.e(it, resources.getString(R.string.general_error))
-                            loading.set(false)
-                            error.set(true)
-                        }))
-
-            }
-            Action.ASIC -> {
-
-                compositeDisposable.add(iRepository.getWhatToMineAsic()
-                        .doOnSubscribe {
-                            loading.set(true)
-                        }
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({
-                            mutableAsicLiveData.value = it
-                            loading.set(false)
-                        }, {
-                            Timber.e(it, resources.getString(R.string.general_error))
-                            loading.set(false)
-                            error.set(true)
-                        }))
-
-
-            }
-            Action.WARZ -> {
-            }
+            Action.GPU -> fetchGpuCoins()
+            Action.ASIC -> fetchAsicCoins()
+            Action.ALTCOIN -> fetchAltcoins()
             Action.CRYPTOCURRENCY -> {
             }
-            else -> {
-                error.set(true)
-            }
         }
+    }
+
+    private fun fetchGpuCoins() {
+        compositeDisposable.add(iRepository.getWhatToMineGpu()
+                .doOnSubscribe {
+                    loading.set(true)
+                }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    mutableGpuLiveData.value = it
+                    loading.set(false)
+                }, {
+                    Timber.e(it, resources.getString(R.string.general_error))
+                    loading.set(false)
+                    error.set(true)
+                }))
+    }
+
+    private fun fetchAsicCoins() {
+        compositeDisposable.add(iRepository.getWhatToMineAsic()
+                .doOnSubscribe {
+                    loading.set(true)
+                }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    mutableAsicLiveData.value = it
+                    loading.set(false)
+                }, {
+                    Timber.e(it, resources.getString(R.string.general_error))
+                    loading.set(false)
+                    error.set(true)
+                }))
+    }
+
+    private fun fetchAltcoins() {
+        compositeDisposable.add(iRepository.getWhatToMineAltcoins()
+                .doOnSubscribe {
+                    loading.set(true)
+                }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    mutableAltcoinLiveData.value = it
+                    loading.set(false)
+                }, {
+                    Timber.e(it, resources.getString(R.string.general_error))
+                    loading.set(false)
+                    error.set(true)
+                }))
     }
 }

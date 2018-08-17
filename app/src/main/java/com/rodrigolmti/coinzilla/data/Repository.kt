@@ -2,12 +2,14 @@ package com.rodrigolmti.coinzilla.data
 
 import com.rodrigolmti.coinzilla.data.local.db.IDatabaseHelper
 import com.rodrigolmti.coinzilla.data.local.prefs.IPreferencesHelper
+import com.rodrigolmti.coinzilla.data.model.api.AuthenticationResponse
 import com.rodrigolmti.coinzilla.data.model.api.WtmAsicResponse
 import com.rodrigolmti.coinzilla.data.model.api.WtmGpuResponse
-import com.rodrigolmti.coinzilla.data.model.api.WtmWarzResponse
+import com.rodrigolmti.coinzilla.data.model.api.WtmAltcoinResponse
 import com.rodrigolmti.coinzilla.data.remote.IApiHelper
 import com.rodrigolmti.coinzilla.di.scopes.PerApplication
 import io.reactivex.Single
+import java.util.*
 import javax.inject.Inject
 
 @PerApplication
@@ -17,24 +19,33 @@ class Repository
         private val iDatabaseHelper: IDatabaseHelper,
         private val iPreferencesHelper: IPreferencesHelper) : IRepository {
 
-    override fun getToken() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getToken(): Single<AuthenticationResponse> {
+        if (checkTime()) {
+            return iApiHelper.getToken().flatMap { it ->
+                if (it.success) {
+                    setAuthenticationToken(it.token)
+                    setAuthenticationTokenTime(Date().time)
+                }
+                Single.just(it)
+            }
+        }
+        return Single.just(AuthenticationResponse(true, "", ""))
     }
 
     override fun getAuthenticationToken(): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return iPreferencesHelper.getAuthenticationToken()
     }
 
     override fun setAuthenticationToken(token: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        iPreferencesHelper.setAuthenticationToken(token)
     }
 
     override fun getAuthenticationTokenTime(): Long {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return iPreferencesHelper.getAuthenticationTokenTime()
     }
 
     override fun setAuthenticationTokenTime(time: Long) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        iPreferencesHelper.setAuthenticationTokenTime(time)
     }
 
     override fun getRealmEncryptionKey(): ByteArray? {
@@ -78,18 +89,38 @@ class Repository
     }
 
     override fun getWhatToMineGpu(): Single<List<WtmGpuResponse>> {
-        return iApiHelper.getWhatToMineGpu()
+        return iApiHelper.getWhatToMineGpu().flatMap { it ->
+            setGpuUpdateTime(Date().time)
+            Single.just(it)
+        }
     }
 
     override fun getWhatToMineAsic(): Single<List<WtmAsicResponse>> {
-        return iApiHelper.getWhatToMineAsic()
+        return iApiHelper.getWhatToMineAsic().flatMap { it ->
+            setAsicUpdateTime(Date().time)
+            Single.just(it)
+        }
     }
 
-    override fun getWhatToMineWarz(): Single<List<WtmWarzResponse>> {
-        return iApiHelper.getWhatToMineWarz()
+    override fun getWhatToMineAltcoins(): Single<List<WtmAltcoinResponse>> {
+        return iApiHelper.getWhatToMineAltcoins().flatMap { it ->
+            setAltcoinUpdateTime(Date().time)
+            Single.just(it)
+        }
     }
 
     override fun getCryptoCurrency() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return iApiHelper.getCryptoCurrency()
+    }
+
+    private fun checkTime(): Boolean {
+        if (getAuthenticationTokenTime() > 0) {
+            val calendar: Calendar = Calendar.getInstance()
+            calendar.time = Date(getAuthenticationTokenTime())
+            calendar.add(Calendar.HOUR_OF_DAY, +20)
+            val dateAfter: Date = calendar.time
+            return Date().after(dateAfter)
+        }
+        return false
     }
 }

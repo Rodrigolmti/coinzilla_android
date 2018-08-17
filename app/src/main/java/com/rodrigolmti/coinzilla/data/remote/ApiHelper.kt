@@ -2,11 +2,14 @@ package com.rodrigolmti.coinzilla.data.remote
 
 import com.google.gson.Gson
 import com.google.gson.JsonObject
+import com.rodrigolmti.coinzilla.data.local.prefs.IPreferencesHelper
+import com.rodrigolmti.coinzilla.data.model.api.AuthenticationResponse
+import com.rodrigolmti.coinzilla.data.model.api.WtmAltcoinResponse
 import com.rodrigolmti.coinzilla.data.model.api.WtmAsicResponse
 import com.rodrigolmti.coinzilla.data.model.api.WtmGpuResponse
-import com.rodrigolmti.coinzilla.data.model.api.WtmWarzResponse
 import com.rodrigolmti.coinzilla.data.remote.endpoint.ICryptoCompareApi
-import com.rodrigolmti.coinzilla.data.remote.endpoint.IMakertCapApi
+import com.rodrigolmti.coinzilla.data.remote.endpoint.IMarketCapApi
+import com.rodrigolmti.coinzilla.data.remote.endpoint.INodeApi
 import com.rodrigolmti.coinzilla.data.remote.endpoint.IWhatToMineApi
 import com.rodrigolmti.coinzilla.di.scopes.PerApplication
 import io.reactivex.Single
@@ -16,12 +19,14 @@ import javax.inject.Inject
 @PerApplication
 class ApiHelper
 @Inject constructor(
+        private val iPreferencesHelper: IPreferencesHelper,
         private val iCryptoCompareApi: ICryptoCompareApi,
-        private val iMakertCapApi: IMakertCapApi,
-        private val iWhatToMineApi: IWhatToMineApi) : IApiHelper {
+        private val iWhatToMineApi: IWhatToMineApi,
+        private val iMakertCapApi: IMarketCapApi,
+        private val iNodeApi: INodeApi) : IApiHelper {
 
-    override fun getToken() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getToken(): Single<AuthenticationResponse> {
+        return iNodeApi.getToken(UUID.randomUUID().toString())
     }
 
     override fun getWhatToMineGpu(): Single<List<WtmGpuResponse>> {
@@ -36,11 +41,10 @@ class ApiHelper
         }
     }
 
-    override fun getWhatToMineWarz(): Single<List<WtmWarzResponse>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//        return iWhatToMineApi.getWarz("").flatMap { it ->
-//            Single.just(mapJsonToArrayList<WtmWarzResponse>(it))
-//        }
+    override fun getWhatToMineAltcoins(): Single<List<WtmAltcoinResponse>> {
+        return iNodeApi.getAltcoins(iPreferencesHelper.getAuthenticationToken()).flatMap { it ->
+            Single.just(it.data)
+        }
     }
 
     override fun getCryptoCurrency() {

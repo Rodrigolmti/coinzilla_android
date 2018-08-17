@@ -3,8 +3,7 @@ package com.rodrigolmti.coinzilla.coinzilla.model.dao
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.CryptoCurrency
 import com.rodrigolmti.coinzilla.data.model.api.WtmAsicResponse
 import com.rodrigolmti.coinzilla.data.model.api.WtmGpuResponse
-import com.rodrigolmti.coinzilla.data.model.api.WtmWarzResponse
-import io.realm.Case
+import com.rodrigolmti.coinzilla.data.model.api.WtmAltcoinResponse
 import io.realm.Realm
 
 class Database {
@@ -91,14 +90,14 @@ class Database {
         return data
     }
 
-    fun insertWhatToMineWarz(data: List<WtmWarzResponse>) {
+    fun insertWhatToMineWarz(data: List<WtmAltcoinResponse>) {
         realm.executeTransaction {
-//            realm.delete(WtmWarzResponse::class.java)
+//            realm.delete(WtmAltcoinResponse::class.java)
         }
 
         for (obj in data) {
             realm.executeTransaction {
-//                val whatToMine = realm.createObject(WtmWarzResponse::class.java, obj.id)
+//                val whatToMine = realm.createObject(WtmAltcoinResponse::class.java, obj.id)
 //                whatToMine.tag = obj.tag
 //                whatToMine.algorithm = obj.algorithm
 //                whatToMine.difficulty = obj.difficulty
@@ -112,18 +111,18 @@ class Database {
         }
     }
 
-    fun getAllWhatToMineWarz(): List<WtmWarzResponse> {
-        var data: List<WtmWarzResponse> = listOf()
+    fun getAllWhatToMineWarz(): List<WtmAltcoinResponse> {
+        var data: List<WtmAltcoinResponse> = listOf()
         realm.executeTransaction {
-//            data = realm.where(WtmWarzResponse::class.java).findAll()
+//            data = realm.where(WtmAltcoinResponse::class.java).findAll()
         }
         return data
     }
 
-    fun getWhatToMineWarzByFilter(filter: String): List<WtmWarzResponse> {
-        var data: List<WtmWarzResponse> = listOf()
+    fun getWhatToMineWarzByFilter(filter: String): List<WtmAltcoinResponse> {
+        var data: List<WtmAltcoinResponse> = listOf()
         realm.executeTransaction {
-//            data = realm.where(WtmWarzResponse::class.java)
+//            data = realm.where(WtmAltcoinResponse::class.java)
 //                    .contains("tag", filter, Case.INSENSITIVE)
 //                    .or()
 //                    .contains("algorithm", filter, Case.INSENSITIVE)

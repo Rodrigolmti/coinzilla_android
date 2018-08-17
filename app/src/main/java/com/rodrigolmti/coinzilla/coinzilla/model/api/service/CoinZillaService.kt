@@ -24,7 +24,7 @@ class CoinZillaService(private val context: Context) {
 
     fun getWhatToMineWarz(callback: BaseCallBack) {
 //        try {
-//            if (checkTime(Action.WARZ, 15) || coinDao.getAllWhatToMineWarz().isEmpty()) {
+//            if (checkTime(Action.ALTCOIN, 15) || coinDao.getAllWhatToMineWarz().isEmpty()) {
 //                RetrofitService().retrofitInstance(context.getString(R.string.base_url_main)).create(
 //                        WhatToMineAPI::class.java).getWarz(czPreferences!!.token)
 //                        .subscribeOn(Schedulers.newThread())
@@ -177,7 +177,7 @@ class CoinZillaService(private val context: Context) {
         val stringDate: String = when (action) {
             Action.GPU -> czPreferences!!.updateDateGpu
             Action.ASIC -> czPreferences!!.updateDateAsic
-            Action.WARZ -> czPreferences!!.updateDateWarz
+            Action.ALTCOIN -> czPreferences!!.updateDateWarz
             Action.CRYPTOCURRENCY -> czPreferences!!.updateDateCryptoCurrency
             else -> "noData"
         }

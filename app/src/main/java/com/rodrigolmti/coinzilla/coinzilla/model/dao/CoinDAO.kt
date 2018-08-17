@@ -3,7 +3,7 @@ package com.rodrigolmti.coinzilla.coinzilla.model.dao
 import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.CryptoCurrency
 import com.rodrigolmti.coinzilla.data.model.api.WtmAsicResponse
 import com.rodrigolmti.coinzilla.data.model.api.WtmGpuResponse
-import com.rodrigolmti.coinzilla.data.model.api.WtmWarzResponse
+import com.rodrigolmti.coinzilla.data.model.api.WtmAltcoinResponse
 
 /**
 * Created by rodrigolmti on 12/02/18.
@@ -21,7 +21,7 @@ class CoinDAO {
         database.insertWhatToMineAsic(list)
     }
 
-    fun insertWhatToMineWarz(list: List<WtmWarzResponse>) {
+    fun insertWhatToMineWarz(list: List<WtmAltcoinResponse>) {
         database.insertWhatToMineWarz(list)
     }
 
@@ -53,11 +53,11 @@ class CoinDAO {
         return database.getWhatToMineAsicByFilter(filter)
     }
 
-    fun getAllWhatToMineWarz(): List<WtmWarzResponse> {
+    fun getAllWhatToMineWarz(): List<WtmAltcoinResponse> {
         return database.getAllWhatToMineWarz()
     }
 
-    fun getWhatToMineWarzByFilter(filter: String): List<WtmWarzResponse> {
+    fun getWhatToMineWarzByFilter(filter: String): List<WtmAltcoinResponse> {
         return database.getWhatToMineWarzByFilter(filter)
     }
 

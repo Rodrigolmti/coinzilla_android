@@ -4,7 +4,7 @@ import com.rodrigolmti.coinzilla.coinzilla.model.entity.coin.CryptoCurrency
 import io.reactivex.Single
 import retrofit2.http.GET
 
-interface IMakertCapApi {
+interface IMarketCapApi {
 
     @GET("ticker/?convert=BRL")
     fun getCryptoCurrency(): Single<List<CryptoCurrency>>

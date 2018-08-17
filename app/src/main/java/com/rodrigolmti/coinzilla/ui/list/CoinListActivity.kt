@@ -57,7 +57,7 @@ class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel
             adapterWhatToMine = WhatToMineAdapter(this@CoinListActivity, it)
             binding.recyclerView.adapter = adapterWhatToMine
         })
-        viewModel.mutableWarzLiveData.observe(this, Observer {
+        viewModel.mutableAltcoinLiveData.observe(this, Observer {
             adapterWhatToMine = WhatToMineAdapter(this@CoinListActivity, it)
             binding.recyclerView.adapter = adapterWhatToMine
         })
