@@ -8,10 +8,10 @@ import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
 import com.rodrigolmti.coinzilla.R
-import com.rodrigolmti.coinzilla.coinzilla.view.activity.CoinDetailActivity
-import com.rodrigolmti.coinzilla.coinzilla.view.activity.FavoriteActivity
-import com.rodrigolmti.coinzilla.coinzilla.view.adapter.CryptoCurrencyAdapter
-import com.rodrigolmti.coinzilla.coinzilla.view.adapter.WhatToMineAdapter
+import com.rodrigolmti.coinzilla.ui.coinDetail.CoinDetailActivity
+import com.rodrigolmti.coinzilla.old.view.activity.FavoriteActivity
+import com.rodrigolmti.coinzilla.ui.adapter.CryptoCurrencyAdapter
+import com.rodrigolmti.coinzilla.ui.adapter.WhatToMineAdapter
 import com.rodrigolmti.coinzilla.data.model.api.CryptoCurrencyResponse
 import com.rodrigolmti.coinzilla.databinding.ActivityCoinListBinding
 import com.rodrigolmti.coinzilla.util.MenuActionEnum
@@ -71,7 +71,7 @@ class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel
             cryptoCurrencyAdapter = CryptoCurrencyAdapter(this@CoinListActivity, it, object : CryptoCurrencyAdapter.OnItemClickListener {
                 override fun itemOnClick(item: CryptoCurrencyResponse) {
                     val intent = Intent(this@CoinListActivity, CoinDetailActivity::class.java)
-//                    intent.putExtra("action.coin.detail", item)
+                    intent.putExtra("action.coin.detail", item.id)
                     activityNavigator.startActivity(intent)
                 }
             })

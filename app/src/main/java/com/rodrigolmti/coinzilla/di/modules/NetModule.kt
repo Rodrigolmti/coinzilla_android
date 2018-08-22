@@ -4,9 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.rodrigolmti.coinzilla.BuildConfig
 import com.rodrigolmti.coinzilla.data.remote.endpoint.ICryptoCompareApi
-import com.rodrigolmti.coinzilla.data.remote.endpoint.IMarketCapApi
 import com.rodrigolmti.coinzilla.data.remote.endpoint.INodeApi
-import com.rodrigolmti.coinzilla.data.remote.endpoint.IWhatToMineApi
 import com.rodrigolmti.coinzilla.di.scopes.PerApplication
 import dagger.Module
 import dagger.Provides
@@ -22,14 +20,12 @@ class NetModule {
 
     companion object {
 
-        const val BASE_URL_NODE = "http://67.205.185.235:3000/api/v1/"
-        const val BASE_URL_WHAT_TO_MINE = "https://whattomine.com/"
+//        const val BASE_URL_NODE = "http://67.205.185.235:3000/api/v2/"
+        const val BASE_URL_NODE = "http://192.168.0.104:3000/api/v2/"
         const val BASE_URL_MARKET_CAP = "https://api.coinmarketcap.com/v1/"
         const val BASE_URL_CRYPTO_COMPARE = "https://min-api.cryptocompare.com/data/"
 
     }
-
-    //TODO: Refactor
 
     @Provides
     @PerApplication
@@ -54,32 +50,6 @@ class NetModule {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
                 .callFactory(httpClientBuilder.build())
                 .build().create(INodeApi::class.java)
-    }
-
-    @Provides
-    @PerApplication
-    internal fun provideRemoteWhatToMineApi(gson: Gson, okHttpClient: OkHttpClient): IWhatToMineApi {
-        val httpClientBuilder = setupHttpBuilder(okHttpClient)
-
-        return Retrofit.Builder()
-                .baseUrl(BASE_URL_WHAT_TO_MINE)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
-                .callFactory(httpClientBuilder.build())
-                .build().create(IWhatToMineApi::class.java)
-    }
-
-    @Provides
-    @PerApplication
-    internal fun provideRemoteMarketCapApi(gson: Gson, okHttpClient: OkHttpClient): IMarketCapApi {
-        val httpClientBuilder = setupHttpBuilder(okHttpClient)
-
-        return Retrofit.Builder()
-                .baseUrl(BASE_URL_MARKET_CAP)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
-                .callFactory(httpClientBuilder.build())
-                .build().create(IMarketCapApi::class.java)
     }
 
     @Provides

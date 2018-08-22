@@ -1,9 +1,10 @@
 package com.rodrigolmti.coinzilla.data
 
-import com.rodrigolmti.coinzilla.data.local.prefs.IPreferencesHelper
+import com.rodrigolmti.coinzilla.data.local.IPreferencesHelper
 import com.rodrigolmti.coinzilla.data.model.api.*
 import com.rodrigolmti.coinzilla.data.remote.IApiHelper
 import com.rodrigolmti.coinzilla.di.scopes.PerApplication
+import com.rodrigolmti.coinzilla.util.exceptions.TokenValid
 import io.reactivex.Single
 import java.util.*
 import javax.inject.Inject
@@ -17,14 +18,14 @@ class Repository
     override fun getToken(): Single<AuthenticationResponse> {
         if (checkTime()) {
             return iApiHelper.getToken().flatMap { it ->
-                if (it.success) {
+                if (it.success && it.token.isNotEmpty()) {
                     setAuthenticationToken(it.token)
                     setAuthenticationTokenTime(Date().time)
                 }
                 Single.just(it)
             }
         }
-        return Single.just(AuthenticationResponse(true, "", ""))
+        return Single.error(TokenValid())
     }
 
     override fun getAuthenticationToken(): String {
@@ -96,11 +97,23 @@ class Repository
         }
     }
 
-    override fun getCryptoCurrency(): Single<List<CryptoCurrencyResponse>> {
-        return iApiHelper.getCryptoCurrency().flatMap { it ->
+    override fun getMarketCapList(): Single<List<CryptoCurrencyResponse>> {
+        return iApiHelper.getMarketCapList().flatMap { it ->
             setCryptocurrencyUpdateTime(Date().time)
             Single.just(it)
         }
+    }
+
+    override fun getMarketCapCoinDetail(id: String): Single<CryptoCurrencyResponse> {
+        return iApiHelper.getMarketCapCoinDetail(id)
+    }
+
+    override fun getExchanges(fsym: String, tsym: String): Single<List<ExchangeResponse>> {
+        return iApiHelper.getExchanges(fsym, tsym)
+    }
+
+    override fun getHistoric(fsym: String, tsym: String): Single<List<HistoricResponse>> {
+        return iApiHelper.getHistoric(fsym, tsym)
     }
 
     private fun checkTime(): Boolean {

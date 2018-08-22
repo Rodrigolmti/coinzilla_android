@@ -38,7 +38,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".coinzilla.view.activity.FavoriteActivity"
+            android:name=".old.view.activity.FavoriteActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeActionBar" />
         <activity
@@ -47,22 +47,22 @@
             android:theme="@style/AppThemeActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".coinzilla.view.activity.BalanceActivity"
+            android:name=".old.view.activity.BalanceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".coinzilla.view.activity.ExchangeListActivity"
+            android:name=".old.view.activity.ExchangeListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".coinzilla.view.activity.ExchangeApiKeyActivity"
+            android:name=".old.view.activity.ExchangeApiKeyActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".coinzilla.view.activity.CoinDetailActivity"
+            android:name=".ui.coinDetail.CoinDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeActionBar" />
 

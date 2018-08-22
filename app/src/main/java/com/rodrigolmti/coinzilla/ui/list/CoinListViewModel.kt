@@ -12,10 +12,10 @@ import com.rodrigolmti.coinzilla.data.model.api.WtmAsicResponse
 import com.rodrigolmti.coinzilla.data.model.api.WtmGpuResponse
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext
 import com.rodrigolmti.coinzilla.di.scopes.PerActivity
-import com.rodrigolmti.coinzilla.util.MenuActionEnum
 import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
 import com.rodrigolmti.coinzilla.ui.base.viewModel.BaseViewModel
 import com.rodrigolmti.coinzilla.ui.main.MainMvvm
+import com.rodrigolmti.coinzilla.util.MenuActionEnum
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
@@ -98,7 +98,7 @@ class CoinListViewModel
     }
 
     private fun fetchCryptoCurrency() {
-        compositeDisposable.add(iRepository.getCryptoCurrency()
+        compositeDisposable.add(iRepository.getMarketCapList()
                 .doOnSubscribe {
                     loading.set(true)
                 }

@@ -13,5 +13,11 @@ interface IApiHelper {
 
     fun getWhatToMineAltcoins(): Single<List<WtmAltcoinResponse>>
 
-    fun getCryptoCurrency(): Single<List<CryptoCurrencyResponse>>
+    fun getMarketCapList(): Single<List<CryptoCurrencyResponse>>
+
+    fun getMarketCapCoinDetail(id: String): Single<CryptoCurrencyResponse>
+
+    fun getExchanges(fsym: String, tsym: String): Single<List<ExchangeResponse>>
+
+    fun getHistoric(fsym: String, tsym: String): Single<List<HistoricResponse>>
 }

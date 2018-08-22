@@ -17,6 +17,7 @@ import com.rodrigolmti.coinzilla.ui.base.viewModel.BaseViewModel
 import com.rodrigolmti.coinzilla.ui.info.InfoActivity
 import com.rodrigolmti.coinzilla.ui.list.CoinListActivity
 import com.rodrigolmti.coinzilla.ui.profitability.ProfitabilityActivity
+import com.rodrigolmti.coinzilla.util.exceptions.TokenValid
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
@@ -47,9 +48,11 @@ class MainActivityViewModel
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ updateTimeLabel() }, {
-                    Timber.e(it, resources.getString(R.string.general_error))
-                    loading.set(false)
-                    error.set(true)
+                    if (it !is TokenValid) {
+                        Timber.e(it, resources.getString(R.string.general_error))
+                        loading.set(false)
+                        error.set(true)
+                    }
                 }))
     }
 

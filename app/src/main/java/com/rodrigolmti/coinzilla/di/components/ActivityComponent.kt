@@ -2,13 +2,14 @@ package com.rodrigolmti.coinzilla.di.components
 
 import android.content.Context
 import android.support.v4.app.FragmentManager
-import com.rodrigolmti.coinzilla.coinzilla.view.activity.*
+import com.rodrigolmti.coinzilla.old.view.activity.*
 import com.rodrigolmti.coinzilla.di.modules.ActivityModule
 import com.rodrigolmti.coinzilla.di.modules.ViewModelModule
 import com.rodrigolmti.coinzilla.di.qualifier.ActivityContext
 import com.rodrigolmti.coinzilla.di.qualifier.ActivityFragmentManager
 import com.rodrigolmti.coinzilla.di.scopes.PerActivity
 import com.rodrigolmti.coinzilla.ui.base.navigation.IActivityNavigator
+import com.rodrigolmti.coinzilla.ui.coinDetail.CoinDetailActivity
 import com.rodrigolmti.coinzilla.ui.info.InfoActivity
 import com.rodrigolmti.coinzilla.ui.list.CoinListActivity
 import com.rodrigolmti.coinzilla.ui.main.MainActivity

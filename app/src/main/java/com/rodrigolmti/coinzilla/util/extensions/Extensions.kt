@@ -23,13 +23,13 @@ fun View.gone() {
 
 
 //region String Extensions
-fun String.formatCurrencyUSD() : String {
+fun Double.formatCurrencyUSD(): String {
     val decimalFormat = DecimalFormat("$#.00")
-    return decimalFormat.format(this.toFloat())
+    return decimalFormat.format(this)
 }
 
-fun String.formatCurrencyBRL() : String {
+fun Double.formatCurrencyBRL(): String {
     val decimalFormat = DecimalFormat("R$#.00")
-    return decimalFormat.format(this.toFloat())
+    return decimalFormat.format(this)
 }
 //endregion

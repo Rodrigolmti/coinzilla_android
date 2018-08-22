@@ -2,8 +2,8 @@ package com.rodrigolmti.coinzilla.di.modules
 
 import com.rodrigolmti.coinzilla.data.IRepository
 import com.rodrigolmti.coinzilla.data.Repository
-import com.rodrigolmti.coinzilla.data.local.prefs.IPreferencesHelper
-import com.rodrigolmti.coinzilla.data.local.prefs.PreferencesHelper
+import com.rodrigolmti.coinzilla.data.local.IPreferencesHelper
+import com.rodrigolmti.coinzilla.data.local.PreferencesHelper
 import com.rodrigolmti.coinzilla.data.remote.ApiHelper
 import com.rodrigolmti.coinzilla.data.remote.IApiHelper
 import dagger.Binds
