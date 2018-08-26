@@ -8,14 +8,13 @@ import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
 import com.rodrigolmti.coinzilla.R
-import com.rodrigolmti.coinzilla.ui.coinDetail.CoinDetailActivity
-import com.rodrigolmti.coinzilla.old.view.activity.FavoriteActivity
-import com.rodrigolmti.coinzilla.ui.adapter.CryptoCurrencyAdapter
-import com.rodrigolmti.coinzilla.ui.adapter.WhatToMineAdapter
 import com.rodrigolmti.coinzilla.data.model.api.CryptoCurrencyResponse
 import com.rodrigolmti.coinzilla.databinding.ActivityCoinListBinding
-import com.rodrigolmti.coinzilla.util.MenuActionEnum
+import com.rodrigolmti.coinzilla.ui.adapter.CryptoCurrencyAdapter
+import com.rodrigolmti.coinzilla.ui.adapter.WhatToMineAdapter
 import com.rodrigolmti.coinzilla.ui.base.BaseActivity
+import com.rodrigolmti.coinzilla.ui.coinDetail.CoinDetailActivity
+import com.rodrigolmti.coinzilla.util.MenuActionEnum
 
 class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel>() {
 
@@ -120,7 +119,6 @@ class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel
 //                    return true
 //                }
 
-                startActivity(Intent(this, FavoriteActivity::class.java))
             }
             else -> finish()
         }

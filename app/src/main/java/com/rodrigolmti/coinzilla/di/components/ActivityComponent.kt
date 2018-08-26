@@ -2,7 +2,6 @@ package com.rodrigolmti.coinzilla.di.components
 
 import android.content.Context
 import android.support.v4.app.FragmentManager
-import com.rodrigolmti.coinzilla.old.view.activity.*
 import com.rodrigolmti.coinzilla.di.modules.ActivityModule
 import com.rodrigolmti.coinzilla.di.modules.ViewModelModule
 import com.rodrigolmti.coinzilla.di.qualifier.ActivityContext
@@ -22,15 +21,7 @@ interface ActivityComponent : ActivityComponentProvides {
 
     fun inject(activity: MainActivity)
 
-    fun inject(activity: BalanceActivity)
-
     fun inject(activity: CoinDetailActivity)
-
-    fun inject(activity: ExchangeApiKeyActivity)
-
-    fun inject(activity: ExchangeListActivity)
-
-    fun inject(activity: FavoriteActivity)
 
     fun inject(activity: InfoActivity)
 
