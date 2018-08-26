@@ -22,7 +22,6 @@ class NetModule {
 
 //        const val BASE_URL_NODE = "http://67.205.185.235:3000/api/v2/"
         const val BASE_URL_NODE = "http://192.168.0.104:3000/api/v2/"
-        const val BASE_URL_MARKET_CAP = "https://api.coinmarketcap.com/v1/"
         const val BASE_URL_CRYPTO_COMPARE = "https://min-api.cryptocompare.com/data/"
 
     }

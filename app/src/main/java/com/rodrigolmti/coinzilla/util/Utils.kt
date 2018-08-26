@@ -39,11 +39,5 @@ open class Utils {
             val netInfo = cm.activeNetworkInfo
             return netInfo != null && netInfo.isConnectedOrConnecting
         }
-
-        open fun showSnackBar(view: View, context: Context, message: String) {
-            val snackbar = Snackbar.make(view, message, 3000)
-            snackbar.view.setBackgroundColor(ContextCompat.getColor(context, R.color.colorPrimary))
-            snackbar.show()
-        }
     }
 }

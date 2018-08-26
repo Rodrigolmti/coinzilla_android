@@ -29,10 +29,10 @@ abstract class BaseActivity<B : ViewDataBinding, VM : MvvmViewModel<*>> : AppCom
     protected lateinit var activityNavigator: IActivityNavigator
 
     @Inject
-    protected lateinit var viewModel: VM
+    protected lateinit var refWatcher: RefWatcher
 
     @Inject
-    protected lateinit var refWatcher: RefWatcher
+    protected lateinit var viewModel: VM
 
     protected lateinit var binding: B
 
@@ -69,11 +69,11 @@ abstract class BaseActivity<B : ViewDataBinding, VM : MvvmViewModel<*>> : AppCom
     }
 
     protected fun initAds(adView: AdView) {
-        adView.loadAd(AdRequest.Builder()
-                .addTestDevice(getString(R.string.admob_test_device_genymotion))
-                .addTestDevice(getString(R.string.admob_test_device_one_plus))
-                .addTestDevice(getString(R.string.admob_test_device_lenovo))
-                .build())
+//        adView.loadAd(AdRequest.Builder()
+//                .addTestDevice(getString(R.string.admob_test_device_genymotion))
+//                .addTestDevice(getString(R.string.admob_test_device_one_plus))
+//                .addTestDevice(getString(R.string.admob_test_device_lenovo))
+//                .build())
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

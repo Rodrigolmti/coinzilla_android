@@ -1,7 +1,8 @@
 package com.rodrigolmti.coinzilla.util.extensions
 
 import android.view.View
-import java.text.DecimalFormat
+import java.text.NumberFormat
+import java.util.*
 
 /**
  * Created by rodrigolmti on 19/11/17.
@@ -21,15 +22,12 @@ fun View.gone() {
 }
 //endregion
 
-
 //region String Extensions
 fun Double.formatCurrencyUSD(): String {
-    val decimalFormat = DecimalFormat("$#.00")
-    return decimalFormat.format(this)
+    return NumberFormat.getNumberInstance(Locale("pt", "BR")).format(this)
 }
 
 fun Double.formatCurrencyBRL(): String {
-    val decimalFormat = DecimalFormat("R$#.00")
-    return decimalFormat.format(this)
+    return NumberFormat.getNumberInstance(Locale.US).format(this)
 }
 //endregion

@@ -29,7 +29,7 @@ class CZApplication : MultiDexApplication() {
         super.onCreate()
 
         Fabric.with(this, Crashlytics())
-        MobileAds.initialize(this, getString(R.string.admob_api_key))
+//        MobileAds.initialize(this, getString(R.string.admob_api_key))
 
         if (LeakCanary.isInAnalyzerProcess(this)) return
 

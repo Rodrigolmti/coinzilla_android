@@ -1,74 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.rodrigolmti.coinzilla">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
-    <uses-permission android:name="com.google.android.gms.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION"/>
+    <uses-permission android:name="com.google.android.gms.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
-        android:name=".CZApplication"
         android:allowBackup="true"
         android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:name=".CZApplication"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon">
         <activity
             android:name=".ui.main.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="com.package.name.MyActivity" />
+                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="com.package.name.MyActivity"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".ui.list.CoinListActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".ui.info.InfoActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".old.view.activity.FavoriteActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeActionBar" />
+            android:theme="@style/AppThemeActionBar"/>
         <activity
             android:name=".ui.profitability.ProfitabilityActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeActionBar"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".old.view.activity.BalanceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeActionBar"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".old.view.activity.ExchangeListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeActionBar"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".old.view.activity.ExchangeApiKeyActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeActionBar"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".ui.coinDetail.CoinDetailActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeActionBar" />
+            android:theme="@style/AppThemeActionBar"/>
 
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="8e67140fd2c7681126394c6ab6fdde10fa9ca734" />
+            android:value="8e67140fd2c7681126394c6ab6fdde10fa9ca734"/>
     </application>
 
 </manifest>

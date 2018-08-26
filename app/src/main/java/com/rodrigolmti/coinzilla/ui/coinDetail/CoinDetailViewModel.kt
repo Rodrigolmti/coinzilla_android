@@ -1,5 +1,6 @@
 package com.rodrigolmti.coinzilla.ui.coinDetail
 
+import android.arch.lifecycle.MutableLiveData
 import android.content.Context
 import android.content.res.Resources
 import android.databinding.ObservableBoolean
@@ -7,6 +8,7 @@ import android.databinding.ObservableField
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.data.IRepository
 import com.rodrigolmti.coinzilla.data.model.api.CryptoCurrencyResponse
+import com.rodrigolmti.coinzilla.data.model.api.ExchangeResponse
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext
 import com.rodrigolmti.coinzilla.di.scopes.PerActivity
 import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
@@ -20,71 +22,68 @@ import javax.inject.Inject
 
 @PerActivity
 class CoinDetailViewModel
-@Inject constructor(@AppContext val context: Context, private val resources: Resources, private val iRepository: IRepository) : BaseViewModel<MvvmView>(), CoinDetailMvvm {
+@Inject constructor(
+        @AppContext val context: Context,
+        private val resources: Resources,
+        private val iRepository: IRepository
+) : BaseViewModel<MvvmView>(), CoinDetailMvvm {
 
     val priceBrl: ObservableField<String> = ObservableField()
     val priceUsd: ObservableField<String> = ObservableField()
 
-    val loading: ObservableBoolean = ObservableBoolean()
-    val error: ObservableBoolean = ObservableBoolean()
+    val name: ObservableField<String> = ObservableField()
+    val symbol: ObservableField<String> = ObservableField()
+
+    val mutableExchangeList: MutableLiveData<List<ExchangeResponse>> = MutableLiveData()
+    val exchangeListVisible: ObservableBoolean = ObservableBoolean(false)
+    val coinTag: MutableLiveData<String> = MutableLiveData()
+
+    val loading: ObservableBoolean = ObservableBoolean(false)
+    val error: ObservableBoolean = ObservableBoolean(false)
 
     fun getCoinDetailById(id: String) {
         compositeDisposable.add(iRepository.getMarketCapCoinDetail(id)
-                .doOnSubscribe {
-                    loading.set(true)
-                }
                 .subscribeOn(Schedulers.io())
+                .doOnSubscribe { loading.set(true) }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ it ->
-
-                    init(it)
-                    it.tag?.let { tag ->
-                        getCoinHistorical(tag)
-                        getCoinExchanges(tag)
-                    }
-
+                    setup(it)
                 }, {
                     Timber.e(it, resources.getString(R.string.general_error))
-                    loading.set(false)
                     error.set(true)
                 }))
     }
 
-    private fun init(response: CryptoCurrencyResponse) {
+    private fun setup(response: CryptoCurrencyResponse) {
+        response.tag?.let { tag ->
+            getCoinExchanges(tag)
+            coinTag.value = tag
+        }
         response.quoteBrl?.let {
-            priceBrl.set(it.price.formatCurrencyBRL())
+            priceBrl.set("R$${it.price.formatCurrencyBRL()}")
         }
         response.quoteUsd?.let {
-            priceUsd.set(it.price.formatCurrencyUSD())
+            priceUsd.set("$${it.price.formatCurrencyUSD()}")
+        }
+        response.name?.let {
+            name.set(it)
+        }
+        response.tag?.let {
+            symbol.set(it)
         }
     }
 
-    private fun getCoinHistorical(tag: String) {
-        compositeDisposable.add(iRepository.getHistoric(tag, resources.getString(R.string.activity_detail_usd))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-
-                    loading.set(false)
-
-                }, {
-                    Timber.e(it, resources.getString(R.string.general_error))
-                    loading.set(false)
-                    error.set(true)
-                }))
-    }
-
-    private fun getCoinExchanges(tag : String) {
+    private fun getCoinExchanges(tag: String) {
         compositeDisposable.add(iRepository.getExchanges(tag, resources.getString(R.string.activity_detail_usd))
                 .subscribeOn(Schedulers.io())
+                .doOnError { loading.set(false) }
+                .doOnSubscribe { loading.set(false) }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-
-                    loading.set(false)
-
+                    exchangeListVisible.set(it.isNotEmpty())
+                    mutableExchangeList.value = it
                 }, {
                     Timber.e(it, resources.getString(R.string.general_error))
-                    loading.set(false)
                     error.set(true)
                 }))
     }

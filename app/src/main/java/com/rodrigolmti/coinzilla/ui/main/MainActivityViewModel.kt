@@ -9,14 +9,14 @@ import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.data.IRepository
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext
 import com.rodrigolmti.coinzilla.di.scopes.PerActivity
-import com.rodrigolmti.coinzilla.util.MenuActionEnum
-import com.rodrigolmti.coinzilla.util.Utils
 import com.rodrigolmti.coinzilla.ui.base.navigation.IActivityNavigator
 import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
 import com.rodrigolmti.coinzilla.ui.base.viewModel.BaseViewModel
 import com.rodrigolmti.coinzilla.ui.info.InfoActivity
 import com.rodrigolmti.coinzilla.ui.list.CoinListActivity
 import com.rodrigolmti.coinzilla.ui.profitability.ProfitabilityActivity
+import com.rodrigolmti.coinzilla.util.MenuActionEnum
+import com.rodrigolmti.coinzilla.util.Utils
 import com.rodrigolmti.coinzilla.util.exceptions.TokenValid
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -44,13 +44,15 @@ class MainActivityViewModel
     init {
         compositeDisposable.add(iRepository.getToken()
                 .doOnSubscribe { loading.set(true) }
-                .doOnSuccess { loading.set(false) }
+                .doOnError { loading.set(false) }
+                .doOnSubscribe { loading.set(false) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ updateTimeLabel() }, {
+                .subscribe({
+                    updateTimeLabel()
+                }, {
                     if (it !is TokenValid) {
                         Timber.e(it, resources.getString(R.string.general_error))
-                        loading.set(false)
                         error.set(true)
                     }
                 }))

@@ -1,11 +1,15 @@
 package com.rodrigolmti.coinzilla.ui.coinDetail
 
+import android.arch.lifecycle.Observer
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.data.model.api.CryptoCurrencyResponse
 import com.rodrigolmti.coinzilla.databinding.ActivityCoinDetailBinding
+import com.rodrigolmti.coinzilla.ui.adapter.CoinChartViewPager
+import com.rodrigolmti.coinzilla.ui.adapter.ExchangeAdapter
 import com.rodrigolmti.coinzilla.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_coin_detail.*
 
@@ -19,7 +23,19 @@ class CoinDetailActivity : BaseActivity<ActivityCoinDetailBinding, CoinDetailVie
         setAndBindContentView(savedInstanceState, R.layout.activity_coin_detail)
         if (intent.hasExtra("action.coin.detail")) {
             viewModel.getCoinDetailById(intent.getStringExtra("action.coin.detail"))
+
+            viewModel.mutableExchangeList.observe(this, Observer {
+                binding.recyclerView.layoutManager = LinearLayoutManager(this@CoinDetailActivity)
+                binding.recyclerView.adapter = ExchangeAdapter(this@CoinDetailActivity, it)
+                binding.recyclerView.hasFixedSize()
+            })
+
+            viewModel.coinTag.observe(this, Observer {
+                binding.viewPager.adapter = CoinChartViewPager(it!!, this@CoinDetailActivity, supportFragmentManager)
+                binding.indicator.setViewPager(binding.viewPager)
+            })
         }
+
         enableBackButton()
         removeElevation()
         initAds(adView)
@@ -33,16 +49,15 @@ class CoinDetailActivity : BaseActivity<ActivityCoinDetailBinding, CoinDetailVie
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-//        when (item!!.itemId) {
-//            android.R.id.home -> finish()
-//            R.id.action_share -> shareCoin()
-//            R.id.action_favorite -> {
+        when (item!!.itemId) {
+            R.id.action_share -> shareCoin()
+            R.id.action_favorite -> {
 //                coin.favorite = !coin.favorite
-////                coinDao.updateCryptoCurrencyFavorite(coin)
+//                coinDao.updateCryptoCurrencyFavorite(coin)
 //                handleFavoriteIcon()
-//            }
-//            else -> finish()
-//        }
+            }
+            else -> finish()
+        }
 
         return true
     }

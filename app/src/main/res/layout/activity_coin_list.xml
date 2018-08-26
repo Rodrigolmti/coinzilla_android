@@ -43,13 +43,13 @@
 
             <include
                 android:id="@+id/progressBar"
-                layout="@layout/progress_bar"
+                layout="@layout/partial_loading"
                 android:visibility="@{viewModel.loading}"
                 tools:visibility="gone"/>
 
             <include
                 android:id="@+id/contentError"
-                layout="@layout/layout_error"
+                layout="@layout/partial_error"
                 android:visibility="@{viewModel.error}"
                 tools:visibility="gone"/>
 

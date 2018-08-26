@@ -16,7 +16,7 @@ class Repository
         private val iPreferencesHelper: IPreferencesHelper) : IRepository {
 
     override fun getToken(): Single<AuthenticationResponse> {
-        if (checkTime()) {
+        if (getNewToken()) {
             return iApiHelper.getToken().flatMap { it ->
                 if (it.success && it.token.isNotEmpty()) {
                     setAuthenticationToken(it.token)
@@ -116,14 +116,15 @@ class Repository
         return iApiHelper.getHistoric(fsym, tsym)
     }
 
-    private fun checkTime(): Boolean {
-        if (getAuthenticationTokenTime() > 0) {
-            val calendar: Calendar = Calendar.getInstance()
-            calendar.time = Date(getAuthenticationTokenTime())
-            calendar.add(Calendar.HOUR_OF_DAY, +20)
-            val dateAfter: Date = calendar.time
-            return Date().after(dateAfter)
+    private fun getNewToken(): Boolean {
+        if (getAuthenticationTokenTime() == 0L) {
+            return true
         }
-        return false
+
+        val calendar: Calendar = Calendar.getInstance()
+        calendar.time = Date(getAuthenticationTokenTime())
+        calendar.add(Calendar.HOUR_OF_DAY, +20)
+        val dateAfter: Date = calendar.time
+        return Date().after(dateAfter)
     }
 }

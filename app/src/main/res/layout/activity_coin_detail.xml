@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -13,12 +15,19 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <include
+            android:id="@+id/progressBar"
+            layout="@layout/partial_loading"
+            android:visibility="@{viewModel.loading}"
+            tools:visibility="gone"/>
+
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="@{!viewModel.loading}">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -69,8 +78,8 @@
                     <TextView
                         android:textStyle="bold"
                         android:layout_width="wrap_content"
-                        android:text="@{viewModel.priceBrl}"
                         android:layout_height="wrap_content"
+                        android:text="@{viewModel.priceBrl}"
                         android:textColor="@color/white"
                         android:textSize="22sp"
                         tools:text="12222"/>
@@ -100,57 +109,30 @@
                     android:orientation="vertical">
 
                     <RelativeLayout
-                        android:id="@+id/layerHistoric"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="16dp"
-                        android:minHeight="250dp"
-                        android:orientation="vertical">
+                        android:layout_height="300dp"
+                        android:layout_margin="16dp">
 
-                        <TextView
-                            android:id="@+id/textViewHistoric"
-                            android:textStyle="bold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/activity_detail_daily_historic"
-                            android:textColor="@color/whiteLilac"
-                            android:textSize="18sp"/>
-
-                        <com.github.mikephil.charting.charts.CandleStickChart
-                            android:id="@+id/candleChart"
+                        <android.support.v4.view.ViewPager
+                            android:id="@+id/viewPager"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_below="@+id/textViewHistoric"
-                            android:minHeight="250dp"
-                            android:visibility="gone"/>
+                            android:layout_above="@+id/indicator"/>
 
-                        <ProgressBar
-                            android:id="@+id/progressBarHistoric"
-                            android:layout_width="wrap_content"
+                        <me.relex.circleindicator.CircleIndicator
+                            android:id="@+id/indicator"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:layout_centerHorizontal="true"
-                            android:layout_centerVertical="true"
-                            android:indeterminate="true"
-                            android:indeterminateTint="@color/colorPrimary"/>
-
-                        <TextView
-                            android:id="@+id/textViewErrorHistoric"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:layout_centerInParent="true"
-                            android:gravity="center"
-                            android:text="@string/activity_detail_error"
-                            android:visibility="gone"/>
+                            android:layout_marginTop="48dp"
+                            android:layout_alignParentBottom="true"
+                            app:ci_drawable="@drawable/tab_indicator_selected"
+                            app:ci_drawable_unselected="@drawable/tab_indicator_default"/>
 
                     </RelativeLayout>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginTop="10dp"
                         android:layout_gravity="bottom"
                         android:background="@color/separator"/>
 
@@ -182,11 +164,11 @@
                                 android:textSize="16sp"/>
 
                             <TextView
-                                android:id="@+id/textViewName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
                                 android:layout_alignParentRight="true"
+                                android:text="@{viewModel.name}"
                                 android:textColor="@color/whiteLilac"
                                 tools:text="Bitcoin"/>
 
@@ -205,11 +187,11 @@
                                 android:textSize="16sp"/>
 
                             <TextView
-                                android:id="@+id/textViewSymbol"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
                                 android:layout_alignParentRight="true"
+                                android:text="@{viewModel.symbol}"
                                 android:textColor="@color/whiteLilac"
                                 tools:text="BTC"/>
 
@@ -408,16 +390,7 @@
                             android:layout_marginTop="20dp"
                             android:layout_marginBottom="10dp"
                             android:nestedScrollingEnabled="false"
-                            android:visibility="gone"/>
-
-                        <ProgressBar
-                            android:id="@+id/progressBarExchange"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="20dp"
-                            android:layout_centerInParent="true"
-                            android:indeterminate="true"
-                            android:indeterminateTint="@color/colorPrimary"/>
+                            android:visibility="@{viewModel.exchangeListVisible}"/>
 
                         <TextView
                             android:id="@+id/textViewErrorExchange"
@@ -426,7 +399,9 @@
                             android:layout_marginTop="20dp"
                             android:layout_centerInParent="true"
                             android:gravity="center"
-                            android:text="@string/activity_detail_error"/>
+                            android:text="@string/activity_detail_error"
+                            android:visibility="@{!viewModel.exchangeListVisible}"
+                            tools:visibility="gone"/>
 
                     </RelativeLayout>
 
@@ -440,6 +415,7 @@
             android:id="@+id/adView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="@{!viewModel.loading}"
             ads:adSize="BANNER"
             ads:adUnitId="@string/admob_detail_activity"/>
 

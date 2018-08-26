@@ -8,7 +8,7 @@ open class ExchangeResponse constructor(
         @SerializedName("toSymbol")
         open val toSymbol: String,
         @SerializedName("volume24h")
-        open val volume24h: String,
+        open val volume24h: Double,
         @SerializedName("volume24hTo")
-        open val volume24hTo: String
+        open val volume24hTo: Double
 )
