@@ -95,12 +95,11 @@
 
             </LinearLayout>
 
-            <ScrollView
+            <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="9"
-                android:fillViewport="true"
-                android:nestedScrollingEnabled="false">
+                android:fillViewport="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -114,13 +113,13 @@
                         android:layout_margin="16dp">
 
                         <android.support.v4.view.ViewPager
-                            android:id="@+id/viewPager"
+                            android:id="@+id/viewPagerChart"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_above="@+id/indicator"/>
+                            android:layout_above="@+id/indicatorChart"/>
 
                         <me.relex.circleindicator.CircleIndicator
-                            android:id="@+id/indicator"
+                            android:id="@+id/indicatorChart"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="48dp"
@@ -136,229 +135,27 @@
                         android:layout_gravity="bottom"
                         android:background="@color/separator"/>
 
-                    <LinearLayout
-                        android:id="@+id/containerDetail"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="16dp"
-                        android:orientation="vertical">
+                        android:layout_height="300dp"
+                        android:layout_margin="16dp">
 
-                        <TextView
-                            android:textStyle="bold"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/activity_detail_coin_detail"
-                            android:textColor="@color/whiteLilac"
-                            android:textSize="18sp"/>
-
-                        <RelativeLayout
+                        <android.support.v4.view.ViewPager
+                            android:id="@+id/viewPagerInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:orientation="horizontal">
+                            android:layout_above="@+id/indicatorInfo"/>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/activity_detail_name"
-                                android:textSize="16sp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:text="@{viewModel.name}"
-                                android:textColor="@color/whiteLilac"
-                                tools:text="Bitcoin"/>
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
+                        <me.relex.circleindicator.CircleIndicator
+                            android:id="@+id/indicatorInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:orientation="horizontal">
+                            android:layout_marginTop="48dp"
+                            android:layout_alignParentBottom="true"
+                            app:ci_drawable="@drawable/tab_indicator_selected"
+                            app:ci_drawable_unselected="@drawable/tab_indicator_default"/>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/activity_detail_symbol"
-                                android:textSize="16sp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:text="@{viewModel.symbol}"
-                                android:textColor="@color/whiteLilac"
-                                tools:text="BTC"/>
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/activity_detail_volume_brl"
-                                android:textSize="16sp"/>
-
-                            <TextView
-                                android:id="@+id/textViewVolumeBrl"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:textColor="@color/whiteLilac"
-                                tools:text="9"/>
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/activity_detail_market_cap_brl"
-                                android:textSize="16sp"/>
-
-                            <TextView
-                                android:id="@+id/textViewMarketCapBrl"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:textColor="@color/whiteLilac"
-                                tools:text="2"/>
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/activity_detail_available_supply"
-                                android:textSize="16sp"/>
-
-                            <TextView
-                                android:id="@+id/textViewAvailableSupply"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:textColor="@color/whiteLilac"
-                                tools:text="2222"/>
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/activity_detail_total_supply"
-                                android:textSize="16sp"/>
-
-                            <TextView
-                                android:id="@+id/textViewTotalSupply"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:textColor="@color/whiteLilac"
-                                tools:text="22"/>
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/activity_detail_percent_change_1h"
-                                android:textSize="16sp"/>
-
-                            <TextView
-                                android:id="@+id/textViewPercentChange1h"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:textColor="@color/nephritis"
-                                tools:text="%6"/>
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/activity_detail_percent_change_24h"
-                                android:textSize="16sp"/>
-
-                            <TextView
-                                android:id="@+id/textViewPercentChange24H"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:textColor="@color/nephritis"
-                                tools:text="%4"/>
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/activity_detail_percent_change_7d"
-                                android:textSize="16sp"/>
-
-                            <TextView
-                                android:id="@+id/textViewPercentChange7D"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentRight="true"
-                                android:textColor="@color/nephritis"
-                                tools:text="10%"/>
-
-                        </RelativeLayout>
-
-                    </LinearLayout>
+                    </RelativeLayout>
 
                     <View
                         android:layout_width="match_parent"
@@ -407,7 +204,7 @@
 
                 </LinearLayout>
 
-            </ScrollView>
+            </android.support.v4.widget.NestedScrollView>
 
         </LinearLayout>
 

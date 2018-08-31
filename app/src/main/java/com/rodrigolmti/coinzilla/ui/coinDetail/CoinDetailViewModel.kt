@@ -34,6 +34,7 @@ class CoinDetailViewModel
     val name: ObservableField<String> = ObservableField()
     val symbol: ObservableField<String> = ObservableField()
 
+    val cryptoCurrencyResponse: MutableLiveData<CryptoCurrencyResponse> = MutableLiveData()
     val mutableExchangeList: MutableLiveData<List<ExchangeResponse>> = MutableLiveData()
     val exchangeListVisible: ObservableBoolean = ObservableBoolean(false)
     val coinTag: MutableLiveData<String> = MutableLiveData()
@@ -47,6 +48,7 @@ class CoinDetailViewModel
                 .doOnSubscribe { loading.set(true) }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ it ->
+                    cryptoCurrencyResponse.value = it
                     setup(it)
                 }, {
                     Timber.e(it, resources.getString(R.string.general_error))

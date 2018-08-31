@@ -2,15 +2,18 @@ package com.rodrigolmti.coinzilla.ui.coinDetail
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.data.model.api.CryptoCurrencyResponse
 import com.rodrigolmti.coinzilla.databinding.ActivityCoinDetailBinding
-import com.rodrigolmti.coinzilla.ui.adapter.CoinChartViewPager
+import com.rodrigolmti.coinzilla.ui.adapter.FragmentViewPager
 import com.rodrigolmti.coinzilla.ui.adapter.ExchangeAdapter
 import com.rodrigolmti.coinzilla.ui.base.BaseActivity
+import com.rodrigolmti.coinzilla.ui.coinDetail.chart.CoinChartFragment
+import com.rodrigolmti.coinzilla.ui.coinDetail.detail.CoinInfoFragment
 import kotlinx.android.synthetic.main.activity_coin_detail.*
 
 class CoinDetailActivity : BaseActivity<ActivityCoinDetailBinding, CoinDetailViewModel>() {
@@ -30,10 +33,7 @@ class CoinDetailActivity : BaseActivity<ActivityCoinDetailBinding, CoinDetailVie
                 binding.recyclerView.hasFixedSize()
             })
 
-            viewModel.coinTag.observe(this, Observer {
-                binding.viewPager.adapter = CoinChartViewPager(it!!, this@CoinDetailActivity, supportFragmentManager)
-                binding.indicator.setViewPager(binding.viewPager)
-            })
+            setupAdapters()
         }
 
         enableBackButton()
@@ -60,6 +60,24 @@ class CoinDetailActivity : BaseActivity<ActivityCoinDetailBinding, CoinDetailVie
         }
 
         return true
+    }
+
+    private fun setupAdapters() {
+        viewModel.cryptoCurrencyResponse.observe(this, Observer { response ->
+            response?.let {
+
+                binding.viewPagerChart.adapter = FragmentViewPager(supportFragmentManager,
+                        listOf<Fragment>(CoinChartFragment.newInstance(it.tag!!, getString(R.string.activity_detail_usd)),
+                                CoinChartFragment.newInstance(it.tag!!, getString(R.string.activity_detail_usd))))
+                binding.indicatorChart.setViewPager(binding.viewPagerChart)
+
+                binding.viewPagerInfo.adapter = FragmentViewPager(supportFragmentManager,
+                        listOf<Fragment>(CoinInfoFragment.newInstance(response),
+                                CoinInfoFragment.newInstance(response)))
+                binding.indicatorInfo.setViewPager(binding.viewPagerInfo)
+
+            }
+        })
     }
 
     private fun handleFavoriteIcon() {

@@ -17,12 +17,12 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @PerFragment
-class CoinChartDataViewModel
+class CoinChartViewModel
 @Inject constructor(
         @AppContext val context: Context,
         private val resources: Resources,
         private val iRepository: IRepository
-) : BaseViewModel<MvvmView>(), CoinChartDataMvvm {
+) : BaseViewModel<MvvmView>(), CoinChartMvvm {
 
     val historicList: ObservableField<List<HistoricResponse>> = ObservableField(ArrayList())
     val historicChartVisible: ObservableBoolean = ObservableBoolean(false)

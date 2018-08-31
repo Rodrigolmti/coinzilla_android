@@ -1,8 +1,11 @@
 package com.rodrigolmti.coinzilla.data.model.api
 
 import com.google.gson.annotations.SerializedName
+import org.parceler.ParcelConstructor
+import org.parceler.Parcel
 
-open class CryptoCurrencyResponse(
+@Parcel(Parcel.Serialization.BEAN)
+open class CryptoCurrencyResponse @ParcelConstructor constructor(
         @SerializedName("_id")
         var id: String? = "",
         var tag: String? = "",

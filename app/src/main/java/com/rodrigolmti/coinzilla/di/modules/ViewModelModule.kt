@@ -2,8 +2,8 @@ package com.rodrigolmti.coinzilla.di.modules
 
 import com.rodrigolmti.coinzilla.ui.coinDetail.CoinDetailMvvm
 import com.rodrigolmti.coinzilla.ui.coinDetail.CoinDetailViewModel
-import com.rodrigolmti.coinzilla.ui.coinDetail.chart.CoinChartDataMvvm
-import com.rodrigolmti.coinzilla.ui.coinDetail.chart.CoinChartDataViewModel
+import com.rodrigolmti.coinzilla.ui.coinDetail.chart.CoinChartMvvm
+import com.rodrigolmti.coinzilla.ui.coinDetail.chart.CoinChartViewModel
 import com.rodrigolmti.coinzilla.ui.info.InfoMvvm
 import com.rodrigolmti.coinzilla.ui.info.InfoViewModel
 import com.rodrigolmti.coinzilla.ui.list.CoinListMvvm
@@ -34,5 +34,5 @@ abstract class ViewModelModule {
     internal abstract fun bindCoinDetailyActivityViewModel(coinDetailViewModel: CoinDetailViewModel): CoinDetailMvvm
 
     @Binds
-    internal abstract fun bindCoinChartFragmentViewModel(coinChartDataViewModel: CoinChartDataViewModel): CoinChartDataMvvm
+    internal abstract fun bindCoinChartFragmentViewModel(coinChartDataViewModel: CoinChartViewModel): CoinChartMvvm
 }

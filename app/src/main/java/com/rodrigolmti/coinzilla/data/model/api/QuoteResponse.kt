@@ -1,5 +1,8 @@
 package com.rodrigolmti.coinzilla.data.model.api
 
+import org.parceler.Parcel
+
+@Parcel(Parcel.Serialization.FIELD)
 class QuoteResponse(
         var price: Double = 0.0,
         var volume24: Double = 0.0,

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.rodrigolmti.coinzilla.ui.coinDetail.chart.CoinChartDataViewModel"/>
+            type="com.rodrigolmti.coinzilla.ui.coinDetail.chart.CoinChartViewModel"/>
     </data>
 
     <RelativeLayout
