@@ -4,6 +4,7 @@ import com.rodrigolmti.coinzilla.di.modules.FragmentModule
 import com.rodrigolmti.coinzilla.di.modules.ViewModelModule
 import com.rodrigolmti.coinzilla.di.scopes.PerFragment
 import com.rodrigolmti.coinzilla.ui.coinDetail.chart.CoinChartFragment
+import com.rodrigolmti.coinzilla.ui.coinDetail.detail.CoinInfoFragment
 import dagger.Component
 
 @PerFragment
@@ -11,6 +12,8 @@ import dagger.Component
 interface FragmentComponent : FragmentComponentProvides {
 
     fun inject(fragment: CoinChartFragment)
+
+    fun inject(fragment: CoinInfoFragment)
 }
 
 interface FragmentComponentProvides : ActivityComponentProvides

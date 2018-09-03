@@ -31,13 +31,9 @@ class CoinDetailViewModel
     val priceBrl: ObservableField<String> = ObservableField()
     val priceUsd: ObservableField<String> = ObservableField()
 
-    val name: ObservableField<String> = ObservableField()
-    val symbol: ObservableField<String> = ObservableField()
-
     val cryptoCurrencyResponse: MutableLiveData<CryptoCurrencyResponse> = MutableLiveData()
     val mutableExchangeList: MutableLiveData<List<ExchangeResponse>> = MutableLiveData()
     val exchangeListVisible: ObservableBoolean = ObservableBoolean(false)
-    val coinTag: MutableLiveData<String> = MutableLiveData()
 
     val loading: ObservableBoolean = ObservableBoolean(false)
     val error: ObservableBoolean = ObservableBoolean(false)
@@ -59,19 +55,12 @@ class CoinDetailViewModel
     private fun setup(response: CryptoCurrencyResponse) {
         response.tag?.let { tag ->
             getCoinExchanges(tag)
-            coinTag.value = tag
         }
         response.quoteBrl?.let {
             priceBrl.set("R$${it.price.formatCurrencyBRL()}")
         }
         response.quoteUsd?.let {
             priceUsd.set("$${it.price.formatCurrencyUSD()}")
-        }
-        response.name?.let {
-            name.set(it)
-        }
-        response.tag?.let {
-            symbol.set(it)
         }
     }
 

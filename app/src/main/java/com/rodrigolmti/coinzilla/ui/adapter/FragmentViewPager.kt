@@ -18,6 +18,6 @@ class FragmentViewPager(
     }
 
     override fun getCount(): Int {
-        return fragments.size - 1
+        return fragments.size
     }
 }

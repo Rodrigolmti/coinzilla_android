@@ -66,14 +66,21 @@ class CoinDetailActivity : BaseActivity<ActivityCoinDetailBinding, CoinDetailVie
         viewModel.cryptoCurrencyResponse.observe(this, Observer { response ->
             response?.let {
 
+                val usd = getString(R.string.activity_detail_usd)
+                val brl = getString(R.string.activity_detail_brl)
+
                 binding.viewPagerChart.adapter = FragmentViewPager(supportFragmentManager,
-                        listOf<Fragment>(CoinChartFragment.newInstance(it.tag!!, getString(R.string.activity_detail_usd)),
-                                CoinChartFragment.newInstance(it.tag!!, getString(R.string.activity_detail_usd))))
+                        listOf<Fragment>(
+                                CoinChartFragment.newInstance(it.tag!!, usd),
+                                CoinChartFragment.newInstance(it.tag!!, brl))
+                )
                 binding.indicatorChart.setViewPager(binding.viewPagerChart)
 
                 binding.viewPagerInfo.adapter = FragmentViewPager(supportFragmentManager,
-                        listOf<Fragment>(CoinInfoFragment.newInstance(response),
-                                CoinInfoFragment.newInstance(response)))
+                        listOf<Fragment>(
+                                CoinInfoFragment.newInstance(response, usd),
+                                CoinInfoFragment.newInstance(response, brl))
+                )
                 binding.indicatorInfo.setViewPager(binding.viewPagerInfo)
 
             }
