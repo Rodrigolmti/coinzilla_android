@@ -2,8 +2,8 @@ package com.rodrigolmti.coinzilla.util
 
 import android.content.Context
 import android.net.ConnectivityManager
-import android.support.design.widget.Snackbar
-import android.support.v4.content.ContextCompat
+import com.google.android.material.snackbar.Snackbar
+import androidx.core.content.ContextCompat
 import android.view.View
 import com.rodrigolmti.coinzilla.R
 import java.text.ParseException

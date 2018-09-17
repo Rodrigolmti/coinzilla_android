@@ -1,9 +1,9 @@
 package com.rodrigolmti.coinzilla.ui.list
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import android.content.Context
 import android.content.res.Resources
-import android.databinding.ObservableBoolean
+import androidx.databinding.ObservableBoolean
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.data.IRepository
 import com.rodrigolmti.coinzilla.data.model.api.CryptoCurrencyResponse

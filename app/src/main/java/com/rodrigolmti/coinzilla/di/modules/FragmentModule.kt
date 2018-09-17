@@ -1,7 +1,7 @@
 package com.rodrigolmti.coinzilla.di.modules
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.patloew.countries.ui.base.navigator.IFragmentNavigator
 import com.rodrigolmti.coinzilla.di.qualifier.ChildFragmentManager
 import com.rodrigolmti.coinzilla.di.scopes.PerFragment
@@ -10,12 +10,12 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class FragmentModule(private val fragment: Fragment) {
+class FragmentModule(private val fragment: androidx.fragment.app.Fragment) {
 
     @Provides
     @PerFragment
     @ChildFragmentManager
-    internal fun provideChildFragmentManager(): FragmentManager {
+    internal fun provideChildFragmentManager(): androidx.fragment.app.FragmentManager {
         return fragment.childFragmentManager
     }
 

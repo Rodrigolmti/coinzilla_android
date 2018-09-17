@@ -1,7 +1,7 @@
 package com.rodrigolmti.coinzilla.ui.adapter
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +11,13 @@ import com.rodrigolmti.coinzilla.data.model.api.WtmAsicResponse
 import com.rodrigolmti.coinzilla.data.model.api.WtmGpuResponse
 import kotlinx.android.synthetic.main.row_what_to_mine.view.*
 
-open class WhatToMineAdapter(private val context: Context, var list: List<Any>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+open class WhatToMineAdapter(private val context: Context, var list: List<Any>?) : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
         return Item(LayoutInflater.from(context).inflate(R.layout.row_what_to_mine, parent, false))
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
         (holder as Item).bindData(context, list!![position])
     }
 
@@ -25,7 +25,7 @@ open class WhatToMineAdapter(private val context: Context, var list: List<Any>?)
         return list!!.size
     }
 
-    class Item(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class Item(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         fun bindData(context: Context, item: Any) {
             when (item) {
                 is WtmAsicResponse -> {

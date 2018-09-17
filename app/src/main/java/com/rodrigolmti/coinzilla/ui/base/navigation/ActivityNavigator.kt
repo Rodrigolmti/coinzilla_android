@@ -4,12 +4,12 @@ import android.app.Activity
 import android.app.DialogFragment
 import android.content.Intent
 import android.net.Uri
-import android.support.annotation.IdRes
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
-import android.support.v4.app.FragmentManager
+import androidx.annotation.IdRes
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 
-open class ActivityNavigator(protected val activity: FragmentActivity) : IActivityNavigator {
+open class ActivityNavigator(protected val activity: androidx.fragment.app.FragmentActivity) : IActivityNavigator {
 
     override fun finishActivity() {
         activity.finish()
@@ -52,15 +52,15 @@ open class ActivityNavigator(protected val activity: FragmentActivity) : IActivi
         }
     }
 
-    override fun replaceFragment(@IdRes containerId: Int, fragment: Fragment, fragmentTag: String?) {
+    override fun replaceFragment(@IdRes containerId: Int, fragment: androidx.fragment.app.Fragment, fragmentTag: String?) {
         replaceFragmentInternal(activity.supportFragmentManager, containerId, fragment, fragmentTag, false, null)
     }
 
-    override fun replaceFragmentAndAddToBackStack(@IdRes containerId: Int, fragment: Fragment, fragmentTag: String?, backstackTag: String?) {
+    override fun replaceFragmentAndAddToBackStack(@IdRes containerId: Int, fragment: androidx.fragment.app.Fragment, fragmentTag: String?, backstackTag: String?) {
         replaceFragmentInternal(activity.supportFragmentManager, containerId, fragment, fragmentTag, true, backstackTag)
     }
 
-    protected fun replaceFragmentInternal(fm: FragmentManager, @IdRes containerId: Int, fragment: Fragment, fragmentTag: String?, addToBackstack: Boolean, backstackTag: String?) {
+    protected fun replaceFragmentInternal(fm: androidx.fragment.app.FragmentManager, @IdRes containerId: Int, fragment: androidx.fragment.app.Fragment, fragmentTag: String?, addToBackstack: Boolean, backstackTag: String?) {
         val ft = fm.beginTransaction().replace(containerId, fragment, fragmentTag)
         if (addToBackstack) {
             ft.addToBackStack(backstackTag).commit()

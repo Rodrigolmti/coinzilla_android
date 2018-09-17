@@ -1,7 +1,7 @@
 package com.patloew.countries.ui.base.navigator
 
-import android.support.annotation.IdRes
-import android.support.v4.app.Fragment
+import androidx.annotation.IdRes
+import androidx.fragment.app.Fragment
 import com.rodrigolmti.coinzilla.ui.base.navigation.IActivityNavigator
 
 /* Copyright 2016 Patrick Löwenstein
@@ -19,8 +19,8 @@ import com.rodrigolmti.coinzilla.ui.base.navigation.IActivityNavigator
  * limitations under the License. */
 interface IFragmentNavigator : IActivityNavigator {
 
-    fun replaceChildFragment(@IdRes containerId: Int, fragment: Fragment, fragmentTag: String? = null)
-    fun replaceChildFragmentAndAddToBackStack(@IdRes containerId: Int, fragment: Fragment, fragmentTag: String?, backstackTag: String?)
+    fun replaceChildFragment(@IdRes containerId: Int, fragment: androidx.fragment.app.Fragment, fragmentTag: String? = null)
+    fun replaceChildFragmentAndAddToBackStack(@IdRes containerId: Int, fragment: androidx.fragment.app.Fragment, fragmentTag: String?, backstackTag: String?)
     fun popChildFragmentBackstackImmediate()
 
 }

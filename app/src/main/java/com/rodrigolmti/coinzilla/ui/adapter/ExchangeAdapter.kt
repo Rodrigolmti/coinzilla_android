@@ -1,7 +1,7 @@
 package com.rodrigolmti.coinzilla.ui.adapter
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +11,13 @@ import com.rodrigolmti.coinzilla.util.extensions.formatCurrencyBRL
 import com.rodrigolmti.coinzilla.util.extensions.formatCurrencyUSD
 import kotlinx.android.synthetic.main.row_exchange.view.*
 
-class ExchangeAdapter(val context: Context, val list: List<ExchangeResponse>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ExchangeAdapter(val context: Context, val list: List<ExchangeResponse>?) : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
         (holder as Item).bindData(list!![position])
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
         return Item(LayoutInflater.from(context).inflate(R.layout.row_exchange, parent, false))
     }
 
@@ -25,7 +25,7 @@ class ExchangeAdapter(val context: Context, val list: List<ExchangeResponse>?) :
         return list!!.size
     }
 
-    class Item(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class Item(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         fun bindData(item: ExchangeResponse) {
             itemView.textViewExchangeName.text = item.exchange
             if (item.toSymbol == "BRL") {

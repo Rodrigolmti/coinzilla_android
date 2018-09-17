@@ -1,7 +1,7 @@
 package com.rodrigolmti.coinzilla.ui.adapter
 
 import android.content.Context
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,13 +12,13 @@ import com.rodrigolmti.coinzilla.util.extensions.formatCurrencyUSD
 import kotlinx.android.synthetic.main.row_crypto_currency.view.*
 
 open class CryptoCurrencyAdapter(val context: Context, val list: List<CryptoCurrencyResponse>?,
-                                 private val listener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+                                 private val listener: OnItemClickListener) : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
         return Item(context, LayoutInflater.from(context).inflate(R.layout.row_crypto_currency, parent, false))
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
         (holder as Item).bindData(list!![position], listener)
     }
 
@@ -32,7 +32,7 @@ open class CryptoCurrencyAdapter(val context: Context, val list: List<CryptoCurr
         return list!!.size
     }
 
-    class Item(val context: Context, itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class Item(val context: Context, itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         fun bindData(item: CryptoCurrencyResponse, listener: OnItemClickListener) {
             itemView.setOnClickListener { listener.itemOnClick(item) }
             itemView.textViewSymbol.text = item.tag

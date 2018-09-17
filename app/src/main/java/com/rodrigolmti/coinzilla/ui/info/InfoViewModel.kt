@@ -5,7 +5,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
-import android.databinding.ObservableField
+import androidx.databinding.ObservableField
 import android.view.View
 import android.widget.Adapter
 import android.widget.AdapterView

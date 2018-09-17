@@ -1,10 +1,10 @@
 package com.rodrigolmti.coinzilla.ui.list
 
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.appcompat.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
 import com.rodrigolmti.coinzilla.R
@@ -79,12 +79,12 @@ class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel
     }
 
     private fun setupLinearListAdapter() {
-        binding.recyclerView.layoutManager = LinearLayoutManager(this@CoinListActivity)
+        binding.recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this@CoinListActivity)
         binding.recyclerView.hasFixedSize()
     }
 
     private fun setupGridListAdapter() {
-        binding.recyclerView.layoutManager = LinearLayoutManager(this@CoinListActivity)
+        binding.recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this@CoinListActivity)
     }
 
     private fun setupSearchView(myActionMenuItem: MenuItem) {

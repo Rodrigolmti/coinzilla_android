@@ -1,7 +1,7 @@
 package com.rodrigolmti.coinzilla.di.components
 
 import android.content.Context
-import android.support.v4.app.FragmentManager
+import androidx.fragment.app.FragmentManager
 import com.rodrigolmti.coinzilla.di.modules.ActivityModule
 import com.rodrigolmti.coinzilla.di.modules.ViewModelModule
 import com.rodrigolmti.coinzilla.di.qualifier.ActivityContext
@@ -36,7 +36,7 @@ interface ActivityComponentProvides : AppComponentProvides {
     fun activityContext(): Context
 
     @ActivityFragmentManager
-    fun defaultFragmentManager(): FragmentManager
+    fun defaultFragmentManager(): androidx.fragment.app.FragmentManager
 
     fun navigator(): IActivityNavigator
 }

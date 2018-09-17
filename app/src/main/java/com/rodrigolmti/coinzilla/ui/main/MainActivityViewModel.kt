@@ -3,8 +3,8 @@ package com.rodrigolmti.coinzilla.ui.main
 import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
-import android.databinding.ObservableBoolean
-import android.databinding.ObservableField
+import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.data.IRepository
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext

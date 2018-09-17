@@ -1,9 +1,9 @@
 package com.rodrigolmti.coinzilla.ui.coinDetail
 
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.Observer
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import com.rodrigolmti.coinzilla.R
@@ -28,7 +28,7 @@ class CoinDetailActivity : BaseActivity<ActivityCoinDetailBinding, CoinDetailVie
             viewModel.getCoinDetailById(intent.getStringExtra("action.coin.detail"))
 
             viewModel.mutableExchangeList.observe(this, Observer {
-                binding.recyclerView.layoutManager = LinearLayoutManager(this@CoinDetailActivity)
+                binding.recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this@CoinDetailActivity)
                 binding.recyclerView.adapter = ExchangeAdapter(this@CoinDetailActivity, it)
                 binding.recyclerView.hasFixedSize()
             })
@@ -70,14 +70,14 @@ class CoinDetailActivity : BaseActivity<ActivityCoinDetailBinding, CoinDetailVie
                 val brl = getString(R.string.activity_detail_brl)
 
                 binding.viewPagerChart.adapter = FragmentViewPager(supportFragmentManager,
-                        listOf<Fragment>(
+                        listOf<androidx.fragment.app.Fragment>(
                                 CoinChartFragment.newInstance(it.tag!!, usd),
                                 CoinChartFragment.newInstance(it.tag!!, brl))
                 )
                 binding.indicatorChart.setViewPager(binding.viewPagerChart)
 
                 binding.viewPagerInfo.adapter = FragmentViewPager(supportFragmentManager,
-                        listOf<Fragment>(
+                        listOf<androidx.fragment.app.Fragment>(
                                 CoinInfoFragment.newInstance(response, usd),
                                 CoinInfoFragment.newInstance(response, brl))
                 )

@@ -2,8 +2,8 @@ package com.rodrigolmti.coinzilla.ui.profitability
 
 import android.content.Context
 import android.content.res.Resources
-import android.databinding.ObservableBoolean
-import android.databinding.ObservableField
+import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
 import android.view.View
 import android.widget.Adapter
 import android.widget.AdapterView

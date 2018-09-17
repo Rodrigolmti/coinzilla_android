@@ -1,6 +1,6 @@
 package com.rodrigolmti.coinzilla.ui.base.viewModel
 
-import android.databinding.Observable
+import androidx.databinding.Observable
 import android.os.Bundle
 import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
 

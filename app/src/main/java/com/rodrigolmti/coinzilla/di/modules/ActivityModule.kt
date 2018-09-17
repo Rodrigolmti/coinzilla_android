@@ -1,8 +1,8 @@
 package com.rodrigolmti.coinzilla.di.modules
 
 import android.content.Context
-import android.support.v4.app.FragmentManager
-import android.support.v7.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
+import androidx.appcompat.app.AppCompatActivity
 import com.rodrigolmti.coinzilla.di.qualifier.ActivityContext
 import com.rodrigolmti.coinzilla.di.qualifier.ActivityFragmentManager
 import com.rodrigolmti.coinzilla.di.scopes.PerActivity
@@ -22,7 +22,7 @@ class ActivityModule(private val activity: AppCompatActivity) {
     @Provides
     @PerActivity
     @ActivityFragmentManager
-    internal fun provideFragmentManager(): FragmentManager = activity.supportFragmentManager
+    internal fun provideFragmentManager(): androidx.fragment.app.FragmentManager = activity.supportFragmentManager
 
     @Provides
     @PerActivity
