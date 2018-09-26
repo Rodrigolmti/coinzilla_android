@@ -3,7 +3,6 @@ package com.rodrigolmti.coinzilla
 import android.content.res.Resources
 import androidx.multidex.MultiDexApplication
 import com.crashlytics.android.Crashlytics
-import com.google.android.gms.ads.MobileAds
 import com.rodrigolmti.coinzilla.di.components.AppComponent
 import com.rodrigolmti.coinzilla.di.components.DaggerAppComponent
 import com.rodrigolmti.coinzilla.di.modules.AppModule
@@ -29,8 +28,6 @@ class CZApplication : MultiDexApplication() {
         super.onCreate()
 
         Fabric.with(this, Crashlytics())
-//        MobileAds.initialize(this, getString(R.string.admob_api_key))
-
         if (LeakCanary.isInAnalyzerProcess(this)) return
 
         instance = this

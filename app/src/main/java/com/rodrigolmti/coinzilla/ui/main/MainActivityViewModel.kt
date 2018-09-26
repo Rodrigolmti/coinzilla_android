@@ -45,7 +45,6 @@ class MainActivityViewModel
         compositeDisposable.add(iRepository.getToken()
                 .doOnSubscribe { loading.set(true) }
                 .doOnError { loading.set(false) }
-                .doOnSubscribe { loading.set(false) }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

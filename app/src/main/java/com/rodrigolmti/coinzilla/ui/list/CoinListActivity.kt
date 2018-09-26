@@ -1,12 +1,11 @@
 package com.rodrigolmti.coinzilla.ui.list
 
-import androidx.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.appcompat.widget.SearchView
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.Observer
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.data.model.api.CryptoCurrencyResponse
 import com.rodrigolmti.coinzilla.databinding.ActivityCoinListBinding
@@ -27,12 +26,10 @@ class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel
         setAndBindContentView(savedInstanceState, R.layout.activity_coin_list)
         setSupportActionBar(binding.toolbar)
         enableBackButton()
-
         if (intent.hasExtra("action.type")) {
             action = MenuActionEnum.valueOf(intent.getStringExtra("action.type"))
             viewModel.getDataByAction(action)
         }
-
         setupRecycler()
     }
 
@@ -48,12 +45,10 @@ class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel
     }
 
     private fun setupRecycler() {
-
         when (action) {
             MenuActionEnum.GPU, MenuActionEnum.ASIC, MenuActionEnum.ALTCOIN -> setupLinearListAdapter()
             else -> setupGridListAdapter()
         }
-
         viewModel.mutableGpuLiveData.observe(this, Observer {
             whatToMineAdapter = WhatToMineAdapter(this@CoinListActivity, it)
             binding.recyclerView.adapter = whatToMineAdapter
@@ -91,20 +86,12 @@ class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel
         val searchView = myActionMenuItem.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                //                if (query.isEmpty()) {
-                //                    searchAllCoins()
-                //                    return false
-                //                }
-                //                searchCoinByFilter(query)
+                (binding.recyclerView.adapter as WhatToMineAdapter).filter.filter(query)
                 return false
             }
 
             override fun onQueryTextChange(query: String): Boolean {
-                //                if (query.isEmpty()) {
-                //                    searchAllCoins()
-                //                    return false
-                //                }
-                //                searchCoinByFilter(query)
+                (binding.recyclerView.adapter as WhatToMineAdapter).filter.filter(query)
                 return true
             }
         })

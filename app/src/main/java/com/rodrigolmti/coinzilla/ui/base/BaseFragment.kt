@@ -1,14 +1,13 @@
 package com.rodrigolmti.coinzilla.ui.base
 
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import android.os.Bundle
-import androidx.annotation.CallSuper
-import androidx.annotation.LayoutRes
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.CallSuper
+import androidx.annotation.LayoutRes
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import com.rodrigolmti.coinzilla.BR
 import com.rodrigolmti.coinzilla.di.components.DaggerFragmentComponent
 import com.rodrigolmti.coinzilla.di.components.FragmentComponent
@@ -77,5 +76,4 @@ abstract class BaseFragment<B : ViewDataBinding, VM : MvvmViewModel<*>> : androi
         viewModel.attachViewOrThrowRuntimeException(this, savedInstanceState)
         return binding.root
     }
-
 }

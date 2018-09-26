@@ -11,7 +11,6 @@ class ProfitabilityActivity : BaseActivity<ActivityProfitabilityBinding, Profita
         super.onCreate(savedInstanceState)
         setAndBindContentView(savedInstanceState, R.layout.activity_profitability)
         title = getString(R.string.activity_profitability_title)
-        initAds(binding.adView)
         enableBackButton()
     }
 }

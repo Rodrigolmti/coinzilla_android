@@ -78,10 +78,6 @@ dependencies {
     implementation "org.parceler:parceler-api:$parceler_version"
     kapt "org.parceler:parceler:$parceler_version"
 
-    //Google Firebase
-    implementation 'com.google.firebase:firebase-core:16.0.1'
-    implementation 'com.google.android.gms:play-services-ads:15.0.1'
-
     //Util
     implementation 'com.jakewharton.timber:timber:4.6.1'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'

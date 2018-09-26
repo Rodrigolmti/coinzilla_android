@@ -10,7 +10,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel>() 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setAndBindContentView(savedInstanceState, R.layout.activity_main)
-        initAds(binding.adView)
     }
 
     override fun onResume() {

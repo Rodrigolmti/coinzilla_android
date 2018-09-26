@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -7,290 +9,235 @@
             type="com.rodrigolmti.coinzilla.ui.info.InfoViewModel"/>
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:fillViewport="true">
 
-        <ScrollView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="9"
-            android:fillViewport="true">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:background="@color/colorPrimary"/>
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:onClick="@{() -> viewModel.onClickBack()}"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:onClick="@{() -> viewModel.onClickBack()}"
+                android:src="@drawable/ic_back"/>
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:text="@string/activity_info_title"
+                android:textColor="@color/aliceBlue"
+                android:textSize="20sp"/>
 
             <RelativeLayout
+                android:id="@+id/containerGpu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
+                android:layout_marginTop="45dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/custom_background_rounded"
+                android:elevation="2dp">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="90dp"
-                    android:background="@color/colorPrimary"/>
-
-                <View
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:onClick="@{() -> viewModel.onClickBack()}"/>
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
-                    android:onClick="@{() -> viewModel.onClickBack()}"
-                    android:src="@drawable/ic_back"/>
-
-                <TextView
-                    android:textStyle="bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_centerHorizontal="true"
-                    android:text="@string/activity_info_title"
-                    android:textColor="@color/aliceBlue"
-                    android:textSize="20sp"/>
-
-                <RelativeLayout
-                    android:id="@+id/containerGpu"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="45dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/custom_background_rounded"
-                    android:elevation="2dp">
+                    android:padding="6dp"
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="6dp"
+                        android:layout_width="match_parent"
                         android:orientation="vertical">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:textStyle="bold"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginLeft="10dp"
-                                android:text="@string/app_name"
-                                android:textColor="@color/black"
-                                android:textSize="18sp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                android:text="@string/activity_info_description"
-                                android:textColor="@color/whiteLilac"
-                                android:textSize="16sp"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:orientation="vertical">
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:text="@string/app_name"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"/>
 
-                            <TextView
-                                android:textStyle="bold"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginLeft="10dp"
-                                android:text="@string/activity_info_author"
-                                android:textColor="@color/black"
-                                android:textSize="18sp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginLeft="8dp"
-                                android:text="@string/activity_info_rodrigolmti"
-                                android:textColor="@color/whiteLilac"
-                                android:textSize="16sp"/>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:textStyle="bold"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginLeft="10dp"
-                                android:text="@string/activity_info_version"
-                                android:textColor="@color/black"
-                                android:textSize="18sp"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                android:text="@{viewModel.versionApp}"
-                                android:textColor="@color/whiteLilac"
-                                android:textSize="16sp"
-                                tools:text="1.0"/>
-
-                        </LinearLayout>
+                            android:layout_margin="8dp"
+                            android:text="@string/activity_info_description"
+                            android:textColor="@color/whiteLilac"
+                            android:textSize="16sp"/>
 
                     </LinearLayout>
 
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:id="@+id/containerDonate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_below="@+id/containerGpu"
-                    android:padding="8dp"
-                    android:background="@drawable/custom_background_rounded"
-                    android:elevation="2dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:textStyle="bold"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:text="@string/activity_info_donate_title"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"/>
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:text="@string/activity_info_donate_message"/>
+                        <TextView
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:text="@string/activity_info_author"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:text="@string/activity_info_rodrigolmti"
+                            android:textColor="@color/whiteLilac"
+                            android:textSize="16sp"/>
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginLeft="8dp"
-                            android:text="@string/activity_info_wallets"
-                            android:textColor="@color/black"/>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:padding="6dp"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_wallet"/>
-
-                            <Spinner
-                                android:id="@+id/spinnerWallets"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:layout_marginEnd="8dp"
-                                android:layout_marginLeft="8dp"
-                                android:layout_marginRight="8dp"
-                                android:layout_gravity="center"
-                                android:entries="@array/activity_info_wallets"
-                                app:itemSelectedListener="@{viewModel.onItemSelectedListener}"/>
-
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/textViewWallet"
+                            android:textStyle="bold"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:text="@{viewModel.walletAddress}"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:text="@string/activity_info_version"
                             android:textColor="@color/black"
-                            tools:text="14MVMfLpYDxoStZCKVVpZyHNT9Tu2EuEZ6"/>
+                            android:textSize="18sp"/>
 
-                        <Button
-                            android:textStyle="bold"
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:background="@drawable/custom_button_background_blue"
-                            android:onClick="@{() -> viewModel.onClickCopy()}"
-                            android:text="@string/activity_info_copy"
-                            android:textColor="@color/aliceBlue"
-                            android:textSize="16sp"/>
+                            android:layout_margin="8dp"
+                            android:text="@{viewModel.versionApp}"
+                            android:textColor="@color/whiteLilac"
+                            android:textSize="16sp"
+                            tools:text="1.0"/>
 
                     </LinearLayout>
 
                 </LinearLayout>
 
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/containerDonate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_below="@+id/containerGpu"
+                android:padding="8dp"
+                android:background="@drawable/custom_background_rounded"
+                android:elevation="2dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/activity_info_donate_title"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/activity_info_donate_message"/>
+
                 <LinearLayout
-                    android:id="@+id/containerContact"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_below="@+id/containerDonate"
-                    android:padding="8dp"
-                    android:background="@drawable/custom_background_rounded"
-                    android:elevation="2dp"
                     android:orientation="vertical">
 
                     <TextView
-                        android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
-                        android:text="@string/activity_info_contact_us"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"/>
+                        android:text="@string/activity_info_wallets"
+                        android:textColor="@color/black"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:padding="6dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_wallet"/>
+
+                        <Spinner
+                            android:id="@+id/spinnerWallets"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_gravity="center"
+                            android:entries="@array/activity_info_wallets"
+                            app:itemSelectedListener="@{viewModel.onItemSelectedListener}"/>
+
+                    </LinearLayout>
 
                     <TextView
+                        android:id="@+id/textViewWallet"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:text="@string/activity_info_contact_message"/>
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@{viewModel.walletAddress}"
+                        android:textColor="@color/black"
+                        tools:text="14MVMfLpYDxoStZCKVVpZyHNT9Tu2EuEZ6"/>
 
                     <Button
                         android:textStyle="bold"
@@ -298,24 +245,63 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:background="@drawable/custom_button_background_blue"
-                        android:onClick="@{() -> viewModel.onClickContact()}"
-                        android:text="@string/activity_info_send_email_title"
+                        android:onClick="@{() -> viewModel.onClickCopy()}"
+                        android:text="@string/activity_info_copy"
                         android:textColor="@color/aliceBlue"
                         android:textSize="16sp"/>
 
                 </LinearLayout>
 
-            </RelativeLayout>
+            </LinearLayout>
 
-        </ScrollView>
+            <LinearLayout
+                android:id="@+id/containerContact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_below="@+id/containerDonate"
+                android:padding="8dp"
+                android:background="@drawable/custom_background_rounded"
+                android:elevation="2dp"
+                android:orientation="vertical">
 
-        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/adView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            ads:adSize="BANNER"
-            ads:adUnitId="@string/admob_info_activity"/>
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/activity_info_contact_us"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"/>
 
-    </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="@string/activity_info_contact_message"/>
+
+                <Button
+                    android:textStyle="bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/custom_button_background_blue"
+                    android:onClick="@{() -> viewModel.onClickContact()}"
+                    android:text="@string/activity_info_send_email_title"
+                    android:textColor="@color/aliceBlue"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </layout>

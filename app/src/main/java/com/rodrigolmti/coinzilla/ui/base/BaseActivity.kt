@@ -1,17 +1,14 @@
 package com.rodrigolmti.coinzilla.ui.base
 
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import android.view.MenuItem
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import com.rodrigolmti.coinzilla.BR
 import com.rodrigolmti.coinzilla.CZApplication
-import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.di.components.ActivityComponent
 import com.rodrigolmti.coinzilla.di.components.DaggerActivityComponent
 import com.rodrigolmti.coinzilla.di.modules.ActivityModule
@@ -66,14 +63,6 @@ abstract class BaseActivity<B : ViewDataBinding, VM : MvvmViewModel<*>> : AppCom
         viewModel.detachView()
         refWatcher.watch(activityComponent)
         refWatcher.watch(viewModel)
-    }
-
-    protected fun initAds(adView: AdView) {
-//        adView.loadAd(AdRequest.Builder()
-//                .addTestDevice(getString(R.string.admob_test_device_genymotion))
-//                .addTestDevice(getString(R.string.admob_test_device_one_plus))
-//                .addTestDevice(getString(R.string.admob_test_device_lenovo))
-//                .build())
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

@@ -2,16 +2,6 @@
 
     <string name="app_name">CoinZilla</string>
 
-    <string name="admob_api_key">PnUY3slkWbZRx9UVstrhHssqGvroZ4sZDuZqDIVMT81IfP7ReVr7Cci63Uar9qqM</string>
-    <string name="admob_main_activity">ca-app-pub-4643315836358341/6481542633</string>
-    <string name="admob_info_activity">ca-app-pub-4643315836358341/6640312973</string>
-    <string name="admob_profitability_activity">ca-app-pub-4643315836358341/8996025332</string>
-    <string name="admob_detail_activity">ca-app-pub-4643315836358341/7134388561</string>
-    <string name="admob_favorite_activity">ca-app-pub-4643315836358341/8163155933</string>
-    <string name="admob_test_device_one_plus">30D9B07CD7D39EFDAA52E287FDDB5065</string>
-    <string name="admob_test_device_genymotion">DE9334F8A22C8A3315DB3D729241D0C4</string>
-    <string name="admob_test_device_lenovo">B1CEF83C2288034C20C2547F48555EAE</string>
-
     <string name="wallet_btc">14MVMfLpYDxoStZCKVVpZyHNT9Tu2EuEZ6</string>
     <string name="wallet_eth">0x32303Dbffb259d7efF7a76f4d129b6FD05c79EAd</string>
     <string name="wallet_ltc">LLkfoN9zMjDDju85E7TtittRFzr1e1JpbF</string>
@@ -158,8 +148,5 @@
     <string name="menu_search">Search</string>
 
     <string name="share">Share this coin</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

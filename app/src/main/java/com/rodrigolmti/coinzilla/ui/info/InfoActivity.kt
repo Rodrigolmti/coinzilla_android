@@ -10,6 +10,5 @@ class InfoActivity : BaseActivity<ActivityInfoBinding, InfoViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setAndBindContentView(savedInstanceState, R.layout.activity_info)
-        initAds(binding.adView)
     }
 }

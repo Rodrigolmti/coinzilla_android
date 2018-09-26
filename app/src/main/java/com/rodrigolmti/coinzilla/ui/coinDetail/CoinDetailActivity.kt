@@ -1,20 +1,17 @@
 package com.rodrigolmti.coinzilla.ui.coinDetail
 
-import androidx.lifecycle.Observer
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
+import androidx.lifecycle.Observer
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.data.model.api.CryptoCurrencyResponse
 import com.rodrigolmti.coinzilla.databinding.ActivityCoinDetailBinding
-import com.rodrigolmti.coinzilla.ui.adapter.FragmentViewPager
 import com.rodrigolmti.coinzilla.ui.adapter.ExchangeAdapter
+import com.rodrigolmti.coinzilla.ui.adapter.FragmentViewPager
 import com.rodrigolmti.coinzilla.ui.base.BaseActivity
 import com.rodrigolmti.coinzilla.ui.coinDetail.chart.CoinChartFragment
 import com.rodrigolmti.coinzilla.ui.coinDetail.detail.CoinInfoFragment
-import kotlinx.android.synthetic.main.activity_coin_detail.*
 
 class CoinDetailActivity : BaseActivity<ActivityCoinDetailBinding, CoinDetailViewModel>() {
 
@@ -38,7 +35,6 @@ class CoinDetailActivity : BaseActivity<ActivityCoinDetailBinding, CoinDetailVie
 
         enableBackButton()
         removeElevation()
-        initAds(adView)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
