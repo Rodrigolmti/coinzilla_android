@@ -1,5 +1,6 @@
 package com.rodrigolmti.coinzilla.ui.coinDetail
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -12,16 +13,20 @@ import com.rodrigolmti.coinzilla.ui.adapter.FragmentViewPager
 import com.rodrigolmti.coinzilla.ui.base.BaseActivity
 import com.rodrigolmti.coinzilla.ui.coinDetail.chart.CoinChartFragment
 import com.rodrigolmti.coinzilla.ui.coinDetail.detail.CoinInfoFragment
+import com.rodrigolmti.coinzilla.util.formatCurrencyBRL
+import com.rodrigolmti.coinzilla.util.formatCurrencyUSD
 
 class CoinDetailActivity : BaseActivity<ActivityCoinDetailBinding, CoinDetailViewModel>() {
 
-    private lateinit var coin: CryptoCurrencyResponse
+    private var coin: CryptoCurrencyResponse? = null
     private lateinit var menu: Menu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setAndBindContentView(R.layout.activity_coin_detail)
+
         if (intent.hasExtra("action.coin.detail")) {
+
             viewModel.getCoinDetailById(intent.getStringExtra("action.coin.detail"))
 
             viewModel.mutableExchangeList.observe(this, Observer {
@@ -40,18 +45,12 @@ class CoinDetailActivity : BaseActivity<ActivityCoinDetailBinding, CoinDetailVie
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_coin_detail, menu)
         this.menu = menu
-        handleFavoriteIcon()
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             R.id.action_share -> shareCoin()
-            R.id.action_favorite -> {
-//                coin.favorite = !coin.favorite
-//                coinDao.updateCryptoCurrencyFavorite(coin)
-//                handleFavoriteIcon()
-            }
             else -> finish()
         }
 
@@ -79,35 +78,30 @@ class CoinDetailActivity : BaseActivity<ActivityCoinDetailBinding, CoinDetailVie
                 )
                 binding.indicatorInfo.setViewPager(binding.viewPagerInfo)
 
+                title = it.name
+                coin = it
             }
         })
     }
 
-    private fun handleFavoriteIcon() {
-//        if (coin.favorite)
-//            menu.findItem(R.id.action_favorite).icon = ContextCompat.getDrawable(this, R.drawable.ic_action_favorite_filled)
-//        else
-//            menu.findItem(R.id.action_favorite).icon = ContextCompat.getDrawable(this, R.drawable.ic_action_favorite)
-    }
-
     private fun shareCoin() {
-//        val stringBuilder = StringBuilder()
-//        stringBuilder.append("Share by CoinZilla \n")
-//        stringBuilder.append("https://play.google.com/store/apps/details?id=com.rodrigolmti.coinzilla&hl=en \n")
-//        stringBuilder.append("Coin name: ")
-//        stringBuilder.append(coin.name)
-//        stringBuilder.append("\n Coin symbol: ")
-//        stringBuilder.append(coin.symbol)
-//        stringBuilder.append("\n Brl price: ")
-//        stringBuilder.append(coin.priceBrl)
-//        stringBuilder.append("\n Usd price: ")
-//        stringBuilder.append(coin.priceUsd)
-//        stringBuilder.append("\n Btc price: ")
-//        stringBuilder.append(coin.priceBtc)
-//        val sharingIntent = Intent(android.content.Intent.ACTION_SEND)
-//        sharingIntent.type = "text/plain"
-//        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Share a coin with")
-//        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, stringBuilder.toString())
-//        startActivity(Intent.createChooser(sharingIntent, resources.getString(R.string.share)))
+        coin?.let {
+            val stringBuilder = StringBuilder()
+            stringBuilder.append("Share by CoinZilla \n")
+            stringBuilder.append("https://play.google.com/store/apps/details?id=com.rodrigolmti.coinzilla&hl=en \n")
+            stringBuilder.append("Coin name: ")
+            stringBuilder.append(it.name)
+            stringBuilder.append("\nCoin symbol: ")
+            stringBuilder.append(it.tag)
+            stringBuilder.append("\nBrl price: R$")
+            stringBuilder.append(it.quoteBrl?.price?.formatCurrencyBRL())
+            stringBuilder.append("\nUsd price: $")
+            stringBuilder.append(it.quoteUsd?.price?.formatCurrencyUSD())
+            val sharingIntent = Intent(Intent.ACTION_SEND)
+            sharingIntent.type = "text/plain"
+            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Share a coin with")
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, stringBuilder.toString())
+            startActivity(Intent.createChooser(sharingIntent, resources.getString(R.string.share)))
+        }
     }
 }

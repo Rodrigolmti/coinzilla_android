@@ -8,10 +8,4 @@
         android:title="@string/menu_search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_favorites"
-        android:icon="@drawable/ic_action_favorite_filled"
-        android:title="@string/menu_search"
-        android:visible="false"
-        app:showAsAction="always" />
 </menu>

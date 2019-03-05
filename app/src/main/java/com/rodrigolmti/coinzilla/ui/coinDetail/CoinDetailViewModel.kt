@@ -27,8 +27,6 @@ class CoinDetailViewModel
         private val iRepository: IRepository
 ) : BaseViewModel() {
 
-    val circlePageIndicator = ObservableBoolean(true)
-
     val priceBrl: ObservableField<String> = ObservableField()
     val priceUsd: ObservableField<String> = ObservableField()
 

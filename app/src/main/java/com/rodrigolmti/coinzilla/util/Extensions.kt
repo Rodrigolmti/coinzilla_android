@@ -24,10 +24,10 @@ fun View.gone() {
 
 //region String Extensions
 fun Double.formatCurrencyUSD(): String {
-    return NumberFormat.getNumberInstance(Locale("pt", "BR")).format(this)
+    return NumberFormat.getNumberInstance(Locale.US).format(this)
 }
 
 fun Double.formatCurrencyBRL(): String {
-    return NumberFormat.getNumberInstance(Locale.US).format(this)
+    return NumberFormat.getNumberInstance(Locale("pt", "BR")).format(this)
 }
 //endregion

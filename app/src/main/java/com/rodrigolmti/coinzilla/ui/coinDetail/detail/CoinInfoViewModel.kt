@@ -39,10 +39,10 @@ class CoinInfoViewModel
         val usd = resources.getString(R.string.activity_detail_usd)
         val brl = resources.getString(R.string.activity_detail_brl)
 
-        if (currency == usd) {
+        response.maxSupply?.let { maxSupply.set(it.toString()) }
+        response.totalSupply?.let { totalSupply.set(it.toString()) }
 
-            response.maxSupply?.let { maxSupply.set(it.formatCurrencyUSD()) }
-            response.totalSupply?.let { totalSupply.set(it.formatCurrencyUSD()) }
+        if (currency == usd) {
 
             response.quoteUsd?.let {
 
@@ -58,9 +58,6 @@ class CoinInfoViewModel
         }
 
         if (currency == brl) {
-
-            response.maxSupply?.let { maxSupply.set(it.formatCurrencyBRL()) }
-            response.totalSupply?.let { totalSupply.set(it.formatCurrencyBRL()) }
 
             response.quoteUsd?.let {
 

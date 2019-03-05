@@ -7,9 +7,4 @@
         android:icon="@drawable/ic_action_share"
         android:title="@string/menu_share"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_favorite"
-        android:icon="@drawable/ic_action_favorite"
-        android:title="@string/menu_favorite"
-        app:showAsAction="always" />
 </menu>

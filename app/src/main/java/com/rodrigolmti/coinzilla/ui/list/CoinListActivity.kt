@@ -37,7 +37,6 @@ class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel
         menuInflater.inflate(R.menu.menu_list_home, menu)
         if (action == MenuActionEnum.CRYPTOCURRENCY) {
             menu!!.findItem(R.id.action_search).isVisible = false
-            menu.findItem(R.id.action_favorites).isVisible = true
         }
         val myActionMenuItem = menu!!.findItem(R.id.action_search)
         setupSearchView(myActionMenuItem)
@@ -95,21 +94,5 @@ class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel
                 return true
             }
         })
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item!!.itemId) {
-            R.id.action_favorites -> {
-
-//                if (coinDao.getAllFavorites().isEmpty()) {
-//                    Utils().showSnackBar(binding.content, this, getString(R.string.activity_list_favorite_coins))
-//                    return true
-//                }
-
-            }
-            else -> finish()
-        }
-
-        return true
     }
 }
