@@ -12,7 +12,6 @@ import com.rodrigolmti.coinzilla.data.model.api.WtmAsicResponse
 import com.rodrigolmti.coinzilla.data.model.api.WtmGpuResponse
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext
 import com.rodrigolmti.coinzilla.di.scopes.PerActivity
-import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
 import com.rodrigolmti.coinzilla.ui.base.viewModel.BaseViewModel
 import com.rodrigolmti.coinzilla.util.MenuActionEnum
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -26,7 +25,7 @@ class CoinListViewModel
         @AppContext val context: Context,
         private val resources: Resources,
         private val iRepository: IRepository)
-    : BaseViewModel<MvvmView>(), CoinListMvvm {
+    : BaseViewModel() {
 
     val mutableGpuLiveData: MutableLiveData<List<WtmGpuResponse>> = MutableLiveData()
     val mutableAsicLiveData: MutableLiveData<List<WtmAsicResponse>> = MutableLiveData()

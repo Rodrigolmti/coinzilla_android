@@ -23,7 +23,7 @@ class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setAndBindContentView(savedInstanceState, R.layout.activity_coin_list)
+        setAndBindContentView(R.layout.activity_coin_list)
         setSupportActionBar(binding.toolbar)
         enableBackButton()
         if (intent.hasExtra("action.type")) {

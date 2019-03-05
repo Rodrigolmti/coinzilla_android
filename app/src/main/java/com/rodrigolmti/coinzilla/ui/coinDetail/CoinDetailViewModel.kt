@@ -11,7 +11,6 @@ import com.rodrigolmti.coinzilla.data.model.api.CryptoCurrencyResponse
 import com.rodrigolmti.coinzilla.data.model.api.ExchangeResponse
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext
 import com.rodrigolmti.coinzilla.di.scopes.PerActivity
-import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
 import com.rodrigolmti.coinzilla.ui.base.viewModel.BaseViewModel
 import com.rodrigolmti.coinzilla.util.extensions.formatCurrencyBRL
 import com.rodrigolmti.coinzilla.util.extensions.formatCurrencyUSD
@@ -26,7 +25,7 @@ class CoinDetailViewModel
         @AppContext val context: Context,
         private val resources: Resources,
         private val iRepository: IRepository
-) : BaseViewModel<MvvmView>(), CoinDetailMvvm {
+) : BaseViewModel() {
 
     val priceBrl: ObservableField<String> = ObservableField()
     val priceUsd: ObservableField<String> = ObservableField()

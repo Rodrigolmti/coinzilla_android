@@ -10,7 +10,6 @@ import androidx.databinding.ObservableField
 import com.crashlytics.android.Crashlytics
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext
-import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
 import com.rodrigolmti.coinzilla.ui.base.viewModel.BaseViewModel
 import java.text.DecimalFormat
 import javax.inject.Inject
@@ -19,7 +18,7 @@ class ProfitabilityViewModel
 @Inject constructor(
         @AppContext val context: Context,
         private val resources: Resources)
-    : BaseViewModel<MvvmView>(), ProfitabilityMvvm {
+    : BaseViewModel() {
 
     val onItemSelectedHashListener: AdapterView.OnItemSelectedListener
     val onItemSelectedCalcListener: AdapterView.OnItemSelectedListener

@@ -13,13 +13,11 @@ import com.rodrigolmti.coinzilla.di.components.ActivityComponent
 import com.rodrigolmti.coinzilla.di.components.DaggerActivityComponent
 import com.rodrigolmti.coinzilla.di.modules.ActivityModule
 import com.rodrigolmti.coinzilla.ui.base.navigation.IActivityNavigator
-import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
 import com.rodrigolmti.coinzilla.ui.base.viewModel.MvvmViewModel
 import com.rodrigolmti.coinzilla.util.exceptions.RtfmException
-import com.rodrigolmti.coinzilla.util.extensions.attachViewOrThrowRuntimeException
 import javax.inject.Inject
 
-abstract class BaseActivity<B : ViewDataBinding, VM : MvvmViewModel<*>> : AppCompatActivity(), MvvmView {
+abstract class BaseActivity<B : ViewDataBinding, VM : MvvmViewModel> : AppCompatActivity() {
 
     @Inject
     protected lateinit var activityNavigator: IActivityNavigator
@@ -34,12 +32,6 @@ abstract class BaseActivity<B : ViewDataBinding, VM : MvvmViewModel<*>> : AppCom
                 .activityModule(ActivityModule(this))
                 .appComponent(CZApplication.appComponent)
                 .build()
-    }
-
-    @CallSuper
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        viewModel.saveInstanceState(outState)
     }
 
     @CallSuper
@@ -77,9 +69,9 @@ abstract class BaseActivity<B : ViewDataBinding, VM : MvvmViewModel<*>> : AppCom
         }
     }
 
-    protected fun setAndBindContentView(savedInstanceState: Bundle?, @LayoutRes layoutResID: Int) {
+    protected fun setAndBindContentView(@LayoutRes layoutResID: Int) {
         binding = DataBindingUtil.setContentView(this, layoutResID)
         binding.setVariable(BR.viewModel, viewModel)
-        viewModel.attachViewOrThrowRuntimeException(this, savedInstanceState)
+        viewModel.attachView()
     }
 }

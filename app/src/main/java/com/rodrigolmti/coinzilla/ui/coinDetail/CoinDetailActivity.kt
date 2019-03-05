@@ -20,7 +20,7 @@ class CoinDetailActivity : BaseActivity<ActivityCoinDetailBinding, CoinDetailVie
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setAndBindContentView(savedInstanceState, R.layout.activity_coin_detail)
+        setAndBindContentView(R.layout.activity_coin_detail)
         if (intent.hasExtra("action.coin.detail")) {
             viewModel.getCoinDetailById(intent.getStringExtra("action.coin.detail"))
 

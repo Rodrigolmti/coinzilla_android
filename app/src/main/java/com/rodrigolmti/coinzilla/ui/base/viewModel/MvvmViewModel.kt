@@ -1,14 +1,10 @@
 package com.rodrigolmti.coinzilla.ui.base.viewModel
 
-import android.os.Bundle
 import androidx.databinding.Observable
-import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
 
-interface MvvmViewModel<V : MvvmView> : Observable {
+interface MvvmViewModel : Observable {
 
-    fun attachView(view: V, savedInstanceState: Bundle?)
-
-    fun saveInstanceState(outState: Bundle)
+    fun attachView()
 
     fun detachView()
 }

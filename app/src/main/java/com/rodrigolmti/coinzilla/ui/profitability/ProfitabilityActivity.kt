@@ -9,7 +9,7 @@ class ProfitabilityActivity : BaseActivity<ActivityProfitabilityBinding, Profita
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setAndBindContentView(savedInstanceState, R.layout.activity_profitability)
+        setAndBindContentView(R.layout.activity_profitability)
         title = getString(R.string.activity_profitability_title)
         enableBackButton()
     }

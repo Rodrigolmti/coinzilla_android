@@ -12,13 +12,11 @@ import com.rodrigolmti.coinzilla.BR
 import com.rodrigolmti.coinzilla.di.components.DaggerFragmentComponent
 import com.rodrigolmti.coinzilla.di.components.FragmentComponent
 import com.rodrigolmti.coinzilla.di.modules.FragmentModule
-import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
 import com.rodrigolmti.coinzilla.ui.base.viewModel.MvvmViewModel
 import com.rodrigolmti.coinzilla.util.exceptions.RtfmException
-import com.rodrigolmti.coinzilla.util.extensions.attachViewOrThrowRuntimeException
 import javax.inject.Inject
 
-abstract class BaseFragment<B : ViewDataBinding, VM : MvvmViewModel<*>> : androidx.fragment.app.Fragment(), MvvmView {
+abstract class BaseFragment<B : ViewDataBinding, VM : MvvmViewModel> : androidx.fragment.app.Fragment() {
 
     protected lateinit var binding: B
 
@@ -30,12 +28,6 @@ abstract class BaseFragment<B : ViewDataBinding, VM : MvvmViewModel<*>> : androi
                 .fragmentModule(FragmentModule(this))
                 .activityComponent((activity as BaseActivity<*, *>).activityComponent)
                 .build()
-    }
-
-    @CallSuper
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        viewModel.saveInstanceState(outState)
     }
 
     @CallSuper
@@ -55,10 +47,10 @@ abstract class BaseFragment<B : ViewDataBinding, VM : MvvmViewModel<*>> : androi
         viewModel.detachView()
     }
 
-    protected fun setAndBindContentView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?, @LayoutRes layoutResID: Int): View {
-        binding = DataBindingUtil.inflate<B>(inflater!!, layoutResID, container, false)
+    protected fun setAndBindContentView(inflater: LayoutInflater?, container: ViewGroup?, @LayoutRes layoutResID: Int): View {
+        binding = DataBindingUtil.inflate(inflater!!, layoutResID, container, false)
         binding.setVariable(BR.viewModel, viewModel)
-        viewModel.attachViewOrThrowRuntimeException(this, savedInstanceState)
+        viewModel.attachView()
         return binding.root
     }
 }

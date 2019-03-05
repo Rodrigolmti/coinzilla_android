@@ -1,16 +1,11 @@
 package com.rodrigolmti.coinzilla.di.modules
 
-import com.rodrigolmti.coinzilla.ui.coinDetail.CoinDetailMvvm
+import com.rodrigolmti.coinzilla.ui.base.viewModel.BaseViewModel
 import com.rodrigolmti.coinzilla.ui.coinDetail.CoinDetailViewModel
-import com.rodrigolmti.coinzilla.ui.coinDetail.chart.CoinChartMvvm
 import com.rodrigolmti.coinzilla.ui.coinDetail.chart.CoinChartViewModel
-import com.rodrigolmti.coinzilla.ui.info.InfoMvvm
 import com.rodrigolmti.coinzilla.ui.info.InfoViewModel
-import com.rodrigolmti.coinzilla.ui.list.CoinListMvvm
 import com.rodrigolmti.coinzilla.ui.list.CoinListViewModel
 import com.rodrigolmti.coinzilla.ui.main.MainActivityViewModel
-import com.rodrigolmti.coinzilla.ui.main.MainMvvm
-import com.rodrigolmti.coinzilla.ui.profitability.ProfitabilityMvvm
 import com.rodrigolmti.coinzilla.ui.profitability.ProfitabilityViewModel
 import dagger.Binds
 import dagger.Module
@@ -19,20 +14,20 @@ import dagger.Module
 abstract class ViewModelModule {
 
     @Binds
-    internal abstract fun bindMainActivityViewModel(mainActivityViewModel: MainActivityViewModel): MainMvvm
+    internal abstract fun bindMainActivityViewModel(mainActivityViewModel: MainActivityViewModel): BaseViewModel
 
     @Binds
-    internal abstract fun bindCoinListActivityViewModel(coinListViewModel: CoinListViewModel): CoinListMvvm
+    internal abstract fun bindCoinListActivityViewModel(coinListViewModel: CoinListViewModel): BaseViewModel
 
     @Binds
-    internal abstract fun bindInfoActivityViewModel(infoViewModel: InfoViewModel): InfoMvvm
+    internal abstract fun bindInfoActivityViewModel(infoViewModel: InfoViewModel): BaseViewModel
 
     @Binds
-    internal abstract fun bindProfitabilityActivityViewModel(profitabilityViewModel: ProfitabilityViewModel): ProfitabilityMvvm
+    internal abstract fun bindProfitabilityActivityViewModel(profitabilityViewModel: ProfitabilityViewModel): BaseViewModel
 
     @Binds
-    internal abstract fun bindCoinDetailyActivityViewModel(coinDetailViewModel: CoinDetailViewModel): CoinDetailMvvm
+    internal abstract fun bindCoinDetailyActivityViewModel(coinDetailViewModel: CoinDetailViewModel): BaseViewModel
 
     @Binds
-    internal abstract fun bindCoinChartFragmentViewModel(coinChartDataViewModel: CoinChartViewModel): CoinChartMvvm
+    internal abstract fun bindCoinChartFragmentViewModel(coinChartDataViewModel: CoinChartViewModel): BaseViewModel
 }

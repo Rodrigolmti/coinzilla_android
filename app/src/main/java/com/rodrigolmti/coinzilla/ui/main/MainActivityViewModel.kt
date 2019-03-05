@@ -10,7 +10,6 @@ import com.rodrigolmti.coinzilla.data.IRepository
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext
 import com.rodrigolmti.coinzilla.di.scopes.PerActivity
 import com.rodrigolmti.coinzilla.ui.base.navigation.IActivityNavigator
-import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
 import com.rodrigolmti.coinzilla.ui.base.viewModel.BaseViewModel
 import com.rodrigolmti.coinzilla.ui.info.InfoActivity
 import com.rodrigolmti.coinzilla.ui.list.CoinListActivity
@@ -31,7 +30,7 @@ class MainActivityViewModel
         private val resources: Resources,
         private val iRepository: IRepository,
         private val activityNavigator: IActivityNavigator)
-    : BaseViewModel<MvvmView>(), MainMvvm {
+    : BaseViewModel() {
 
     val gpuUpdateTime: ObservableField<String> = ObservableField("")
     val asicUpdateTime: ObservableField<String> = ObservableField("")

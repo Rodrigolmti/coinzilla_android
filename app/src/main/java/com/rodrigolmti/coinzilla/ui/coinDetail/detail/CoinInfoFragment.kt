@@ -29,7 +29,7 @@ class CoinInfoFragment : BaseFragment<FragmentCoinInfoBinding, CoinInfoViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return setAndBindContentView(layoutInflater, container, savedInstanceState, R.layout.fragment_coin_info)
+        return setAndBindContentView(layoutInflater, container, R.layout.fragment_coin_info)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

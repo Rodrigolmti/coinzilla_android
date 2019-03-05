@@ -9,7 +9,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel>() 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setAndBindContentView(savedInstanceState, R.layout.activity_main)
+        setAndBindContentView(R.layout.activity_main)
     }
 
     override fun onResume() {

@@ -7,7 +7,6 @@ import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.data.model.api.CryptoCurrencyResponse
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext
 import com.rodrigolmti.coinzilla.di.scopes.PerFragment
-import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
 import com.rodrigolmti.coinzilla.ui.base.viewModel.BaseViewModel
 import com.rodrigolmti.coinzilla.util.extensions.formatCurrencyBRL
 import com.rodrigolmti.coinzilla.util.extensions.formatCurrencyUSD
@@ -18,7 +17,7 @@ class CoinInfoViewModel
 @Inject constructor(
         @AppContext val context: Context,
         private val resources: Resources
-) : BaseViewModel<MvvmView>(), CoinInfoMvvm {
+) : BaseViewModel() {
 
     val name: ObservableField<String> = ObservableField()
     val symbol: ObservableField<String> = ObservableField()

@@ -15,7 +15,6 @@ import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext
 import com.rodrigolmti.coinzilla.di.scopes.PerActivity
 import com.rodrigolmti.coinzilla.ui.base.navigation.IActivityNavigator
-import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
 import com.rodrigolmti.coinzilla.ui.base.viewModel.BaseViewModel
 import javax.inject.Inject
 
@@ -25,7 +24,7 @@ class InfoViewModel
         @AppContext val context: Context,
         private val resources: Resources,
         private val activityNavigator: IActivityNavigator)
-    : BaseViewModel<MvvmView>(), InfoMvvm {
+    : BaseViewModel() {
 
     val onItemSelectedListener: AdapterView.OnItemSelectedListener
     val walletAddress: ObservableField<String> = ObservableField()

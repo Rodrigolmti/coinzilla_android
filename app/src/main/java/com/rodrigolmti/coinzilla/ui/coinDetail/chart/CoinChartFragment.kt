@@ -27,7 +27,7 @@ class CoinChartFragment : BaseFragment<FragmentCoinChartBinding, CoinChartViewMo
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return setAndBindContentView(layoutInflater, container, savedInstanceState, R.layout.fragment_coin_chart)
+        return setAndBindContentView(layoutInflater, container, R.layout.fragment_coin_chart)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
