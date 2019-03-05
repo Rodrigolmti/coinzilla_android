@@ -41,39 +41,49 @@ open class WhatToMineAdapter(private val context: Context, var list: List<Any>?)
 
         override fun performFiltering(constraint: CharSequence): Filter.FilterResults {
 
-            val filterString = constraint.toString().toLowerCase()
-
+            val query = constraint.toString().toLowerCase()
             val results = Filter.FilterResults()
 
-            val list = list
+            list?.let {
 
-            val count = list!!.size
-            val nlist = ArrayList<Any>(count)
+                val count = it.size
+                val filteredList = ArrayList<Any>(count)
 
-            for (i in 0 until count) {
+                for (i in 0 until count) {
 
-                val item = list[i]
-                when (item) {
-                    is WtmAsicResponse -> {
-                        if (item.tag == filterString) {
-                            nlist.add(item)
+                    val item = it[i]
+                    when (item) {
+                        is WtmAsicResponse -> {
+
+                            val tag = item.tag.toLowerCase()
+
+                            if (tag.contains(query)) {
+                                filteredList.add(item)
+                            }
                         }
-                    }
-                    is WtmGpuResponse -> {
-                        if (item.tag == filterString) {
-                            nlist.add(item)
+                        is WtmGpuResponse -> {
+
+                            val tag = item.tag.toLowerCase()
+
+                            if (tag.contains(query)) {
+                                filteredList.add(item)
+                            }
                         }
-                    }
-                    is WtmAltcoinResponse -> {
-                        if (item.tag == filterString) {
-                            nlist.add(item)
+                        is WtmAltcoinResponse -> {
+
+                            val tag = item.tag.toLowerCase()
+
+                            if (tag.contains(query)) {
+                                filteredList.add(item)
+                            }
                         }
                     }
                 }
-            }
 
-            results.values = nlist
-            results.count = nlist.size
+                results.values = filteredList
+                results.count = filteredList.size
+
+            }
 
             return results
         }
