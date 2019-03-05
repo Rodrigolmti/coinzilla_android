@@ -104,17 +104,8 @@ open class WhatToMineAdapter(private val context: Context, var list: List<Any>?)
         }
 
         private fun handleAltcoinItem(item: WtmAltcoinResponse, context: Context) {
-            try {
-                val tag: String = item.tag.split("(")[1].replace(")", "").trim().toLowerCase()
-                val res = context.resources.getIdentifier(tag, "drawable", context.packageName)
-                if (res == 0)
-                    itemView.imageViewCrypto.setImageResource(R.drawable.ic_action_money)
-                else
-                    itemView.imageViewCrypto.setImageResource(res)
-            } catch (error: Exception) {
-                itemView.imageViewCrypto.setImageResource(R.drawable.ic_action_money)
-            }
 
+            setImage(context, item.tag)
             itemView.textViewTag.text = item.tag
             itemView.textViewAlgorithm.text = item.algorithm
             itemView.textViewDifficulty.text = item.difficulty
@@ -124,39 +115,37 @@ open class WhatToMineAdapter(private val context: Context, var list: List<Any>?)
         }
 
         private fun handleGpuItem(item: WtmGpuResponse, context: Context) {
-            var netHash = 0
-            try {
-                netHash = item.netHash.toFloat().toInt()
-            } catch (error: Exception) {
-            }
 
-            try {
-                val res = context.resources.getIdentifier(item.tag.toLowerCase(), "drawable", context.packageName)
-                if (res == 0)
-                    itemView.imageViewCrypto.setImageResource(R.drawable.ic_action_money)
-                else
-                    itemView.imageViewCrypto.setImageResource(res)
-            } catch (error: Exception) {
-                itemView.imageViewCrypto.setImageResource(R.drawable.ic_action_money)
-            }
-
+            setImage(context, item.tag)
             itemView.textViewTag.text = item.tag
             itemView.textViewAlgorithm.text = item.algorithm
             itemView.textViewDifficulty.text = item.difficulty
             itemView.textViewResward.text = item.estReward
             itemView.textViewMarket.text = item.marketCap
-            itemView.textViewNetHash.text = netHash.toString()
+            itemView.textViewNetHash.text = setNetHash(item.netHash)
         }
 
         private fun handleAsicItem(item: WtmAsicResponse, context: Context) {
-            var netHash = 0
-            try {
-                netHash = item.netHash.toFloat().toInt()
-            } catch (error: Exception) {
-            }
 
+            setImage(context, item.tag)
+            itemView.textViewTag.text = item.tag
+            itemView.textViewAlgorithm.text = item.algorithm
+            itemView.textViewDifficulty.text = item.difficulty
+            itemView.textViewResward.text = item.estReward
+            itemView.textViewMarket.text = item.marketCap
+            itemView.textViewNetHash.text = setNetHash(item.netHash)
+        }
+
+        private fun setNetHash(netHash: String) = try {
+            netHash.toFloat().toInt().toString()
+        } catch (error: Exception) {
+            error.printStackTrace()
+            ""
+        }
+
+        private fun setImage(context: Context, tag: String) {
             try {
-                val res = context.resources.getIdentifier(item.tag.toLowerCase(), "drawable", context.packageName)
+                val res = context.resources.getIdentifier(tag.toLowerCase(), "drawable", context.packageName)
                 if (res == 0)
                     itemView.imageViewCrypto.setImageResource(R.drawable.ic_action_money)
                 else
@@ -164,13 +153,6 @@ open class WhatToMineAdapter(private val context: Context, var list: List<Any>?)
             } catch (error: Exception) {
                 itemView.imageViewCrypto.setImageResource(R.drawable.ic_action_money)
             }
-
-            itemView.textViewTag.text = item.tag
-            itemView.textViewAlgorithm.text = item.algorithm
-            itemView.textViewDifficulty.text = item.difficulty
-            itemView.textViewResward.text = item.estReward
-            itemView.textViewMarket.text = item.marketCap
-            itemView.textViewNetHash.text = netHash.toString()
         }
     }
 }

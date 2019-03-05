@@ -106,27 +106,26 @@
                     android:layout_marginBottom="10dp"
                     android:orientation="vertical">
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="300dp"
-                        android:layout_margin="16dp">
+                        android:layout_margin="16dp"
+                        android:orientation="vertical">
 
                         <androidx.viewpager.widget.ViewPager
                             android:id="@+id/viewPagerChart"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_above="@+id/indicatorChart"/>
+                            android:layout_height="280dp"/>
 
                         <me.relex.circleindicator.CircleIndicator
                             android:id="@+id/indicatorChart"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="48dp"
-                            android:layout_alignParentBottom="true"
+                            android:layout_height="20dp"
+                            android:layout_gravity="bottom"
                             app:ci_drawable="@drawable/tab_indicator_selected"
                             app:ci_drawable_unselected="@drawable/tab_indicator_default"/>
 
-                    </RelativeLayout>
+                    </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
@@ -134,27 +133,26 @@
                         android:layout_gravity="bottom"
                         android:background="@color/separator"/>
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="300dp"
-                        android:layout_margin="16dp">
+                        android:layout_height="320dp"
+                        android:layout_margin="16dp"
+                        android:orientation="vertical">
 
                         <androidx.viewpager.widget.ViewPager
                             android:id="@+id/viewPagerInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_above="@+id/indicatorInfo"/>
+                            android:layout_height="300dp"/>
 
                         <me.relex.circleindicator.CircleIndicator
                             android:id="@+id/indicatorInfo"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="48dp"
-                            android:layout_alignParentBottom="true"
+                            android:layout_height="20dp"
+                            android:layout_gravity="bottom"
                             app:ci_drawable="@drawable/tab_indicator_selected"
                             app:ci_drawable_unselected="@drawable/tab_indicator_default"/>
 
-                    </RelativeLayout>
+                    </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
