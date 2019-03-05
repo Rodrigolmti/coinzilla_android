@@ -1,9 +1,9 @@
 package com.rodrigolmti.coinzilla.di.modules
 
-import com.patloew.countries.ui.base.navigator.IFragmentNavigator
 import com.rodrigolmti.coinzilla.di.qualifier.ChildFragmentManager
 import com.rodrigolmti.coinzilla.di.scopes.PerFragment
 import com.rodrigolmti.coinzilla.ui.base.navigation.FragmentNavigator
+import com.rodrigolmti.coinzilla.ui.base.navigation.IFragmentNavigator
 import dagger.Module
 import dagger.Provides
 

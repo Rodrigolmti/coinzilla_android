@@ -5,7 +5,7 @@ import org.parceler.Parcel
 import org.parceler.ParcelConstructor
 
 @Parcel(Parcel.Serialization.BEAN)
-open class CryptoCurrencyResponse @ParcelConstructor constructor(
+class CryptoCurrencyResponse @ParcelConstructor constructor(
         @SerializedName("_id")
         var id: String? = "",
         var tag: String? = "",

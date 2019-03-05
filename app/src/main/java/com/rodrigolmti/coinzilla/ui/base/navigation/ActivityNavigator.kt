@@ -5,8 +5,9 @@ import android.app.DialogFragment
 import android.content.Intent
 import android.net.Uri
 import androidx.annotation.IdRes
+import androidx.fragment.app.FragmentActivity
 
-open class ActivityNavigator(protected val activity: androidx.fragment.app.FragmentActivity) : IActivityNavigator {
+open class ActivityNavigator(private val activity: FragmentActivity) : IActivityNavigator {
 
     override fun finishActivity() {
         activity.finish()

@@ -1,7 +1,6 @@
 package com.rodrigolmti.coinzilla.ui.base.navigation
 
 import androidx.annotation.IdRes
-import com.patloew.countries.ui.base.navigator.IFragmentNavigator
 
 class FragmentNavigator(private val fragment: androidx.fragment.app.Fragment) : ActivityNavigator(fragment.activity!!), IFragmentNavigator {
 
@@ -13,7 +12,7 @@ class FragmentNavigator(private val fragment: androidx.fragment.app.Fragment) : 
         replaceFragmentInternal(fragment.childFragmentManager, containerId, fragment, fragmentTag, true, backstackTag)
     }
 
-    override fun popChildFragmentBackstackImmediate() {
+    override fun popChildFragmentBackStackImmediate() {
         fragment.childFragmentManager.popBackStackImmediate()
     }
 }
