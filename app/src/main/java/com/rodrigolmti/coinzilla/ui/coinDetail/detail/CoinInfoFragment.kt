@@ -8,6 +8,7 @@ import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.data.model.api.CryptoCurrencyResponse
 import com.rodrigolmti.coinzilla.databinding.FragmentCoinInfoBinding
 import com.rodrigolmti.coinzilla.ui.base.BaseFragment
+import org.parceler.Parcels
 
 class CoinInfoFragment : BaseFragment<FragmentCoinInfoBinding, CoinInfoViewModel>() {
 

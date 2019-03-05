@@ -43,7 +43,7 @@ class CoinDetailViewModel
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe { loading.set(true) }
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ it ->
+                .subscribe({
                     cryptoCurrencyResponse.value = it
                     setup(it)
                 }, {

@@ -17,16 +17,12 @@ import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
 import com.rodrigolmti.coinzilla.ui.base.viewModel.MvvmViewModel
 import com.rodrigolmti.coinzilla.util.exceptions.RtfmException
 import com.rodrigolmti.coinzilla.util.extensions.attachViewOrThrowRuntimeException
-import com.squareup.leakcanary.RefWatcher
 import javax.inject.Inject
 
 abstract class BaseActivity<B : ViewDataBinding, VM : MvvmViewModel<*>> : AppCompatActivity(), MvvmView {
 
     @Inject
     protected lateinit var activityNavigator: IActivityNavigator
-
-    @Inject
-    protected lateinit var refWatcher: RefWatcher
 
     @Inject
     protected lateinit var viewModel: VM
@@ -61,8 +57,6 @@ abstract class BaseActivity<B : ViewDataBinding, VM : MvvmViewModel<*>> : AppCom
     override fun onDestroy() {
         super.onDestroy()
         viewModel.detachView()
-        refWatcher.watch(activityComponent)
-        refWatcher.watch(viewModel)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

@@ -10,7 +10,6 @@ import com.rodrigolmti.coinzilla.di.modules.DataModule
 import com.rodrigolmti.coinzilla.di.modules.NetModule
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext
 import com.rodrigolmti.coinzilla.di.scopes.PerApplication
-import com.squareup.leakcanary.RefWatcher
 import dagger.Component
 
 @PerApplication
@@ -23,8 +22,6 @@ interface AppComponentProvides {
     fun appContext(): Context
 
     fun resources(): Resources
-
-    fun refWatcher(): RefWatcher
 
     fun preferencesHelper(): IPreferencesHelper
 

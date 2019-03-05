@@ -6,7 +6,6 @@ import com.crashlytics.android.Crashlytics
 import com.rodrigolmti.coinzilla.di.components.AppComponent
 import com.rodrigolmti.coinzilla.di.components.DaggerAppComponent
 import com.rodrigolmti.coinzilla.di.modules.AppModule
-import com.squareup.leakcanary.LeakCanary
 import io.fabric.sdk.android.Fabric
 import timber.log.Timber
 
@@ -28,7 +27,6 @@ class CZApplication : MultiDexApplication() {
         super.onCreate()
 
         Fabric.with(this, Crashlytics())
-        if (LeakCanary.isInAnalyzerProcess(this)) return
 
         instance = this
         appComponent = DaggerAppComponent.builder()
