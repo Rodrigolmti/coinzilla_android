@@ -1,10 +1,10 @@
 package com.rodrigolmti.coinzilla.ui.coinDetail
 
-import androidx.lifecycle.MutableLiveData
 import android.content.Context
 import android.content.res.Resources
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
+import androidx.lifecycle.MutableLiveData
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.data.IRepository
 import com.rodrigolmti.coinzilla.data.model.api.CryptoCurrencyResponse

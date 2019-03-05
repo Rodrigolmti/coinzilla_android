@@ -5,11 +5,11 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
-import androidx.databinding.ObservableField
 import android.view.View
 import android.widget.Adapter
 import android.widget.AdapterView
 import android.widget.Toast
+import androidx.databinding.ObservableField
 import com.rodrigolmti.coinzilla.BuildConfig
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext

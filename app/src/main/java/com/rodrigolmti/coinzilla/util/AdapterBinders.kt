@@ -1,12 +1,12 @@
 package com.rodrigolmti.coinzilla.util
 
-import androidx.databinding.BindingAdapter
 import android.graphics.Color
 import android.graphics.Paint
 import android.view.View
 import android.widget.AdapterView
 import android.widget.EditText
 import android.widget.Spinner
+import androidx.databinding.BindingAdapter
 import com.github.mikephil.charting.charts.CandleStickChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.CandleData

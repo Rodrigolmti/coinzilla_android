@@ -1,7 +1,7 @@
 package com.rodrigolmti.coinzilla.ui.base.viewModel
 
-import androidx.databinding.Observable
 import android.os.Bundle
+import androidx.databinding.Observable
 import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
 
 interface MvvmViewModel<V : MvvmView> : Observable {

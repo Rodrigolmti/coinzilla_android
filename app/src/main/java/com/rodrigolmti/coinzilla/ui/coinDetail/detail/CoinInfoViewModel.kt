@@ -11,9 +11,6 @@ import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
 import com.rodrigolmti.coinzilla.ui.base.viewModel.BaseViewModel
 import com.rodrigolmti.coinzilla.util.extensions.formatCurrencyBRL
 import com.rodrigolmti.coinzilla.util.extensions.formatCurrencyUSD
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
 import javax.inject.Inject
 
 @PerFragment

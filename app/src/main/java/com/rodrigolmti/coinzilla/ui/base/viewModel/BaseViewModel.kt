@@ -1,8 +1,8 @@
 package com.rodrigolmti.coinzilla.ui.base.viewModel
 
-import androidx.databinding.BaseObservable
 import android.os.Bundle
 import androidx.annotation.CallSuper
+import androidx.databinding.BaseObservable
 import com.rodrigolmti.coinzilla.ui.base.view.MvvmView
 import io.reactivex.disposables.CompositeDisposable
 

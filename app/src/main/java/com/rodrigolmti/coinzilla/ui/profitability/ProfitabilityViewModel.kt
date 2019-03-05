@@ -2,11 +2,11 @@ package com.rodrigolmti.coinzilla.ui.profitability
 
 import android.content.Context
 import android.content.res.Resources
-import androidx.databinding.ObservableBoolean
-import androidx.databinding.ObservableField
 import android.view.View
 import android.widget.Adapter
 import android.widget.AdapterView
+import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
 import com.crashlytics.android.Crashlytics
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext

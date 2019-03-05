@@ -1,7 +1,6 @@
 package com.patloew.countries.ui.base.navigator
 
 import androidx.annotation.IdRes
-import androidx.fragment.app.Fragment
 import com.rodrigolmti.coinzilla.ui.base.navigation.IActivityNavigator
 
 /* Copyright 2016 Patrick Löwenstein

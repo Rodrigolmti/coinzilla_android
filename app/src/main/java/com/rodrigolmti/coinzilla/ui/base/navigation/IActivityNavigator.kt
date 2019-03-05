@@ -5,7 +5,6 @@ import android.app.DialogFragment
 import android.content.Intent
 import android.net.Uri
 import androidx.annotation.IdRes
-import androidx.fragment.app.Fragment
 
 interface IActivityNavigator {
 

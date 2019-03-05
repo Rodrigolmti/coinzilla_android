@@ -1,7 +1,6 @@
 package com.rodrigolmti.coinzilla.di.components
 
 import android.content.Context
-import androidx.fragment.app.FragmentManager
 import com.rodrigolmti.coinzilla.di.modules.ActivityModule
 import com.rodrigolmti.coinzilla.di.modules.ViewModelModule
 import com.rodrigolmti.coinzilla.di.qualifier.ActivityContext

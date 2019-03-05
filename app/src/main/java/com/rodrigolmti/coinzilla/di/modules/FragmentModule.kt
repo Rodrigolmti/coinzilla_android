@@ -1,7 +1,5 @@
 package com.rodrigolmti.coinzilla.di.modules
 
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.patloew.countries.ui.base.navigator.IFragmentNavigator
 import com.rodrigolmti.coinzilla.di.qualifier.ChildFragmentManager
 import com.rodrigolmti.coinzilla.di.scopes.PerFragment

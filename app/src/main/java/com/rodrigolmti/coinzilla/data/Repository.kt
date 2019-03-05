@@ -16,7 +16,7 @@ class Repository
         private val iPreferencesHelper: IPreferencesHelper) : IRepository {
 
     override fun getToken(): Single<AuthenticationResponse> {
-        if (getNewToken()) {
+        if (isCurrentTokenExpired()) {
             return iApiHelper.getToken().flatMap { it ->
                 if (it.success && it.token.isNotEmpty()) {
                     setAuthenticationToken(it.token)
@@ -116,7 +116,7 @@ class Repository
         return iApiHelper.getHistoric(fsym, tsym)
     }
 
-    private fun getNewToken(): Boolean {
+    private fun isCurrentTokenExpired(): Boolean {
         if (getAuthenticationTokenTime() == 0L) {
             return true
         }

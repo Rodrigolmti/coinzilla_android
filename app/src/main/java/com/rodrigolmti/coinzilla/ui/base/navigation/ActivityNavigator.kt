@@ -5,9 +5,6 @@ import android.app.DialogFragment
 import android.content.Intent
 import android.net.Uri
 import androidx.annotation.IdRes
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
 
 open class ActivityNavigator(protected val activity: androidx.fragment.app.FragmentActivity) : IActivityNavigator {
 

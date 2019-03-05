@@ -51,8 +51,8 @@ class MainActivityViewModel
                     updateTimeLabel()
                 }, {
                     if (it !is TokenValid) {
-                        Timber.e(it, resources.getString(R.string.general_error))
                         error.set(true)
+                        Timber.e(it)
                     }
                 }))
     }

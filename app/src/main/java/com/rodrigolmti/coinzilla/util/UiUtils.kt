@@ -1,9 +1,8 @@
 package com.rodrigolmti.coinzilla.util
 
 import android.content.Context
-import com.google.android.material.snackbar.Snackbar
-import androidx.core.content.ContextCompat
 import android.view.View
+import androidx.core.content.ContextCompat
 import com.rodrigolmti.coinzilla.R
 
 class UiUtils {

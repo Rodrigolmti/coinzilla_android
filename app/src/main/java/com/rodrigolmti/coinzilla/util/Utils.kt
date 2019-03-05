@@ -2,10 +2,6 @@ package com.rodrigolmti.coinzilla.util
 
 import android.content.Context
 import android.net.ConnectivityManager
-import com.google.android.material.snackbar.Snackbar
-import androidx.core.content.ContextCompat
-import android.view.View
-import com.rodrigolmti.coinzilla.R
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*

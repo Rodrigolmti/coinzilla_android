@@ -1,7 +1,6 @@
 package com.rodrigolmti.coinzilla.di.modules
 
 import android.content.Context
-import androidx.fragment.app.FragmentManager
 import androidx.appcompat.app.AppCompatActivity
 import com.rodrigolmti.coinzilla.di.qualifier.ActivityContext
 import com.rodrigolmti.coinzilla.di.qualifier.ActivityFragmentManager

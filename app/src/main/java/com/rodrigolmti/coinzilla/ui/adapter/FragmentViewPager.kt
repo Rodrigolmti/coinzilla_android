@@ -1,9 +1,5 @@
 package com.rodrigolmti.coinzilla.ui.adapter
 
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
-
 class FragmentViewPager(
         fragmentManager: androidx.fragment.app.FragmentManager,
         private val fragments: List<androidx.fragment.app.Fragment>)
