@@ -13,7 +13,7 @@ import com.rodrigolmti.coinzilla.di.components.DaggerFragmentComponent
 import com.rodrigolmti.coinzilla.di.components.FragmentComponent
 import com.rodrigolmti.coinzilla.di.modules.FragmentModule
 import com.rodrigolmti.coinzilla.ui.base.viewModel.MvvmViewModel
-import com.rodrigolmti.coinzilla.util.exceptions.RtfmException
+import com.rodrigolmti.coinzilla.util.RtfmException
 import javax.inject.Inject
 
 abstract class BaseFragment<B : ViewDataBinding, VM : MvvmViewModel> : androidx.fragment.app.Fragment() {

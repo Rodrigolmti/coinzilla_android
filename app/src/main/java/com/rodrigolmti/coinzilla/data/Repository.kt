@@ -4,7 +4,7 @@ import com.rodrigolmti.coinzilla.data.local.IPreferencesHelper
 import com.rodrigolmti.coinzilla.data.model.api.*
 import com.rodrigolmti.coinzilla.data.remote.IApiHelper
 import com.rodrigolmti.coinzilla.di.scopes.PerApplication
-import com.rodrigolmti.coinzilla.util.exceptions.TokenValid
+import com.rodrigolmti.coinzilla.util.TokenValid
 import io.reactivex.Single
 import java.util.*
 import javax.inject.Inject
@@ -17,7 +17,7 @@ class Repository
 
     override fun getToken(): Single<AuthenticationResponse> {
         if (isCurrentTokenExpired()) {
-            return iApiHelper.getToken().flatMap { it ->
+            return iApiHelper.getToken().flatMap {
                 if (it.success && it.token.isNotEmpty()) {
                     setAuthenticationToken(it.token)
                     setAuthenticationTokenTime(Date().time)
@@ -77,28 +77,28 @@ class Repository
     }
 
     override fun getWhatToMineGpu(): Single<List<WtmGpuResponse>> {
-        return iApiHelper.getWhatToMineGpu().flatMap { it ->
+        return iApiHelper.getWhatToMineGpu().flatMap {
             setGpuUpdateTime(Date().time)
             Single.just(it)
         }
     }
 
     override fun getWhatToMineAsic(): Single<List<WtmAsicResponse>> {
-        return iApiHelper.getWhatToMineAsic().flatMap { it ->
+        return iApiHelper.getWhatToMineAsic().flatMap {
             setAsicUpdateTime(Date().time)
             Single.just(it)
         }
     }
 
     override fun getWhatToMineAltcoins(): Single<List<WtmAltcoinResponse>> {
-        return iApiHelper.getWhatToMineAltcoins().flatMap { it ->
+        return iApiHelper.getWhatToMineAltcoins().flatMap {
             setAltcoinUpdateTime(Date().time)
             Single.just(it)
         }
     }
 
     override fun getMarketCapList(): Single<List<CryptoCurrencyResponse>> {
-        return iApiHelper.getMarketCapList().flatMap { it ->
+        return iApiHelper.getMarketCapList().flatMap {
             setCryptocurrencyUpdateTime(Date().time)
             Single.just(it)
         }

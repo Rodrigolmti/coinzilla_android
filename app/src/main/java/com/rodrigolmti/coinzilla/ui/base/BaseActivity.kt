@@ -14,7 +14,7 @@ import com.rodrigolmti.coinzilla.di.components.DaggerActivityComponent
 import com.rodrigolmti.coinzilla.di.modules.ActivityModule
 import com.rodrigolmti.coinzilla.ui.base.navigation.IActivityNavigator
 import com.rodrigolmti.coinzilla.ui.base.viewModel.MvvmViewModel
-import com.rodrigolmti.coinzilla.util.exceptions.RtfmException
+import com.rodrigolmti.coinzilla.util.RtfmException
 import javax.inject.Inject
 
 abstract class BaseActivity<B : ViewDataBinding, VM : MvvmViewModel> : AppCompatActivity() {

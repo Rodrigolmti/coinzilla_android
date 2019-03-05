@@ -12,8 +12,8 @@ import com.rodrigolmti.coinzilla.data.model.api.ExchangeResponse
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext
 import com.rodrigolmti.coinzilla.di.scopes.PerActivity
 import com.rodrigolmti.coinzilla.ui.base.viewModel.BaseViewModel
-import com.rodrigolmti.coinzilla.util.extensions.formatCurrencyBRL
-import com.rodrigolmti.coinzilla.util.extensions.formatCurrencyUSD
+import com.rodrigolmti.coinzilla.util.formatCurrencyBRL
+import com.rodrigolmti.coinzilla.util.formatCurrencyUSD
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber

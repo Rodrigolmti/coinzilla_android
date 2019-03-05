@@ -15,8 +15,8 @@ import com.rodrigolmti.coinzilla.ui.info.InfoActivity
 import com.rodrigolmti.coinzilla.ui.list.CoinListActivity
 import com.rodrigolmti.coinzilla.ui.profitability.ProfitabilityActivity
 import com.rodrigolmti.coinzilla.util.MenuActionEnum
-import com.rodrigolmti.coinzilla.util.Utils
-import com.rodrigolmti.coinzilla.util.exceptions.TokenValid
+import com.rodrigolmti.coinzilla.util.TokenValid
+import com.rodrigolmti.coinzilla.util.formatCustomDate
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
@@ -59,19 +59,19 @@ class MainActivityViewModel
     fun updateTimeLabel() {
         if (iRepository.getGpuUpdateTime() > 0) {
             gpuUpdateTime.set(resources.getString(R.string.activity_list_update,
-                    Utils.formatCustomDate(Date(iRepository.getGpuUpdateTime()))))
+                    formatCustomDate(Date(iRepository.getGpuUpdateTime()))))
         }
         if (iRepository.getAsicUpdateTime() > 0) {
             asicUpdateTime.set(resources.getString(R.string.activity_list_update,
-                    Utils.formatCustomDate(Date(iRepository.getAsicUpdateTime()))))
+                    formatCustomDate(Date(iRepository.getAsicUpdateTime()))))
         }
         if (iRepository.getAltcoinUpdateTime() > 0) {
             altcoinUpdateTime.set(resources.getString(R.string.activity_list_update,
-                    Utils.formatCustomDate(Date(iRepository.getAltcoinUpdateTime()))))
+                    formatCustomDate(Date(iRepository.getAltcoinUpdateTime()))))
         }
         if (iRepository.getCryptocurrencyUpdateTime() > 0) {
             cryptocurrencyUpdateTime.set(resources.getString(R.string.activity_list_update,
-                    Utils.formatCustomDate(Date(iRepository.getCryptocurrencyUpdateTime()))))
+                    formatCustomDate(Date(iRepository.getCryptocurrencyUpdateTime()))))
         }
     }
 

@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.data.model.api.ExchangeResponse
-import com.rodrigolmti.coinzilla.util.extensions.formatCurrencyBRL
-import com.rodrigolmti.coinzilla.util.extensions.formatCurrencyUSD
+import com.rodrigolmti.coinzilla.util.formatCurrencyBRL
+import com.rodrigolmti.coinzilla.util.formatCurrencyUSD
 import kotlinx.android.synthetic.main.row_exchange.view.*
 
 class ExchangeAdapter(val context: Context, val list: List<ExchangeResponse>?) : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {

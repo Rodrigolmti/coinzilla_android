@@ -1,4 +1,4 @@
-package com.rodrigolmti.coinzilla.util.extensions
+package com.rodrigolmti.coinzilla.util
 
 import android.view.View
 import java.text.NumberFormat
