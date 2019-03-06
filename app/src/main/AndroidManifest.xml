@@ -4,13 +4,7 @@
     package="com.rodrigolmti.coinzilla">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION"/>
-    <uses-permission android:name="com.google.android.gms.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -50,10 +44,15 @@
             android:name=".ui.coinDetail.CoinDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeActionBar"/>
+        <activity
+            android:name=".ui.balance.BalanceActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeActionBar"/>
 
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="8e67140fd2c7681126394c6ab6fdde10fa9ca734"/>
+
     </application>
 
 </manifest>

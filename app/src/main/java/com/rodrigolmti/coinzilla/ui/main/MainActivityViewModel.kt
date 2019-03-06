@@ -9,13 +9,14 @@ import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.data.IRepository
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext
 import com.rodrigolmti.coinzilla.di.scopes.PerActivity
+import com.rodrigolmti.coinzilla.ui.balance.BalanceActivity
 import com.rodrigolmti.coinzilla.ui.base.navigation.IActivityNavigator
 import com.rodrigolmti.coinzilla.ui.base.viewModel.BaseViewModel
 import com.rodrigolmti.coinzilla.ui.info.InfoActivity
 import com.rodrigolmti.coinzilla.ui.list.CoinListActivity
 import com.rodrigolmti.coinzilla.ui.profitability.ProfitabilityActivity
 import com.rodrigolmti.coinzilla.util.MenuActionEnum
-import com.rodrigolmti.coinzilla.util.TokenValid
+import com.rodrigolmti.coinzilla.util.UnnecessaryRefresh
 import com.rodrigolmti.coinzilla.util.formatCustomDate
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -49,7 +50,7 @@ class MainActivityViewModel
                 .subscribe({
                     updateTimeLabel()
                 }, {
-                    if (it !is TokenValid) {
+                    if (it !is UnnecessaryRefresh) {
                         error.set(true)
                         Timber.e(it)
                     }
@@ -73,10 +74,15 @@ class MainActivityViewModel
             cryptocurrencyUpdateTime.set(resources.getString(R.string.activity_list_update,
                     formatCustomDate(Date(iRepository.getCryptocurrencyUpdateTime()))))
         }
+        loading.set(false)
     }
 
     fun clickInfo() {
         startActivity(Intent(context, InfoActivity::class.java))
+    }
+
+    fun clickBalance() {
+        startActivity(Intent(context, BalanceActivity::class.java), MenuActionEnum.GPU)
     }
 
     fun clickGpuMining() {

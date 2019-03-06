@@ -6,7 +6,7 @@ package com.rodrigolmti.coinzilla.ui.adapter
 //class PoloniexBalanceAdapter(val context: Context, val list: List<PoloniexCoin>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 //
 //    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-//        return Item(LayoutInflater.from(context).inflate(R.layout.row_poloniex_balance, parent, false))
+//        return Item(LayoutInflater.from(context).inflate(R.layout.item_exchange_balance, parent, false))
 //    }
 //
 //    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

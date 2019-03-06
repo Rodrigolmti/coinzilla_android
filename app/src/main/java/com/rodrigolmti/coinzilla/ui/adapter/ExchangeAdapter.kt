@@ -8,7 +8,7 @@ import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.data.model.api.ExchangeResponse
 import com.rodrigolmti.coinzilla.util.formatCurrencyBRL
 import com.rodrigolmti.coinzilla.util.formatCurrencyUSD
-import kotlinx.android.synthetic.main.row_exchange.view.*
+import kotlinx.android.synthetic.main.item_exchange.view.*
 
 class ExchangeAdapter(val context: Context, val list: List<ExchangeResponse>?) : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
@@ -17,7 +17,7 @@ class ExchangeAdapter(val context: Context, val list: List<ExchangeResponse>?) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
-        return Item(LayoutInflater.from(context).inflate(R.layout.row_exchange, parent, false))
+        return Item(LayoutInflater.from(context).inflate(R.layout.item_exchange, parent, false))
     }
 
     override fun getItemCount(): Int {

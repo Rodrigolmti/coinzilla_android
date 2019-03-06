@@ -1,70 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+        <variable
+            name="viewModel"
+            type="com.rodrigolmti.coinzilla.ui.balance.BalanceViewModel"/>
+    </data>
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_margin="16dp"
-            android:background="@drawable/custom_background_rounded_blue"
-            android:elevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:weightSum="2">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:drawableLeft="@drawable/ic_action_wallet"
-                    android:drawablePadding="10dp"
-                    android:drawableStart="@drawable/ic_action_wallet"
-                    android:gravity="center"
-                    android:text="@string/activity_balance_current_balance"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/textViewBalance"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="1.6"
-                    android:gravity="center"
-                    tools:text="R$ 2,515.00"
-                    android:textColor="@color/white"
-                    android:textSize="28sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-        </RelativeLayout>
-
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/candleChart"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:minHeight="250dp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp" />
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/custom_background_rounded_blue"
+                android:elevation="4dp">
 
-</RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:drawableLeft="@drawable/ic_action_wallet"
+                        android:drawablePadding="10dp"
+                        android:drawableStart="@drawable/ic_action_wallet"
+                        android:gravity="center"
+                        android:text="@string/activity_balance_current_balance"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"/>
+
+                    <TextView
+                        android:id="@+id/textViewBalance"
+                        android:textStyle="bold"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.6"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="28sp"
+                        tools:text="R$ 2,515.00"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/candleChart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:minHeight="250dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

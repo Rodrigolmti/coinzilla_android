@@ -39,7 +39,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="?android:attr/actionBarSize"
                 android:visibility="@{!viewModel.loading &amp;&amp; !viewModel.error}"
-                tools:listitem="@layout/row_crypto_currency"/>
+                tools:listitem="@layout/item_crypto_currency"/>
 
             <include
                 android:id="@+id/progressBar"

@@ -8,13 +8,13 @@ import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.data.model.api.CryptoCurrencyResponse
 import com.rodrigolmti.coinzilla.util.formatCurrencyBRL
 import com.rodrigolmti.coinzilla.util.formatCurrencyUSD
-import kotlinx.android.synthetic.main.row_crypto_currency.view.*
+import kotlinx.android.synthetic.main.item_crypto_currency.view.*
 
 open class CryptoCurrencyAdapter(val context: Context, val list: List<CryptoCurrencyResponse>?,
                                  private val listener: OnItemClickListener) : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
-        return Item(context, LayoutInflater.from(context).inflate(R.layout.row_crypto_currency, parent, false))
+        return Item(context, LayoutInflater.from(context).inflate(R.layout.item_crypto_currency, parent, false))
     }
 
     override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {

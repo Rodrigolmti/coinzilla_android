@@ -45,8 +45,22 @@ class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel
 
     private fun setupRecycler() {
         when (action) {
-            MenuActionEnum.GPU, MenuActionEnum.ASIC, MenuActionEnum.ALTCOIN -> setupLinearListAdapter()
-            else -> setupGridListAdapter()
+            MenuActionEnum.GPU -> {
+                title = getString(R.string.activity_main_gpu_title)
+                setupLinearListAdapter()
+            }
+            MenuActionEnum.ASIC -> {
+                title = getString(R.string.activity_main_asic_title)
+                setupLinearListAdapter()
+            }
+            MenuActionEnum.ALTCOIN -> {
+                title = getString(R.string.activity_main_warz_title)
+                setupLinearListAdapter()
+            }
+            else -> {
+                title = getString(R.string.activity_main_cryptocurrency_title)
+                setupGridListAdapter()
+            }
         }
         viewModel.mutableGpuLiveData.observe(this, Observer {
             whatToMineAdapter = WhatToMineAdapter(this@CoinListActivity, it)

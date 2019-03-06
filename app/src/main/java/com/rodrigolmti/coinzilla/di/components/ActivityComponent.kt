@@ -6,6 +6,7 @@ import com.rodrigolmti.coinzilla.di.modules.ViewModelModule
 import com.rodrigolmti.coinzilla.di.qualifier.ActivityContext
 import com.rodrigolmti.coinzilla.di.qualifier.ActivityFragmentManager
 import com.rodrigolmti.coinzilla.di.scopes.PerActivity
+import com.rodrigolmti.coinzilla.ui.balance.BalanceActivity
 import com.rodrigolmti.coinzilla.ui.base.navigation.IActivityNavigator
 import com.rodrigolmti.coinzilla.ui.coinDetail.CoinDetailActivity
 import com.rodrigolmti.coinzilla.ui.info.InfoActivity
@@ -27,6 +28,8 @@ interface ActivityComponent : ActivityComponentProvides {
     fun inject(activity: CoinListActivity)
 
     fun inject(activity: ProfitabilityActivity)
+
+    fun inject(activity: BalanceActivity)
 }
 
 interface ActivityComponentProvides : AppComponentProvides {

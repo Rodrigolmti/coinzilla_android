@@ -4,7 +4,7 @@ import com.rodrigolmti.coinzilla.data.local.IPreferencesHelper
 import com.rodrigolmti.coinzilla.data.model.api.*
 import com.rodrigolmti.coinzilla.data.remote.IApiHelper
 import com.rodrigolmti.coinzilla.di.scopes.PerApplication
-import com.rodrigolmti.coinzilla.util.TokenValid
+import com.rodrigolmti.coinzilla.util.UnnecessaryRefresh
 import io.reactivex.Single
 import java.util.*
 import javax.inject.Inject
@@ -25,7 +25,7 @@ class Repository
                 Single.just(it)
             }
         }
-        return Single.error(TokenValid())
+        return Single.error(UnnecessaryRefresh())
     }
 
     override fun getAuthenticationToken(): String {

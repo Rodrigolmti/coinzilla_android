@@ -11,7 +11,7 @@ import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.data.model.api.WtmAltcoinResponse
 import com.rodrigolmti.coinzilla.data.model.api.WtmAsicResponse
 import com.rodrigolmti.coinzilla.data.model.api.WtmGpuResponse
-import kotlinx.android.synthetic.main.row_what_to_mine.view.*
+import kotlinx.android.synthetic.main.item_what_to_mine.view.*
 
 open class WhatToMineAdapter(private val context: Context, var list: List<Any>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>(), Filterable {
 
@@ -22,7 +22,7 @@ open class WhatToMineAdapter(private val context: Context, var list: List<Any>?)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
-        return Item(LayoutInflater.from(context).inflate(R.layout.row_what_to_mine, parent, false))
+        return Item(LayoutInflater.from(context).inflate(R.layout.item_what_to_mine, parent, false))
     }
 
     override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
