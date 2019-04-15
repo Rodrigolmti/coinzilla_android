@@ -13,11 +13,11 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.rodrigolmti.coinzilla"
-        minSdkVersion 16
+        minSdkVersion 21
         multiDexEnabled true
         targetSdkVersion 28
-        versionCode 201802171
-        versionName "1.0.8"
+        versionCode 20191504
+        versionName "1.1.8"
         javaCompileOptions {
             annotationProcessorOptions {
                 includeCompileClasspath false
@@ -29,23 +29,19 @@ android {
         enabled = true
     }
 
-    packagingOptions {
-        exclude 'META-INF/XXX'
-    }
-
     buildTypes {
         release {
-            minifyEnabled true
-            ext.enableCrashlytics = true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        debug {
             minifyEnabled false
         }
     }
 
-    dexOptions {
-        javaMaxHeapSize "4g"
+    signingConfigs {
+        release {
+            keyAlias 'coinzilla'
+            keyPassword PASSWORD
+            storeFile file('coinzilla')
+            storePassword PASSWORD
+        }
     }
 }
 

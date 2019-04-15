@@ -44,10 +44,6 @@
             android:name=".ui.coinDetail.CoinDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeActionBar"/>
-        <activity
-            android:name=".ui.balance.BalanceActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeActionBar"/>
 
         <meta-data
             android:name="io.fabric.ApiKey"
