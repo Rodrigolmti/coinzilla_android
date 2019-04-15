@@ -1,6 +1,5 @@
 package com.rodrigolmti.coinzilla.di.modules
 
-import com.rodrigolmti.coinzilla.ui.balance.BalanceViewModel
 import com.rodrigolmti.coinzilla.ui.base.viewModel.BaseViewModel
 import com.rodrigolmti.coinzilla.ui.coinDetail.CoinDetailViewModel
 import com.rodrigolmti.coinzilla.ui.coinDetail.chart.CoinChartViewModel
@@ -31,7 +30,4 @@ abstract class ViewModelModule {
 
     @Binds
     internal abstract fun bindCoinChartFragmentViewModel(coinChartDataViewModel: CoinChartViewModel): BaseViewModel
-
-    @Binds
-    internal abstract fun bindBalanceActivityViewModel(balanceViewModel: BalanceViewModel): BaseViewModel
 }

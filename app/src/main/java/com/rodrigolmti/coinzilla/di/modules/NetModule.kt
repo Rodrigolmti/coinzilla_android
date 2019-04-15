@@ -20,8 +20,7 @@ class NetModule {
 
     companion object {
 
-//        const val BASE_URL_NODE = "http://67.205.185.235:3000/api/v2/"
-const val BASE_URL_NODE = "http://192.168.0.38:3000/api/v2/"
+        const val BASE_URL_NODE = "http://104.248.185.10:3000/api/v2/"
         const val BASE_URL_CRYPTO_COMPARE = "https://min-api.cryptocompare.com/data/"
     }
 
@@ -43,11 +42,11 @@ const val BASE_URL_NODE = "http://192.168.0.38:3000/api/v2/"
         val httpClientBuilder = setupHttpBuilder(okHttpClient)
 
         return Retrofit.Builder()
-                .baseUrl(BASE_URL_NODE)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
-                .callFactory(httpClientBuilder.build())
-                .build().create(INodeApi::class.java)
+            .baseUrl(BASE_URL_NODE)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+            .callFactory(httpClientBuilder.build())
+            .build().create(INodeApi::class.java)
     }
 
     @Provides
@@ -56,11 +55,11 @@ const val BASE_URL_NODE = "http://192.168.0.38:3000/api/v2/"
         val httpClientBuilder = setupHttpBuilder(okHttpClient)
 
         return Retrofit.Builder()
-                .baseUrl(BASE_URL_CRYPTO_COMPARE)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
-                .callFactory(httpClientBuilder.build())
-                .build().create(ICryptoCompareApi::class.java)
+            .baseUrl(BASE_URL_CRYPTO_COMPARE)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+            .callFactory(httpClientBuilder.build())
+            .build().create(ICryptoCompareApi::class.java)
     }
 
     private fun setupHttpBuilder(okHttpClient: OkHttpClient): OkHttpClient.Builder {

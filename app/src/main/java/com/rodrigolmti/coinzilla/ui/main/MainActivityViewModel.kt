@@ -9,7 +9,6 @@ import com.rodrigolmti.coinzilla.R
 import com.rodrigolmti.coinzilla.data.IRepository
 import com.rodrigolmti.coinzilla.di.qualifier.AppContext
 import com.rodrigolmti.coinzilla.di.scopes.PerActivity
-import com.rodrigolmti.coinzilla.ui.balance.BalanceActivity
 import com.rodrigolmti.coinzilla.ui.base.navigation.IActivityNavigator
 import com.rodrigolmti.coinzilla.ui.base.viewModel.BaseViewModel
 import com.rodrigolmti.coinzilla.ui.info.InfoActivity
@@ -79,10 +78,6 @@ class MainActivityViewModel
 
     fun clickInfo() {
         startActivity(Intent(context, InfoActivity::class.java))
-    }
-
-    fun clickBalance() {
-        startActivity(Intent(context, BalanceActivity::class.java), MenuActionEnum.GPU)
     }
 
     fun clickGpuMining() {

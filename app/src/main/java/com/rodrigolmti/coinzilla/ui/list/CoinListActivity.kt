@@ -31,6 +31,7 @@ class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel
             viewModel.getDataByAction(action)
         }
         setupRecycler()
+        setupTitle()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -43,25 +44,25 @@ class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel
         return true
     }
 
-    private fun setupRecycler() {
-        when (action) {
+    private fun setupTitle() {
+        title = when (action) {
             MenuActionEnum.GPU -> {
-                title = getString(R.string.activity_main_gpu_title)
-                setupLinearListAdapter()
+                getString(R.string.activity_main_gpu_title)
             }
             MenuActionEnum.ASIC -> {
-                title = getString(R.string.activity_main_asic_title)
-                setupLinearListAdapter()
+                getString(R.string.activity_main_asic_title)
             }
             MenuActionEnum.ALTCOIN -> {
-                title = getString(R.string.activity_main_warz_title)
-                setupLinearListAdapter()
+                getString(R.string.activity_main_warz_title)
             }
             else -> {
-                title = getString(R.string.activity_main_cryptocurrency_title)
-                setupGridListAdapter()
+                getString(R.string.activity_main_cryptocurrency_title)
             }
         }
+    }
+
+    private fun setupRecycler() {
+        setupLinearListAdapter()
         viewModel.mutableGpuLiveData.observe(this, Observer {
             whatToMineAdapter = WhatToMineAdapter(this@CoinListActivity, it)
             binding.recyclerView.adapter = whatToMineAdapter
@@ -87,12 +88,8 @@ class CoinListActivity : BaseActivity<ActivityCoinListBinding, CoinListViewModel
     }
 
     private fun setupLinearListAdapter() {
-        binding.recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this@CoinListActivity)
+        binding.recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         binding.recyclerView.hasFixedSize()
-    }
-
-    private fun setupGridListAdapter() {
-        binding.recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this@CoinListActivity)
     }
 
     private fun setupSearchView(myActionMenuItem: MenuItem) {
